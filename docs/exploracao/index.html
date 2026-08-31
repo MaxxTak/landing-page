@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spike · Landing Page · Sales Costa Advogados</title>
+<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  window.mermaid = mermaid;
+  mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'loose' });
+  window.dispatchEvent(new Event('mermaid-ready'));
+</script>
+<style>
+  :root{
+    --bg:#ffffff; --bg-side:#f6f7f9; --fg:#1c1e21; --muted:#6b7280;
+    --border:#e2e5e9; --accent:#AA9B8F; --accent-bg:#f4f1ee; --code-bg:#f4f5f7;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#16181c; --bg-side:#1c1f24; --fg:#e6e8eb; --muted:#9aa3ad;
+           --border:#2c3138; --accent:#AA9B8F; --accent-bg:#282624; --code-bg:#21252b; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--fg)}
+  #layout{display:flex;min-height:100vh}
+  /* sidebar */
+  aside{width:290px;flex:0 0 290px;background:var(--bg-side);border-right:1px solid var(--border);
+        padding:20px 0 40px;position:sticky;top:0;height:100vh;overflow-y:auto}
+  aside h1{font-size:15px;margin:0 20px 4px;letter-spacing:.02em;color:var(--fg)}
+  aside .sub{font-size:12px;color:var(--muted);margin:0 20px 18px}
+  aside .sec{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+             margin:18px 20px 6px;font-weight:600}
+  aside a{display:block;padding:8px 20px;font-size:14px;color:var(--fg);text-decoration:none;
+          border-left:3px solid transparent;transition:all 0.2s ease}
+  aside a:hover{background:var(--accent-bg)}
+  aside a.active{background:var(--accent-bg);border-left-color:var(--accent);color:var(--accent);font-weight:600}
+  /* content */
+  main{flex:1;min-width:0;padding:36px 44px 96px;max-width:980px}
+  .crumb{font-size:12px;color:var(--muted);margin-bottom:18px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  article h1{font-size:28px;line-height:1.25;margin:0 0 18px;padding-bottom:10px;border-bottom:1px solid var(--border);color:var(--fg)}
+  article h2{font-size:21px;margin:34px 0 12px;color:var(--fg)}
+  article h3{font-size:17px;margin:26px 0 10px;color:var(--fg)}
+  article h4{font-size:15px;margin:20px 0 8px;color:var(--muted)}
+  article p,article li{overflow-wrap:break-word}
+  article img{max-width:100%;height:auto;border-radius:6px;margin:16px 0;border:1px solid var(--border)}
+  article blockquote{margin:16px 0;padding:8px 16px;border-left:3px solid var(--accent);
+                     color:var(--muted);background:var(--accent-bg);border-radius:0 4px 4px 0}
+  article blockquote p{margin:6px 0}
+  article code{background:var(--code-bg);padding:.15em .35em;border-radius:3px;
+               font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+  article pre{background:var(--code-bg);padding:14px 16px;border-radius:6px;overflow-x:auto;
+              border:1px solid var(--border)}
+  article pre code{background:none;padding:0;font-size:12.5px}
+  .tablewrap{overflow-x:auto;margin:16px 0}
+  article table{border-collapse:collapse;font-size:14px;min-width:100%}
+  article th,article td{border:1px solid var(--border);padding:8px 12px;text-align:left;vertical-align:top}
+  article th{background:var(--code-bg);font-weight:600}
+  article hr{border:0;border-top:1px solid var(--border);margin:32px 0}
+  article a{color:var(--accent)}
+  .mermaid{margin:0;overflow-x:auto;text-align:center}
+  .diagram{position:relative;margin:18px 0;border:1px solid var(--border);border-radius:6px;
+           padding:12px 12px 8px;background:var(--bg)}
+  .diagram .zoombtn{position:absolute;top:8px;right:8px;z-index:2;cursor:pointer;
+           font:12px/1 inherit;padding:5px 9px;border-radius:4px;border:1px solid var(--border);
+           background:var(--bg-side);color:var(--muted);opacity:.7;transition:opacity .15s}
+  .diagram:hover .zoombtn,.diagram .zoombtn:focus{opacity:1}
+  .diagram .zoombtn:hover{color:var(--accent);border-color:var(--accent)}
+  .diagram .mermaid{cursor:zoom-in}
+  .navfoot{display:flex;justify-content:space-between;gap:16px;margin-top:56px;
+           padding-top:18px;border-top:1px solid var(--border);font-size:14px}
+  .navfoot a{color:var(--accent);text-decoration:none;font-weight:500}
+  #burger{display:none}
+  @media (max-width:860px){
+    #layout{flex-direction:column}
+    aside{position:static;width:auto;flex:none;height:auto;border-right:0;border-bottom:1px solid var(--border)}
+    aside.collapsed nav{display:none}
+    main{padding:24px 18px 72px}
+    #burger{display:block;margin:0 20px 10px;font-size:13px;cursor:pointer;background:none;
+            border:1px solid var(--border);color:var(--fg);border-radius:4px;padding:5px 10px}
+  }
+</style>
+</head>
+<body>
+<div id="layout">
+  <aside id="side" class="collapsed">
+    <h1>Spike · Landing Page · Sales Costa Advogados</h1>
+    <p class="sub">Spike de Arquitetura Visual, Especificação Técnica e Solução</p>
+    <button id="burger">☰ Documentos</button>
+    <nav id="nav"></nav>
+  </aside>
+  <main>
+    <div class="crumb" id="crumb"></div>
+    <article id="doc"></article>
+    <div class="navfoot">
+      <a id="prev" href="#"></a>
+      <a id="next" href="#"></a>
+    </div>
+  </main>
+</div>
+
+<script type="text/plain" id="spike-salescosta-01-overview">
+# 01. Overview · Visão Geral e Contexto
+
+> **Spike de Solução:** Landing Page — Sales Costa Advogados  
+> **Data:** 2026-08-31  
+> **Status:** Concluído / Pronto para Implementação  
+> **Referência Metodológica:** Skill `spike-solucao`
+
+---
+
+## 1. Sumário Executivo
+
+Este documento estabelece o **Overview** (Visão Geral e Contexto) da solução proposta para a **Landing Page Institucional do escritório Sales Costa Advogados**. 
+
+O objetivo principal desta spike é avaliar, definir e validar a arquitetura visual, a estrutura de seções, o sistema de design tokens e a stack técnica para a criação de uma **landing page single-page (one-page) de alto padrão de sofisticação**, alinhada à excelência da marca jurídica.
+
+---
+
+## 2. Contexto Atual do Projeto
+
+### 2.1 Estado Atual do Repositório
+Atualmente, o projeto possui apenas ativos de identidade visual armazenados no diretório `images/` (logos em variados formatos e paleta cromática oficial). Não há código de marcação, estilização ou lógica pré-existente.
+
+### 2.2 Ativos de Marca Encontrados
+- **Wordmark Horizontal:** `images/260701_sales_costa_marca_PREFERENCIAL_temp.png` (Assinatura principal para headers e footers em fundo claro).
+- **Assinatura Completa:** `images/260701_sales_costa_marca_ASSINATURA_temp.png` (Versão institucional estendida).
+- **Brasão Colorido:** `images/260701_sales_costa_marca_BRASAO_COR_temp.png` (Monograma "S" com acento lima, ideal para favicons e ambientes dark).
+- **Brasão Monocromático:** `images/260701_sales_costa_marca_BRASAO_temp.png`.
+- **Padrão Cromático Oficial:** `images/260701_sales_costa_marca_PADRAO_CROMATICO_temp.pdf` e `images/paleta_cores.png`.
+
+> [!IMPORTANT]
+> Os ativos possuem o sufixo `_temp`, indicando que são provisórios. A arquitetura técnica foi concebida para permitir a substituição transparente desses arquivos sem necessidade de refatoração do código HTML/CSS.
+
+---
+
+## 3. O Que Está Sendo Avaliado (Escopo da Spike)
+
+Avalia-se a criação de uma presença digital refinada que equilibre **tradição, solidez e modernidade**. Para isso, utilizou-se o benchmarking cruzado de duas referências de mercado:
+
+### 3.1 Benchmark 1: Lefosse (Linguagem Visual & Sofisticação)
+- **Tom e Estética:** Escritório *full-service*, estética editorial, uso estratégico de espaço em branco (*whitespace*), tipografia serifada de alto luxo combinada com sans-serif técnica.
+- **Interatividade:** Sticky navbar transparente que transiciona suavemente ao scroll para fundo sólido dark (`#53565A`), botões minimalistas com borda sutil e espaçamento de letras (*letter-spacing*).
+
+### 3.2 Benchmark 2: Higasi Sales (Estrutura de Seções One-Page)
+- **Navegabilidade:** Estrutura contínua e fluida de navegação por ancoragem em página única.
+- **Seções Mapeadas:** Hero Banner, Sobre o Escritório, Áreas de Atuação, Diferenciais, Em Números, Depoimentos, Nossa Equipe, Fale Conosco e Rodapé.
+
+---
+
+## 4. Decisão de Stack Técnica
+
+### 4.1 Comparativo de Arquitetura
+
+| Critério | Opção A: HTML5 / CSS3 / Vanilla JS (Recomendada) | Opção B: Next.js / React / TailwindCSS |
+|---|---|---|
+| **Dependências de Build** | Zero (Executa nativamente no navegador) | Altas (Node.js, npm, Webpack/Turbopack, node_modules) |
+| **Performance (Lighthouse)** | Nativa 98-100 (Sem overhead de JS runtime) | 80-90 (Requer otimização cuidadosa de bundle) |
+| **Manutenibilidade** | Extremamente simples (Qualquer dev HTML/CSS edita) | Requer conhecimento em Framework React/Next |
+| **Custo de Hospedagem** | Gratuito / Qualquer servidor estático (GitHub Pages/Netlify) | Requer Serverless/Node.js host se houver SSR/ISR |
+| **Complexidade** | Mínima (Adequada para landing page estática) | Sobredimensionada para o escopo atual |
+
+### 4.2 Decisão Final
+Adoptou-se a **Opção A (HTML5 / Vanilla CSS / Vanilla JS)**. A escolha garante máxima performance de carregamento, independência de ferramentas de build complexas, facilidade de implantação e controle absoluto sobre as animações e design tokens.
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-02-model">
+# 02. Model · Arquitetura Visual, Paleta & Componentes
+
+> **Spike de Solução:** Landing Page — Sales Costa Advogados  
+> **Data:** 2026-08-31  
+> **Status:** Concluído / Pronto para Implementação
+
+---
+
+## 1. Sistema de Cores e Identidade Cromática
+
+### 1.1 Cores Oficiais da Marca
+
+| Nome da Cor | Hexadecimal | RGB | Conceito / Significado | Uso Principal |
+|---|---|---|---|---|
+| **Personalização** | `#AA9B8F` | `170, 155, 143` | Tom Taupe sofisticado, refinamento | Headers, acentos primários, CTAs, bordas de destaque |
+| **Solidez** | `#53565A` | `83, 86, 90` | Cinza chumbo corporativo, firmeza | Background dark, tipografia principal, navbar escurecida |
+| **Inovação / Sagacidade** | `#E4FF8F` | `228, 255, 143` | Lima vibrante, energia e modernidade | Badges, hover states pontuais, indicadores ativados |
+
+### 1.2 Paleta Derivada (Design System)
+Para garantir contraste adequado (WCAG AAA) e suporte a seções claras e escuras:
+
+```css
+:root {
+  /* Core Brand Colors */
+  --color-primary:      #AA9B8F; /* Taupe — identidade visual */
+  --color-dark:         #53565A; /* Cinza chumbo — solidez */
+  --color-accent:       #E4FF8F; /* Lima — inovação */
+
+  /* Neutral & Base Colors */
+  --color-white:        #FFFFFF;
+  --color-off-white:    #F8F6F4; /* Derivado do taupe, fundo quente suave */
+  --color-text-dark:    #2B2B2B; /* Preto carvão para leitura de alto contraste */
+  --color-text-mid:     #6B6460; /* Cinza quente para textos secundários */
+  --color-border:       #D9D3CE; /* Linha de divisão sutil */
+  --color-overlay:      rgba(83, 86, 90, 0.82); /* Máscara para hero banner */
+}
+```
+
+---
+
+## 2. Gestão de Ativos de Marca e Logos
+
+| Arquivo de Imagem | Tipo | Uso Recomendado | Estratégia de Troca |
+|---|---|---|---|
+| `260701_sales_costa_marca_PREFERENCIAL_temp.png` | Wordmark Horizontal | Navbar e Rodapé em fundos claros | Parametrizado via `<img src="images/...">` |
+| `260701_sales_costa_marca_ASSINATURA_temp.png` | Assinatura Institucional | Hero Banner / Módulos de Apresentação | Substituível sem alterar layout |
+| `260701_sales_costa_marca_BRASAO_COR_temp.png` | Brasão "S" + Quadrado Lima | Favicon do site, navbar dark e marcas d'água | Suporta troca para SVG final |
+| `260701_sales_costa_marca_BRASAO_temp.png` | Brasão Monocromático | Elemento gráfico decorativo em background | Aplicação com opacidade 0.05 a 0.1 |
+
+---
+
+## 3. Tipografia e Hierarquia Visual
+
+O projeto combina duas famílias tipográficas via Google Fonts:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+```
+
+### 3.1 Tabela de Aplicação Tipográfica
+
+| Família | Estilo / Peso | Tamanho (Desktop) | Uso Pretendido |
+|---|---|---|---|
+| **Cormorant Garamond** | 300 Light | `4rem` (64px) | Titular principal H1 do Hero |
+| **Cormorant Garamond** | 400 Regular | `2.25rem` (36px) | Títulos de Seção H2 |
+| **Cormorant Garamond** | 600 SemiBold Italic | `1.375rem` (22px) | Citações, destaques e números decorativos |
+| **DM Sans** | 400 Regular | `1rem` (16px) | Corpo de texto, parágrafos e descrições |
+| **DM Sans** | 500 Medium Uppercase | `0.75rem` (12px) | Sub-headlines (eyebrow tags), labels e botões |
+
+---
+
+## 4. Especificação dos Componentes por Seção
+
+### 4.1 Navbar (Navegação Superior Sticky)
+- **Componentes:** Brand Logo, Links de Ancoragem (`#sobre`, `#areas`, `#diferenciais`, `#equipe`), CTA "Fale Conosco" em formato de botão vazado (*outline*), Botão Hambúrguer para Mobile.
+- **Comportamento Visual:**
+  - *Estado Inicial (Topo):* Fundo transparente, logo em tom Taupe/Branco.
+  - *Estado Scrolled (> 80px):* Background `#53565A` com sombra sutil `0 4px 20px rgba(0,0,0,0.15)`.
+
+### 4.2 Hero Banner
+- **Estrutura:** Fundo com textura/imagem institucional em tom dark, máscara overlay `#53565A` (80%), container centralizado de até 860px.
+- **Elementos:** Eyebrow tag `"SALES COSTA ADVOGADOS"` em caixa alta com `letter-spacing: 4px`, H1 editorial de alto impacto, subtítulo explicativo e dupla de botões CTA.
+
+### 4.3 Sobre o Escritório
+- **Grid:** 2 colunas assimétricas (40% / 60%).
+- **Coluna Esquerda:** Título institucional + Monograma "S" em marca d'água decorativa.
+- **Coluna Direita:** 3 parágrafos de apresentação da história e visão do escritório, divididos por linha de acento `#AA9B8F`, finalizando com os pilares: *Comprometimento*, *Confidencialidade* e *Excelência*.
+
+### 4.4 Áreas de Atuação (Cards Grid)
+- **Grid:** 3 colunas (desktop), 2 colunas (tablet), 1 coluna (mobile).
+- **Anatomy do Card:** Ícone SVG linear em tom Taupe, título da especialidade em DM Sans 500, breve descrição funcional e link interativo "Saiba mais →".
+
+### 4.5 Por Que Sales Costa (Diferenciais)
+- **Ambiente:** Fundo totalmente Dark (`#53565A`) para quebrar o ritmo da página.
+- **Diferenciais Mapeados:** Atendimento Personalizado, Equipe Especializada, Resultados Comprovados e Ética & Transparência.
+- **Destaque:** Eyebrow em cor Lima (`#E4FF8F`) ressaltando inovação.
+
+### 4.6 Em Números (Métricas)
+- **Ambiente:** Fundo totalmente Taupe (`#AA9B8F`) com texto em branco.
+- **Mapeamento de Indicadores:**
+  - `+15` Anos de Experiência
+  - `+500` Clientes Atendidos
+  - `+300` Casos Concluídos
+  - `5` Áreas de Especialização
+
+### 4.7 Depoimentos (Carousel)
+- **Layout:** Fundo Off-White (`#F8F6F4`).
+- **Anatomy do Item:** Aspas gigantes em Cormorant Garamond, citação em itálico, identificação do cliente e setor corporativo. Controle por setas laterais e pontos de navegação.
+
+### 4.8 Nossa Equipe (Cards de Advogados)
+- **Grid:** 4 colunas desktop.
+- **Card:** Aspect-ratio 1:1 para foto, overlay sutil em Taupe no hover, nome, registro OAB, especialidade e link direto para perfil do LinkedIn.
+
+### 4.9 Fale Conosco (Formulário & Contato)
+- **Grid:** 2 Colunas.
+  - *Coluna Esquerda:* Endereço físico, e-mail institucional, telefones e links de redes sociais.
+  - *Coluna Direita:* Formulário com inputs de linha fina (*minimalist border-bottom*), seletores de área e botão de envio.
+
+### 4.10 Rodapé Institucional
+- **Ambiente:** Dark Charcoal (`#2B2B2B`).
+- **Conteúdo:** Copyright, links para Política de Privacidade, Termos de Uso e dados da OAB.
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-03-flows">
+# 03. Flows · Fluxos de Navegação, Animações & Interações
+
+> **Spike de Solução:** Landing Page — Sales Costa Advogados  
+> **Data:** 2026-08-31  
+> **Status:** Concluído / Pronto para Implementação
+
+---
+
+## 1. Diagrama Geral de Fluxo do Usuário
+
+O diagrama abaixo ilustra o fluxo completo de interação do usuário ao navegar pela landing page one-page:
+
+```mermaid
+graph TD
+    A[Usuário Acessa a Landing Page] --> B{Scroll > 80px?}
+    B -- Não --> C[Navbar Transparente / Logo Taupe]
+    B -- Sim --> D[Navbar Sticky Dark #53565A / Logo Branco]
+    
+    A --> E[Visualização do Hero Banner]
+    E --> F{Ação do Usuário}
+    
+    F -- Clique em Link da Nav --> G[Smooth Scroll até a Seção Alvo]
+    F -- Scroll Livre --> H[Intersection Observer Dispara Animações]
+    F -- Clique CTA 'Fale Conosco' --> I[Scroll Suave até Seção Contato]
+    
+    H --> J[Cards de Áreas Ganham Hover State]
+    H --> K[Contadores da Seção Números Animam 0 a Target]
+    H --> L[Carousel de Depoimentos Transiciona Autoplay 5s]
+    
+    I --> M[Preenchimento do Formulário]
+    M --> N{Validação HTML5 OK?}
+    N -- Não --> O[Exibe Mensagem de Erro Inline no Campo]
+    N -- Sim --> P[Submissão do Form e Exibição de Feedback de Sucesso]
+```
+
+---
+
+## 2. Fluxos Interativos de Javascript
+
+### 2.1 Fluxo da Sticky Navbar
+
+```javascript
+// main.js - Gerenciamento de estado da Navbar ao rolar a página
+const navbar = document.querySelector('.navbar');
+const SCROLL_THRESHOLD = 80;
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > SCROLL_THRESHOLD) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+}, { passive: true });
+```
+
+### 2.2 Fluxo de Smooth Scroll por Âncoras
+
+```javascript
+// Navegação suave com offset para compensar a altura da navbar fixa (80px)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+    
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      const headerOffset = 80;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+```
+
+### 2.3 Fluxo do Intersection Observer (Animação ao Scroll)
+
+```javascript
+// animations.js - Revelação progressiva dos elementos
+const observerOptions = {
+  root: null,
+  rootMargin: '0px 0px -60px 0px',
+  threshold: 0.15
+};
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target); // Anima apenas na primeira entrada
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('[data-animate]').forEach(el => revealObserver.observe(el));
+```
+
+```css
+/* Respeito à preferência de redução de movimento do sistema operacional */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+```
+
+### 2.4 Fluxo do Contador Animado ("Em Números")
+
+```javascript
+function animateCounters() {
+  const counters = document.querySelectorAll('.counter-number');
+  const speed = 200; // Duração total aproximada em ms
+
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const inc = target / speed;
+
+      if (count < target) {
+        counter.innerText = Math.ceil(count + inc);
+        setTimeout(updateCount, 15);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    updateCount();
+  });
+}
+```
+
+---
+
+## 3. Matriz de Responsividade e Layout Breakpoints
+
+```css
+/* Breakpoints Padrão Mobile-First */
+/* Smartphone portrait: < 480px */
+/* Smartphone landscape / Phablet: 480px - 767px */
+/* Tablet portrait: 768px - 1023px */
+/* Desktop / Laptop: 1024px - 1279px */
+/* Wide Desktop: >= 1280px */
+```
+
+| Seção | Mobile (< 768px) | Tablet (768px - 1023px) | Desktop (>= 1024px) |
+|---|---|---|---|
+| **Navbar** | Hambúrguer + Drawer Lateral | Hambúrguer + Drawer Lateral | Links Horizontais + Botão CTA |
+| **Hero** | 1 Coluna, texto 32px | 1 Coluna, texto 48px | 1 Coluna Centralizada, texto 64px |
+| **Sobre** | 1 Coluna empilhada | 2 Colunas (40/60) | 2 Colunas (40/60) |
+| **Áreas** | 1 Card por linha | 2 Cards por linha | 3 Cards por linha |
+| **Diferenciais**| 1 Coluna por diferencial | 2 Colunas x 2 Linhas | 4 Colunas em linha |
+| **Números** | Grid 2 x 2 | Grid 2 x 2 | 4 Colunas em linha com divisores |
+| **Equipe** | 1 Card por linha | 2 Cards por linha | 4 Cards por linha |
+| **Contato** | 1 Coluna empilhada | 1 Coluna empilhada | 2 Colunas lado a lado |
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-04-risks">
+# 04. Risks · Riscos, Dependências & Perguntas em Aberto
+
+> **Spike de Solução:** Landing Page — Sales Costa Advogados  
+> **Data:** 2026-08-31  
+> **Status:** Concluído / Pronto para Implementação
+
+---
+
+## 1. Matriz de Riscos Técnicos e de Negócio
+
+| ID | Risco Identificado | Categoria | Probabilidade | Impacto | Estratégia de Mitigação |
+|---|---|---|---|---|---|
+| **R01** | Ausência de definição do serviço de backend para envio de e-mails do formulário de contato | Técnico / Integração | Alta | Alto | Utilizar serviço *serverless* terceirizado sem backend próprio (ex: Formspree, EmailJS ou Resend) ou integrar via API WhatsApp Web como fallback temporário. |
+| **R02** | Imagens e marcas atuais possuem sufixo `_temp` e podem sofrer alteração de proporção | Design / Marca | Média | Médio | Manter os caminhos de imagens em variáveis/CSS e usar containers com `object-fit: contain` e dimensões relativas. |
+| **R03** | Latência no carregamento de fontes externas (Google Fonts) em conexões lentas | Performance | Baixa | Médio | Implementar `<link rel="preconnect">`, utilizar `font-display: swap` e prever fallbacks de fontes do sistema (`Georgia`, `serif`, `Arial`). |
+| **R04** | Ausência de fotos profissionais em alta resolução da equipe de advogados | Conteúdo | Alta | Médio | Desenvolver os cards de equipe com suporte a avatares/silhuetas estilizadas com as cores da marca enquanto o ensaio fotográfico não é concluído. |
+| **R05** | Incompatibilidade com navegadores legados (ex: Internet Explorer) | Compatibilidade | Baixa | Baixo | Utilizar propriedades CSS3 modernas com fallbacks padrão e JavaScript ES6 compilado ou compatível com navegadores evergreen. |
+
+---
+
+## 2. Perguntas em Aberto (Fila de Decisões)
+
+> [!WARNING]
+> Os pontos abaixo precisam de definição antes ou durante as fases iniciais de desenvolvimento.
+
+### 2.1 Backend e Envio de E-mails
+1. Qual será a ferramenta de recebimento das mensagens do formulário? (Formspree, EmailJS, Webhook N8N/Make, ou e-mail corporativo via SMTP?)
+2. Haverá redirecionamento automático para o WhatsApp Business do escritório ao enviar a mensagem?
+
+### 2.2 Conteúdo e Mídia
+1. Quais são as 6 áreas de atuação prioritárias a serem exibidas na versão inicial da landing page?
+2. Quantos sócios/advogados integrarão a seção "Nossa Equipe" e quais suas descrições e números OAB?
+3. Os números apresentados na seção "Em Números" (anos de experiência, clientes, casos) já foram validados pela diretoria do escritório?
+
+### 2.3 Hospedagem e Infraestrutura
+1. Qual será a plataforma de hospedagem de destino? (Vercel, Netlify, GitHub Pages, cPanel/Hostgator do cliente?)
+2. O domínio `salescosta.com.br` já está registrado e configurado com suporte a HTTPS/SSL?
+
+---
+
+## 3. Mapeamento de Dependências Externas
+
+1. **Google Fonts CDN:** Carregamento das famílias `Cormorant Garamond` e `DM Sans`.
+2. **Serviço de Formulário:** Dependência de endpoint HTTPS para recebimento dos dados do formulário sem exposição de credenciais de e-mail.
+3. **Ativos de Marca:** Troca dos arquivos PNG `_temp` pelos vetores finais em SVG assim que fornecidos pelo time de branding.
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-05-goals-and-not-goals">
+# 05. Goals & Not Goals · Objetivos, Não-Objetivos e Critérios
+
+> **Spike de Solução:** Landing Page — Sales Costa Advogados  
+> **Data:** 2026-08-31  
+> **Status:** Concluído / Pronto para Implementação
+
+---
+
+## 1. Objetivos do Projeto (Goals)
+
+O escopo principal contemplado nesta solução inclui:
+
+- [x] **Identidade Visual Fiel e Elegante:** Implementar uma landing page que traduza a identidade corporativa do escritório Sales Costa Advogados utilizando as cores oficiais (Taupe `#AA9B8F`, Cinza Chumbo `#53565A`, Lima `#E4FF8F`) e tipografia refinada (`Cormorant Garamond` e `DM Sans`).
+- [x] **Arquitetura One-Page Fluida:** Estruturar uma única página com 10 seções altamente coesas e navegação por ancoragem sem recarregamento da página.
+- [x] **Sticky Navbar Inteligente:** Desenvolver barra de navegação responsiva com alteração de background ao scroll (transparente para dark).
+- [x] **Interações e Micro-Animações:** Incorporar animações de entrada ao scroll (*reveal on scroll* via Intersection Observer), contadores numéricos animados e carousel de depoimentos.
+- [x] **Design Totalmente Responsivo:** Garantir adaptação perfeita em dispositivos móveis (320px), tablets (768px) e monitores wide (1280px+).
+- [x] **Alta Performance e SEO Nativo:** Construir uma solução leve (HTML/CSS/JS Vanilla) que alcance nota máxima nos testes de performance do Google Lighthouse e suporte tags Open Graph/meta SEO.
+
+---
+
+## 2. Não-Objetivos (Not Goals / Fora de Escopo da V1)
+
+Para evitar desvio de escopo (*scope creep*), os seguintes itens estão **explicitamente fora do escopo desta versão**:
+
+- [ ] **Desenvolvimento de Painel CMS / Gestor de Conteúdo:** Não haverá painel administrativo nesta fase (conteúdo é estático e gerenciado via código).
+- [ ] **Blog Corporativo ou Área de Artigos:** Módulos de notícias ou artigos jurídicos não fazem parte do MVP.
+- [ ] **Suporte Multi-Idioma (i18n):** A versão inicial será entregue exclusivamente em Língua Portuguesa (PT-BR).
+- [ ] **Área de Cliente / Portal Restrito:** Não haverá sistema de autenticação, login de clientes ou consulta de processos.
+- [ ] **Redesenho de Marcas ou Logos:** A spike utiliza as imagens provisórias existentes e não prevê alteração na identidade gráfica oficial da marca.
+
+---
+
+## 3. Mapeamento de User Stories
+
+| Código | História de Usuário (User Story) | Seção Relacionada |
+|---|---|---|
+| **US-01** | Como potencial cliente, quero visualizar imediatamente o posicionamento do escritório no Hero Banner para entender a proposta de valor. | Hero Banner |
+| **US-02** | Como visitante, quero navegar pelas seções da página através de links de ancoragem na navbar para acessar dados específicos rapidamente. | Navbar Sticky |
+| **US-03** | Como cliente corporativo, quero conhecer a história e os valores do escritório para avaliar sua reputação e autoridade. | Sobre o Escritório |
+| **US-04** | Como visitante, quero visualizar a lista de áreas de atuação com descrições objetivas para saber se o escritório atende à minha necessidade. | Áreas de Atuação |
+| **US-05** | Como visitante, quero observar os números e depoimentos de outros clientes para obter prova social antes de entrar em contato. | Em Números / Depoimentos |
+| **US-06** | Como potencial cliente, quero consultar o perfil dos advogados e sócios para identificar a equipe responsável. | Nossa Equipe |
+| **US-07** | Como usuário em dispositivo móvel, quero enviar uma mensagem pelo formulário de contato simplificado sem sair da página. | Fale Conosco |
+| **US-08** | Como visitante, quero acessar os canais oficiais de comunicação e redes sociais no rodapé da página. | Rodapé |
+
+---
+
+## 4. Critérios de Aceitação e Metas de Qualidade
+
+| Métrica / Critério | Meta Alvo | Método de Verificação |
+|---|---|---|
+| **Lighthouse Performance** | $\ge 90$ | Audit Chrome DevTools em ambiente de produção |
+| **Lighthouse Acessibilidade** | $\ge 90$ | Audit Chrome DevTools (contraste, aria-labels, alt em imagens) |
+| **Lighthouse SEO** | $\ge 90$ | Audit Chrome DevTools (meta tags, títulos H1-H3 semânticos) |
+| **First Contentful Paint (FCP)** | $< 1.5\text{s}$ | Chrome Performance Profiler |
+| **Layout Responsivo** | $100\%$ sem overflow horizontal | Testes em 320px, 480px, 768px, 1024px e 1440px |
+| **Validação de Formulário** | Impede envio de campos obrigatórios vazios ou e-mails inválidos | Validação nativa HTML5 + JS |
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-06-visual-layout">
+# 06. Visual Layout · Wireframes, Ativos & Previews da Interface
+
+> **Spike de Solução:** Landing Page — Sales Costa Advogados  
+> **Data:** 2026-08-31  
+> **Status:** Concluído / Visualização Disponível
+
+---
+
+## 1. Ativos de Marca Mapeados e Aplicação
+
+Abaixo estão dispostos os ativos visuais oficiais da marca Sales Costa Advogados mapeados no repositório, acompanhados de suas diretrizes de aplicação na interface:
+
+### 1.1 Assinaturas e Wordmarks Principais
+
+| Ativo da Marca | Arquivo Fonte | Aplicação Recomendada na UI |
+|---|---|---|
+| **Wordmark Horizontal** | `images/260701_sales_costa_marca_PREFERENCIAL_temp.png` | Utilizado na Navbar (fundo claro) e no Rodapé |
+| **Assinatura Completa** | `images/260701_sales_costa_marca_ASSINATURA_temp.png` | Banner Hero e documentos de apresentação |
+| **Brasão Colorido** | `images/260701_sales_costa_marca_BRASAO_COR_temp.png` | Favicon do site, Navbar Dark e marcas d'água |
+| **Brasão Monocromático**| `images/260701_sales_costa_marca_BRASAO_temp.png` | Elemento gráfico decorativo em background |
+
+#### Visualização dos Ativos da Marca:
+
+![Wordmark Preferencial Sales Costa](../images/260701_sales_costa_marca_PREFERENCIAL_temp.png)  
+*Figura 1.1 — Wordmark Preferencial Taupe (Utilizado na Navbar e Rodapé)*
+
+![Brasão Colorido Sales Costa](../images/260701_sales_costa_marca_BRASAO_COR_temp.png)  
+*Figura 1.2 — Brasão Monograma "S" com Acento Lima (Utilizado como Favicon e Ícone Dark)*
+
+---
+
+## 2. Paleta Cromática Oficial
+
+![Paleta Cromática Oficial Sales Costa](../images/paleta_cores.png)  
+*Figura 2.1 — Padrão Cromático Oficial Sales Costa Advogados*
+
+### Resumo dos Tokens Cromáticos:
+- **Taupe (#AA9B8F):** Cor primária de personalização e sofisticação.
+- **Cinza Chumbo (#53565A):** Cor secundária para fundos dark e solidez institucional.
+- **Lima (#E4FF8F):** Cor de acento para inovação, destaques e badges ativadas.
+- **Off-White (#F8F6F4):** Fundo secundário claro e quente para seções de leitura.
+
+---
+
+## 3. Mockups e Previews da Interface
+
+### 3.1 Hero Banner & Navbar (Desktop View)
+
+![Preview Hero Banner Sales Costa](../images/salescosta_hero_preview.jpg)  
+*Figura 3.1 — Renderização conceitual da Navbar Sticky e Hero Banner do escritório Sales Costa Advogados.*
+
+#### Detalhes do Layout da Hero Section:
+```
++-------------------------------------------------------------------------------+
+| LOGO [SALESCOSTA]    Sobre  Áreas  Diferenciais  Equipe    [ FALE CONOSCO ]   | (Navbar Sticky)
++-------------------------------------------------------------------------------+
+|                                                                               |
+|                   SALES COSTA ADVOGADOS (Eyebrow Tag)                         |
+|                                                                               |
+|          Junto nas decisões que constroem o futuro.                           | (H1 Serif 64px)
+|                                                                               |
+|     Advocacia estratégica e personalizada com foco em excelência e           | (Subtítulo 18px)
+|     resultados corporativos de alto impacto.                                 |
+|                                                                               |
+|             [ CONHEÇA O ESCRITÓRIO ]     [ FALE CONOSCO ]                     | (CTAs)
+|                                                                               |
+|                                     v (Scroll Indicator)                      |
++-------------------------------------------------------------------------------+
+```
+
+---
+
+### 3.2 Seções de Conteúdo, Áreas de Atuação e Números
+
+![Preview Seções da Landing Page](../images/salescosta_sections_preview.jpg)  
+*Figura 3.2 — Renderização conceitual do grid de Áreas de Atuação, seção Sobre e banner Em Números.*
+
+#### Wireframe da Seção "Áreas de Atuação" (3 Colunas Grid):
+```
++-------------------------------------------------------------------------------+
+|                         NOSSAS ESPECIALIDADES                                 |
+|            Atuação estratégica em múltiplas frentes jurídicas                 |
+|                                                                               |
+|  +--------------------+  +--------------------+  +--------------------+       |
+|  | [Ícone Direito Emp]|  | [Ícone Tributário] |  | [Ícone Imobiliário]|       |
+|  | Direito Empresarial|  | Direito Tributário |  | Direito Imobiliário|       |
+|  | Descrição curta    |  | Descrição curta    |  | Descrição curta    |       |
+|  | Saiba mais ->      |  | Saiba mais ->      |  | Saiba mais ->      |       |
+|  +--------------------+  +--------------------+  +--------------------+       |
+|                                                                               |
+|  +--------------------+  +--------------------+  +--------------------+       |
+|  | [Ícone Cível]      |  | [Ícone Contratos]  |  | [Ícone M&A]        |       |
+|  | Direito Cível      |  | Contratos Empres.  |  | Fusões & Aquisições|       |
+|  | Descrição curta    |  | Descrição curta    |  | Descrição curta    |       |
+|  | Saiba mais ->      |  | Saiba mais ->      |  | Saiba mais ->      |       |
+|  +--------------------+  +--------------------+  +--------------------+       |
++-------------------------------------------------------------------------------+
+```
+
+---
+
+### 3.3 Wireframe da Seção "Em Números" (Fundo Taupe #AA9B8F)
+
+```
++-------------------------------------------------------------------------------+
+|     +15              +500             +300              5                     |
+|  Anos de          Clientes         Casos de         Áreas de                  |
+| Experiência       Atendidos        Sucesso       Especialidade                |
++-------------------------------------------------------------------------------+
+```
+
+---
+
+### 3.4 Wireframe da Seção "Fale Conosco" (Fundo Dark #53565A)
+
+```
++---------------------------------------------------+---------------------------+
+| ENTRE EM CONTATO                                  | FORMULÁRIO DE CONTATO     |
+| Fale diretamente com nossos advogados.            |                           |
+|                                                   | Nome Completo:            |
+| Endereço: Av. Paulista, 1000 - São Paulo/SP       | [_______________________] |
+| E-mail: contato@salescosta.com.br                 | E-mail Corporativo:       |
+| Telefone: +55 (11) 3000-0000                      | [_______________________] |
+| Redes: [LinkedIn] [Instagram]                     | Mensagem:                 |
+|                                                   | [                       ] |
+|                                                   | [ ENVIAR MENSAGEM ]       |
++---------------------------------------------------+---------------------------+
+```
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-07-tasks">
+# 07. Tasks · Checklist de Desenvolvimento e Implementação
+
+> **Spike de Solução:** Landing Page — Sales Costa Advogados  
+> **Data:** 2026-08-31  
+> **Status:** Pronto para Execução  
+> **Estimativa de Fases:** 7 Épicos de Desenvolvimento
+
+---
+
+## 1. Visão Geral da Roadmap de Tarefas
+
+O plano de execução está estruturado em 7 épicos sequenciais. Cada tarefa especifica seus arquivos-alvo, critérios de aceitação e verificações necessárias.
+
+---
+
+## 2. Épico 1: Setup do Projeto & Design System Tokens (Dia 1)
+
+- [ ] **Task 1.1 — Estruturação de Pastas e Arquivos Base**
+  - **Arquivos:** `index.html`, `css/reset.css`, `css/variables.css`, `css/components.css`, `css/sections.css`, `js/main.js`, `js/animations.js`
+  - **Descrição:** Criar a árvore de diretórios e arquivos em branco no projeto.
+  - **Aceite:** Todos os arquivos criados e vinculados no `index.html`.
+
+- [ ] **Task 1.2 — Definição dos Design Tokens (`css/variables.css`)**
+  - **Arquivos:** `css/variables.css`
+  - **Descrição:** Declarar as variáveis CSS para cores (`--color-primary`, `--color-dark`, `--color-accent`, etc.), tipografia (`--font-serif`, `--font-sans`), espaçamentos (`--space-xs` a `--space-2xl`) e transições.
+  - **Aceite:** Todas as variáveis acessíveis globalmente no `:root`.
+
+- [ ] **Task 1.3 — Reset CSS e Integração Google Fonts**
+  - **Arquivos:** `index.html`, `css/reset.css`
+  - **Descrição:** Configurar reset CSS de caixa (`box-sizing: border-border`) e importar `Cormorant Garamond` + `DM Sans` via CDN.
+  - **Aceite:** Fontes renderizando corretamente sem FOUT (*Flash of Unstyled Text*).
+
+- [ ] **Task 1.4 — Favicon e Meta Tags SEO**
+  - **Arquivos:** `index.html`, `images/260701_sales_costa_marca_BRASAO_COR_temp.png`
+  - **Descrição:** Adicionar tag `<link rel="icon">` e meta tags de viewport, descrição e Open Graph.
+  - **Aceite:** Ícone exibido na aba do navegador e meta tags presentes no `<head>`.
+
+---
+
+## 3. Épico 2: Header & Sticky Navigation (Dia 1-2)
+
+- [ ] **Task 2.1 — Marcação Semântica da Navbar**
+  - **Arquivos:** `index.html`
+  - **Descrição:** Criar elemento `<header class="navbar">` contendo o logo em `<img>`, lista de links `<nav>` e botão CTA "Fale Conosco".
+  - **Aceite:** Estrutura HTML limpa e semântica.
+
+- [ ] **Task 2.2 — Estilização da Navbar (Transparente x Dark Scrolled)**
+  - **Arquivos:** `css/components.css`
+  - **Descrição:** Estilizar a navbar fixa (`position: fixed`) com transparência inicial e transição para background `#53565A` na classe `.scrolled`.
+  - **Aceite:** Navbar fixa no topo com transição de cor de 300ms.
+
+- [ ] **Task 2.3 — JavaScript da Sticky Navbar**
+  - **Arquivos:** `js/main.js`
+  - **Descrição:** Escrever listener de scroll para alternar a classe `.scrolled` quando `window.scrollY > 80`.
+  - **Aceite:** Alternância automática de classe ao rolar a página.
+
+- [ ] **Task 2.4 — Drawer e Hambúrguer Mobile**
+  - **Arquivos:** `index.html`, `css/components.css`, `js/main.js`
+  - **Descrição:** Desenvolver o botão hambúrguer visível em `< 1024px` e o painel de navegação lateral com animação de slide.
+  - **Aceite:** Menu mobile abre/fecha com suporte a atributo `aria-expanded`.
+
+- [ ] **Task 2.5 — Script de Smooth Scroll por Âncoras**
+  - **Arquivos:** `js/main.js`
+  - **Descrição:** Interceptar cliques em `a[href^="#"]` para rolar suavemente a página com compensação da altura da navbar (80px).
+  - **Aceite:** Clique nos links de navegação leva exatamente à seção correspondente.
+
+---
+
+## 4. Épico 3: Hero Banner Section (Dia 2)
+
+- [ ] **Task 3.1 — Estrutura HTML do Hero**
+  - **Arquivos:** `index.html`
+  - **Descrição:** Criar `<section id="hero">` com eyebrow tag, H1 "Junto nas decisões que constroem o futuro.", subtítulo e dupla de botões CTA.
+  - **Aceite:** Conteúdo textual completo na marcação.
+
+- [ ] **Task 3.2 — Estilização Visual e Overlay Dark**
+  - **Arquivos:** `css/sections.css`
+  - **Descrição:** Definir altura de `100vh`, background `#53565A` com overlay, H1 em `Cormorant Garamond 64px` na cor branca.
+  - **Aceite:** Layout refinado com alto contraste de leitura.
+
+- [ ] **Task 3.3 — Estilização dos Botões CTA**
+  - **Arquivos:** `css/components.css`
+  - **Descrição:** Estilizar botão primário (preenchimento Taupe `#AA9B8F`) e botão secundário (vazado com `border: 1px solid #AA9B8F` e uppercase com letter-spacing).
+  - **Aceite:** Hover states fluidos nos botões.
+
+- [ ] **Task 3.4 — Seta Animada de Scroll**
+  - **Arquivos:** `index.html`, `css/sections.css`
+  - **Descrição:** Criar indicador de scroll no rodape da hero section com animação CSS `@keyframes bounce`.
+  - **Aceite:** Seta pulsando suavemente e levando à seção "Sobre" ao ser clicada.
+
+---
+
+## 5. Épico 4: Seções Institucionais — Sobre & Diferenciais (Dia 2-3)
+
+- [ ] **Task 4.1 — Seção "Sobre o Escritório"**
+  - **Arquivos:** `index.html`, `css/sections.css`
+  - **Descrição:** Montar layout em 2 colunas (40% / 60%) em fundo Off-White `#F8F6F4`, com parágrafos institucionais, linha divisória Taupe e os 3 pilares da marca.
+  - **Aceite:** Layout responsivo colapsando para 1 coluna no mobile.
+
+- [ ] **Task 4.2 — Seção "Por Que Sales Costa" (Diferenciais)**
+  - **Arquivos:** `index.html`, `css/sections.css`
+  - **Descrição:** Criar seção com fundo Dark `#53565A`, eyebrow em cor Lima `#E4FF8F` e grid de 4 diferenciais com ícones em SVG.
+  - **Aceite:** Grid 4 colunas no desktop e 1 coluna no mobile.
+
+---
+
+## 6. Épico 5: Módulos Funcionais Interativos (Dia 3-4)
+
+- [ ] **Task 5.1 — Seção "Áreas de Atuação" (Cards Grid)**
+  - **Arquivos:** `index.html`, `css/sections.css`
+  - **Descrição:** Criar grid de 6 cards de especialidades com ícone, título, descrição e link "Saiba mais".
+  - **Aceite:** Hover state nos cards elevando a borda inferior em Taupe `#AA9B8F`.
+
+- [ ] **Task 5.2 — Seção "Em Números" (Contadores JS)**
+  - **Arquivos:** `index.html`, `css/sections.css`, `js/animations.js`
+  - **Descrição:** Criar banner com fundo Taupe `#AA9B8F` e 4 contadores numéricos. Escrever script de counter-up animado disparado ao entrar na tela.
+  - **Aceite:** Números contam de 0 até o valor alvo em ~2 segundos.
+
+- [ ] **Task 5.3 — Seção "Depoimentos" (Carousel)**
+  - **Arquivos:** `index.html`, `css/sections.css`, `js/main.js`
+  - **Descrição:** Desenvolver carousel funcional de depoimentos em fundo Off-White com aspas decorativas, controle por setas e autoplay de 5 segundos.
+  - **Aceite:** Transição suave entre depoimentos com pausa no hover.
+
+- [ ] **Task 5.4 — Seção "Nossa Equipe" (Cards de Advogados)**
+  - **Arquivos:** `index.html`, `css/sections.css`
+  - **Descrição:** Construir grid de 4 cards de advogados com imagem 1:1, nome, registro OAB e link para o LinkedIn.
+  - **Aceite:** Overlay sutil na foto ao passar o cursor.
+
+---
+
+## 7. Épico 6: Formulário de Contato & Rodapé (Dia 4-5)
+
+- [ ] **Task 6.1 — Seção "Fale Conosco" (Formulário Minimalista)**
+  - **Arquivos:** `index.html`, `css/sections.css`
+  - **Descrição:** Desenvolver layout 2 colunas com dados de contato à esquerda e formulário com inputs de linha fina (`border-bottom`) à direita.
+  - **Aceite:** Estilização alinhada à estética da marca.
+
+- [ ] **Task 6.2 — Script de Validação e Feedback do Formulário**
+  - **Arquivos:** `js/main.js`
+  - **Descrição:** Implementar validação HTML5 nativa + JavaScript para checagem de campos obrigatórios e exibição de alerta/mensagem de sucesso.
+  - **Aceite:** Envio bloqueado para campos vazios ou e-mails em formato inválido.
+
+- [ ] **Task 6.3 — Rodapé Institucional**
+  - **Arquivos:** `index.html`, `css/sections.css`
+  - **Descrição:** Montar rodapé em fundo `#2B2B2B` com logo claro, links institucionais, copyright e redes sociais.
+  - **Aceite:** Todos os links operacionais e responsivos.
+
+---
+
+## 8. Épico 7: Polimento, Animações & Qualidade (Dia 5-6)
+
+- [ ] **Task 7.1 — Animações com Intersection Observer**
+  - **Arquivos:** `js/animations.js`, `css/sections.css`
+  - **Descrição:** Adicionar atributo `data-animate` nos elementos principais e aplicar efeito de fade-in e subida (`translateY(30px) -> 0`).
+  - **Aceite:** Elementos surgem suavemente à medida que a página é rolada.
+
+- [ ] **Task 7.2 — Suporte a `prefers-reduced-motion`**
+  - **Arquivos:** `css/sections.css`
+  - **Descrição:** Adicionar media query para desativar animações caso o usuário prefira movimentos reduzidos no sistema operacional.
+  - **Aceite:** Animações são desativadas instantaneamente sob a media query.
+
+- [ ] **Task 7.3 — Auditoria e Otimização Google Lighthouse**
+  - **Arquivos:** Todos os arquivos do projeto
+  - **Descrição:** Executar o Lighthouse no Chrome DevTools e resolver apontamentos de performance, acessibilidade e SEO.
+  - **Aceite:** Notas $\ge 90$ nas categorias Performance, Acessibilidade e SEO.
+
+</script>
+
+<script>
+const NAV = [{"section": "Documentação do Spike", "items": [{"id": "spike-salescosta-01-overview", "title": "01 · Overview", "path": "spike-salescosta/01-overview.md"}, {"id": "spike-salescosta-02-model", "title": "02 · Model", "path": "spike-salescosta/02-model.md"}, {"id": "spike-salescosta-03-flows", "title": "03 · Flows", "path": "spike-salescosta/03-flows.md"}, {"id": "spike-salescosta-04-risks", "title": "04 · Risks", "path": "spike-salescosta/04-risks.md"}, {"id": "spike-salescosta-05-goals-and-not-goals", "title": "05 · Goals & Not Goals", "path": "spike-salescosta/05-goals-and-not-goals.md"}, {"id": "spike-salescosta-06-visual-layout", "title": "06 · Visual Layout", "path": "spike-salescosta/06-visual-layout.md"}, {"id": "spike-salescosta-07-tasks", "title": "07 · Tasks & Roadmap", "path": "spike-salescosta/07-tasks.md"}]}];
+const FLAT = NAV.flatMap(s => s.items);
+const navEl = document.getElementById('nav');
+NAV.forEach(s => {
+  const h = document.createElement('div'); h.className = 'sec'; h.textContent = s.section;
+  navEl.appendChild(h);
+  s.items.forEach(it => {
+    const a = document.createElement('a');
+    a.href = '#' + it.id; a.textContent = it.title; a.dataset.id = it.id;
+    navEl.appendChild(a);
+  });
+});
+
+const MD_OK = typeof marked !== 'undefined';
+if (MD_OK) marked.setOptions({ gfm: true, breaks: false });
+const render = raw => MD_OK
+  ? marked.parse(raw)
+  : '<p style="color:#b45309">Sem conexão CDN. Conteúdo bruto abaixo.</p><pre></pre>';
+
+let mermaidReady = false;
+window.addEventListener('mermaid-ready', () => { mermaidReady = true; renderMermaid(); });
+
+function renderMermaid(){
+  if(!mermaidReady) return;
+  const nodes = document.querySelectorAll('#doc .mermaid:not([data-done])');
+  if(!nodes.length) return;
+  nodes.forEach(n => n.setAttribute('data-done','1'));
+  window.mermaid.run({ nodes: [...nodes] });
+}
+
+function show(id){
+  const idx = FLAT.findIndex(x => x.id === id);
+  const item = idx >= 0 ? FLAT[idx] : FLAT[0];
+  const docEl = document.getElementById('doc');
+
+  const raw = document.getElementById(item.id).textContent;
+  docEl.innerHTML = render(raw);
+  if (!MD_OK) docEl.querySelector('pre').textContent = raw;
+
+  docEl.querySelectorAll('pre > code.language-mermaid').forEach(code => {
+    const d = document.createElement('div');
+    d.className = 'mermaid';
+    d.textContent = code.textContent;
+    code.parentElement.replaceWith(d);
+  });
+
+  docEl.querySelectorAll('table').forEach(t => {
+    const w = document.createElement('div'); w.className = 'tablewrap';
+    t.replaceWith(w); w.appendChild(t);
+  });
+
+  document.getElementById('crumb').textContent = item.path;
+  document.querySelectorAll('#nav a').forEach(a =>
+    a.classList.toggle('active', a.dataset.id === item.id));
+
+  const i = FLAT.indexOf(item);
+  const prev = document.getElementById('prev'), next = document.getElementById('next');
+  if(i > 0){ prev.href = '#' + FLAT[i-1].id; prev.textContent = '← ' + FLAT[i-1].title; }
+  else { prev.removeAttribute('href'); prev.textContent = ''; }
+  if(i < FLAT.length-1){ next.href = '#' + FLAT[i+1].id; next.textContent = FLAT[i+1].title + ' →'; }
+  else { next.removeAttribute('href'); next.textContent = ''; }
+
+  document.title = item.title.replace(/^[\d\s·]+/, '') + ' · Spike';
+  window.scrollTo(0, 0);
+  document.getElementById('side').classList.add('collapsed');
+  renderMermaid();
+}
+
+document.getElementById('burger').onclick = () =>
+  document.getElementById('side').classList.toggle('collapsed');
+
+document.addEventListener('click', e => {
+  const a = e.target.closest && e.target.closest('a[href^="#"]');
+  if(!a || (!a.closest('#nav') && !a.closest('.navfoot'))) return;
+  e.preventDefault();
+  const id = a.getAttribute('href').slice(1);
+  if(location.hash.slice(1) === id) show(id);
+  else location.hash = '#' + id;
+});
+
+window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+show(location.hash.slice(1) || FLAT[0].id);
+</script>
+</body>
+</html>
