@@ -1,165 +1,124 @@
 # 07. Tasks · Checklist de Desenvolvimento e Implementação
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
-> **Data:** 2026-08-31  
-> **Status:** Pronto para Execução  
-> **Estimativa de Fases:** 7 Épicos de Desenvolvimento
+> **Data:** 2026-09-01  
+> **Status:** Revisado e Mapeado com as Diretrizes de Responsividade por Componente ([06-visual-layout.md](06-visual-layout.md))
 
 ---
 
-## 1. Visão Geral da Roadmap de Tarefas
+## 1. Roadmap em 7 Épicos de Desenvolvimento (Foco em Adaptabilidade Universal)
 
-O plano de execução está estruturado em 7 épicos sequenciais. Cada tarefa especifica seus arquivos-alvo, critérios de aceitação e verificações necessárias.
+O plano de execução está estruturado em **7 Épicos funcionais**, cobrindo o desenvolvimento e os testes de responsividade dos **10 componentes visuais** mapeados no layout de referência.
 
 ---
 
-## 2. Épico 1: Setup do Projeto & Design System Tokens (Dia 1)
+## 2. Épico 1: Setup do Projeto & Design Tokens Responsivos (Dia 1)
 
-- [ ] **Task 1.1 — Estruturação de Pastas e Arquivos Base**
+- [ ] **Task 1.1 — Estruturação de Pastas e Configuração de Viewport**
   - **Arquivos:** `index.html`, `css/reset.css`, `css/variables.css`, `css/components.css`, `css/sections.css`, `js/main.js`, `js/animations.js`
-  - **Descrição:** Criar a árvore de diretórios e arquivos em branco no projeto.
-  - **Aceite:** Todos os arquivos criados e vinculados no `index.html`.
+  - **Descrição:** Criar diretórios e incluir `<meta name="viewport" content="width=device-width, initial-scale=1.0">`.
+  - **Aceite:** Viewport configurado corretamente impedindo distorção de escala em dispositivos móveis.
 
-- [ ] **Task 1.2 — Definição dos Design Tokens (`css/variables.css`)**
+- [ ] **Task 1.2 — Tokens de Tipografia e Layout Fluido (`css/variables.css`)**
   - **Arquivos:** `css/variables.css`
-  - **Descrição:** Declarar as variáveis CSS para cores (`--color-primary`, `--color-dark`, `--color-accent`, etc.), tipografia (`--font-serif`, `--font-sans`), espaçamentos (`--space-xs` a `--space-2xl`) e transições.
-  - **Aceite:** Todas as variáveis acessíveis globalmente no `:root`.
+  - **Descrição:** Declarar funções CSS `clamp()` para tipografia fluida (ex: `font-size: clamp(2rem, 5vw, 4rem)`) e variáveis de breakpoints (`320px`, `480px`, `768px`, `1024px`, `1280px`).
+  - **Aceite:** Textos e títulos ajustam-se suavemente à largura da tela.
 
-- [ ] **Task 1.3 — Reset CSS e Integração Google Fonts**
-  - **Arquivos:** `index.html`, `css/reset.css`
-  - **Descrição:** Configurar reset CSS de caixa (`box-sizing: border-border`) e importar `Cormorant Garamond` + `DM Sans` via CDN.
-  - **Aceite:** Fontes renderizando corretamente sem FOUT (*Flash of Unstyled Text*).
-
-- [ ] **Task 1.4 — Favicon e Meta Tags SEO**
-  - **Arquivos:** `index.html`, `images/260701_sales_costa_marca_BRASAO_COR_temp.png`
-  - **Descrição:** Adicionar tag `<link rel="icon">` e meta tags de viewport, descrição e Open Graph.
-  - **Aceite:** Ícone exibido na aba do navegador e meta tags presentes no `<head>`.
+- [ ] **Task 1.3 — Reset CSS e Prevenção de Rolagem Horizontal**
+  - **Arquivos:** `css/reset.css`
+  - **Descrição:** Aplicar `html, body { overflow-x: hidden; width: 100%; }` e `img { max-width: 100%; height: auto; }`.
+  - **Aceite:** Zero rolagem horizontal (`0px` overflow-x) em qualquer resolução.
 
 ---
 
-## 3. Épico 2: Header & Sticky Navigation (Dia 1-2)
+## 3. Épico 2: Componente 1 — Header & Sticky Navigation Responsiva (Dia 1-2)
 
-- [ ] **Task 2.1 — Marcação Semântica da Navbar**
-  - **Arquivos:** `index.html`
-  - **Descrição:** Criar elemento `<header class="navbar">` contendo o logo em `<img>`, lista de links `<nav>` e botão CTA "Fale Conosco".
-  - **Aceite:** Estrutura HTML limpa e semântica.
-
-- [ ] **Task 2.2 — Estilização da Navbar (Transparente x Dark Scrolled)**
-  - **Arquivos:** `css/components.css`
-  - **Descrição:** Estilizar a navbar fixa (`position: fixed`) com transparência inicial e transição para background `#53565A` na classe `.scrolled`.
-  - **Aceite:** Navbar fixa no topo com transição de cor de 300ms.
-
-- [ ] **Task 2.3 — JavaScript da Sticky Navbar**
-  - **Arquivos:** `js/main.js`
-  - **Descrição:** Escrever listener de scroll para alternar a classe `.scrolled` quando `window.scrollY > 80`.
-  - **Aceite:** Alternância automática de classe ao rolar a página.
-
-- [ ] **Task 2.4 — Drawer e Hambúrguer Mobile**
+- [ ] **Task 2.1 — Navbar Desktop & Drawer Mobile**
   - **Arquivos:** `index.html`, `css/components.css`, `js/main.js`
-  - **Descrição:** Desenvolver o botão hambúrguer visível em `< 1024px` e o painel de navegação lateral com animação de slide.
-  - **Aceite:** Menu mobile abre/fecha com suporte a atributo `aria-expanded`.
+  - **Descrição:** Implementar navbar desktop com 6 links e menu hambúrguer com drawer lateral滑动 (*slide-out*) para telas `< 1024px`.
+  - **Aceite:** Colapso automático da navegação em telas pequenas.
 
-- [ ] **Task 2.5 — Script de Smooth Scroll por Âncoras**
-  - **Arquivos:** `js/main.js`
-  - **Descrição:** Interceptar cliques em `a[href^="#"]` para rolar suavemente a página com compensação da altura da navbar (80px).
-  - **Aceite:** Clique nos links de navegação leva exatamente à seção correspondente.
-
----
-
-## 4. Épico 3: Hero Banner Section (Dia 2)
-
-- [ ] **Task 3.1 — Estrutura HTML do Hero**
-  - **Arquivos:** `index.html`
-  - **Descrição:** Criar `<section id="hero">` com eyebrow tag, H1 "Junto nas decisões que constroem o futuro.", subtítulo e dupla de botões CTA.
-  - **Aceite:** Conteúdo textual completo na marcação.
-
-- [ ] **Task 3.2 — Estilização Visual e Overlay Dark**
-  - **Arquivos:** `css/sections.css`
-  - **Descrição:** Definir altura de `100vh`, background `#53565A` com overlay, H1 em `Cormorant Garamond 64px` na cor branca.
-  - **Aceite:** Layout refinado com alto contraste de leitura.
-
-- [ ] **Task 3.3 — Estilização dos Botões CTA**
+- [ ] **Task 2.2 — Áreas de Toque Confortáveis ($\ge 44\text{px}$)**
   - **Arquivos:** `css/components.css`
-  - **Descrição:** Estilizar botão primário (preenchimento Taupe `#AA9B8F`) e botão secundário (vazado com `border: 1px solid #AA9B8F` e uppercase com letter-spacing).
-  - **Aceite:** Hover states fluidos nos botões.
-
-- [ ] **Task 3.4 — Seta Animada de Scroll**
-  - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Criar indicador de scroll no rodape da hero section com animação CSS `@keyframes bounce`.
-  - **Aceite:** Seta pulsando suavemente e levando à seção "Sobre" ao ser clicada.
+  - **Descrição:** Aplicar padding e dimensões mínimas de $44 \times 44\text{px}$ nos alvos de clique da navbar no mobile.
+  - **Aceite:** Navegação tátil sem erros de clique.
 
 ---
 
-## 5. Épico 4: Seções Institucionais — Sobre & Diferenciais (Dia 2-3)
+## 4. Épico 3: Componentes 1 e 2 — Hero Banner & Comunicado ao Mercado (Dia 2)
 
-- [ ] **Task 4.1 — Seção "Sobre o Escritório"**
+- [ ] **Task 3.1 — Componente 1: Hero Banner Responsivo**
   - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Montar layout em 2 colunas (40% / 60%) em fundo Off-White `#F8F6F4`, com parágrafos institucionais, linha divisória Taupe e os 3 pilares da marca.
-  - **Aceite:** Layout responsivo colapsando para 1 coluna no mobile.
+  - **Descrição:** Desenvolver Hero Section com `min-height: 100vh`, H1 em `font-size: clamp(2rem, 5vw, 4rem)` e CTAs empilhados em 1 coluna no mobile (`width: 100%`).
+  - **Aceite:** Leitura limpa e botões confortáveis em telas de 320px a 2560px.
 
-- [ ] **Task 4.2 — Seção "Por Que Sales Costa" (Diferenciais)**
+- [ ] **Task 3.2 — Componente 2: Comunicado ao Mercado Responsivo**
   - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Criar seção com fundo Dark `#53565A`, eyebrow em cor Lima `#E4FF8F` e grid de 4 diferenciais com ícones em SVG.
-  - **Aceite:** Grid 4 colunas no desktop e 1 coluna no mobile.
+  - **Descrição:** Ajustar parágrafos e marca d'água "S" para que no mobile a marca d'água permaneça no fundo sem comprometer o contraste do texto.
+  - **Aceite:** Container de texto com padding lateral de `20px` e leitura confortável.
 
 ---
 
-## 6. Épico 5: Módulos Funcionais Interativos (Dia 3-4)
+## 5. Épico 4: Componentes 3 e 5 — Seções Institucionais Responsivas (Dia 2-3)
 
-- [ ] **Task 5.1 — Seção "Áreas de Atuação" (Cards Grid)**
+- [ ] **Task 4.1 — Componente 3: Sobre o Escritório (Migração 2Col -> 1Col)**
   - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Criar grid de 6 cards de especialidades com ícone, título, descrição e link "Saiba mais".
-  - **Aceite:** Hover state nos cards elevando a borda inferior em Taupe `#AA9B8F`.
+  - **Descrição:** Configurar grid de 2 colunas no desktop que migra para 1 coluna empilhada em telas `< 768px`, adicionando divisores horizontais nos 3 pilares.
+  - **Aceite:** Pilares (*Comprometimento*, *Confidencialidade*, *Excelência*) empilhados com clareza no mobile.
 
-- [ ] **Task 5.2 — Seção "Em Números" (Contadores JS)**
+- [ ] **Task 4.2 — Componente 5: Por Que Sales Costa (Diferenciais)**
+  - **Arquivos:** `index.html`, `css/sections.css`
+  - **Descrição:** Configurar as 4 caixas de diferenciais para exibição em 4 colunas (desktop), 2x2 (tablet) e 1 coluna (mobile).
+  - **Aceite:** Nenhuma caixa estoura a largura do container.
+
+---
+
+## 6. Épico 5: Componentes 4, 6, 7 e 8 — Módulos Funcionais Multi-Tela (Dia 3-4)
+
+- [ ] **Task 5.1 — Componente 4: Grid de Áreas de Atuação (Grid 3x2 -> 1x6)**
+  - **Arquivos:** `index.html`, `css/sections.css`
+  - **Descrição:** Implementar grid responsivo com `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))` para as 6 especialidades.
+  - **Aceite:** Reordenamento automático para 1 coluna no mobile e links *Saiba mais →* com alvos táteis ($\ge 44\text{px}$).
+
+- [ ] **Task 5.2 — Componente 6: Banner Em Números (Métricas Grid 2x2)**
   - **Arquivos:** `index.html`, `css/sections.css`, `js/animations.js`
-  - **Descrição:** Criar banner com fundo Taupe `#AA9B8F` e 4 contadores numéricos. Escrever script de counter-up animado disparado ao entrar na tela.
-  - **Aceite:** Números contam de 0 até o valor alvo em ~2 segundos.
+  - **Descrição:** Dispor os 4 números em linha no desktop (com divisores verticais) e em grid 2x2 no mobile (sem divisores).
+  - **Aceite:** Números centralizados e legíveis.
 
-- [ ] **Task 5.3 — Seção "Depoimentos" (Carousel)**
+- [ ] **Task 5.3 — Componente 7: Depoimentos com Touch Swipe Gestures**
   - **Arquivos:** `index.html`, `css/sections.css`, `js/main.js`
-  - **Descrição:** Desenvolver carousel funcional de depoimentos em fundo Off-White com aspas decorativas, controle por setas e autoplay de 5 segundos.
-  - **Aceite:** Transição suave entre depoimentos com pausa no hover.
+  - **Descrição:** Adicionar handlers `touchstart` e `touchend` para permitir deslizamento de depoimentos com o dedo em smartphones.
+  - **Aceite:** Transição de depoimentos via gesto tátil e dots de controle ($\ge 44\text{px}$).
 
-- [ ] **Task 5.4 — Seção "Nossa Equipe" (Cards de Advogados)**
+- [ ] **Task 5.4 — Componente 8: Nossa Equipe (Cards dos Sócios 1Col Mobile)**
   - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Construir grid de 4 cards de advogados com imagem 1:1, nome, registro OAB e link para o LinkedIn.
-  - **Aceite:** Overlay sutil na foto ao passar o cursor.
+  - **Descrição:** Cards dos sócios (*AS*, *CC*, *FR*, *LM*) em 1 coluna no mobile com preservação de proporção de avatar `aspect-ratio: 1/1`.
+  - **Aceite:** Avatares sem distorção em qualquer resolução.
 
 ---
 
-## 7. Épico 6: Formulário de Contato & Rodapé (Dia 4-5)
+## 7. Épico 6: Componentes 9 e 10 — Formulário & Rodapé Responsivos (Dia 4-5)
 
-- [ ] **Task 6.1 — Seção "Fale Conosco" (Formulário Minimalista)**
+- [ ] **Task 6.1 — Componente 9: Fale Conosco (Prevenção de Auto-Zoom iOS)**
+  - **Arquivos:** `index.html`, `css/sections.css`, `js/main.js`
+  - **Descrição:** Formatar formulário para empilhamento vertical no mobile com inputs em `font-size: 16px` para evitar auto-zoom no Safari iOS. Botão de envio com `width: 100%`.
+  - **Aceite:** Digitação confortável no teclado virtual sem desconfigurar o viewport.
+
+- [ ] **Task 6.2 — Componente 10: Rodapé Institucional Alinhado**
   - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Desenvolver layout 2 colunas com dados de contato à esquerda e formulário com inputs de linha fina (`border-bottom`) à direita.
-  - **Aceite:** Estilização alinhada à estética da marca.
-
-- [ ] **Task 6.2 — Script de Validação e Feedback do Formulário**
-  - **Arquivos:** `js/main.js`
-  - **Descrição:** Implementar validação HTML5 nativa + JavaScript para checagem de campos obrigatórios e exibição de alerta/mensagem de sucesso.
-  - **Aceite:** Envio bloqueado para campos vazios ou e-mails em formato inválido.
-
-- [ ] **Task 6.3 — Rodapé Institucional**
-  - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Montar rodapé em fundo `#2B2B2B` com logo claro, links institucionais, copyright e redes sociais.
-  - **Aceite:** Todos os links operacionais e responsivos.
+  - **Descrição:** Rodapé `#2B2D30` com alinhamento vertical centralizado do logo e links em smartphones.
+  - **Aceite:** Links e marca organizados no mobile.
 
 ---
 
-## 8. Épico 7: Polimento, Animações & Qualidade (Dia 5-6)
+## 8. Épico 7: Polimento, Testes Multi-Dispositivo & Qualidade (Dia 5-6)
 
-- [ ] **Task 7.1 — Animações com Intersection Observer**
-  - **Arquivos:** `js/animations.js`, `css/sections.css`
-  - **Descrição:** Adicionar atributo `data-animate` nos elementos principais e aplicar efeito de fade-in e subida (`translateY(30px) -> 0`).
-  - **Aceite:** Elementos surgem suavemente à medida que a página é rolada.
+- [ ] **Task 7.1 — Testes em Matriz de Dispositivos Reais/Simulados**
+  - **Arquivos:** Todo o projeto
+  - **Descrição:** Testar em 320px (iPhone SE), 375px (iPhone 12), 768px (iPad portrait), 1024px (iPad landscape), 1440px (Laptop) e 2560px (Ultra-wide).
+  - **Aceite:** Zero erros de layout ou rolagem lateral em todas as telas.
 
-- [ ] **Task 7.2 — Suporte a `prefers-reduced-motion`**
-  - **Arquivos:** `css/sections.css`
-  - **Descrição:** Adicionar media query para desativar animações caso o usuário prefira movimentos reduzidos no sistema operacional.
-  - **Aceite:** Animações são desativadas instantaneamente sob a media query.
-
-- [ ] **Task 7.3 — Auditoria e Otimização Google Lighthouse**
-  - **Arquivos:** Todos os arquivos do projeto
-  - **Descrição:** Executar o Lighthouse no Chrome DevTools e resolver apontamentos de performance, acessibilidade e SEO.
-  - **Aceite:** Notas $\ge 90$ nas categorias Performance, Acessibilidade e SEO.
+- [ ] **Task 7.2 — Auditoria Google Lighthouse Mobile & Desktop**
+  - **Arquivos:** Todo o projeto
+  - **Descrição:** Executar o Lighthouse em modo Mobile (com throttling 4G e CPU 4x) e garantir notas $\ge 90$ em Performance, Acessibilidade e SEO.
+  - **Aceite:** Relatório aprovado com notas $\ge 90$ em ambas as auditorias.

@@ -1,8 +1,8 @@
 # 04. Risks · Riscos, Dependências & Perguntas em Aberto
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
-> **Data:** 2026-08-31  
-> **Status:** Concluído / Pronto para Implementação
+> **Data:** 2026-09-01  
+> **Status:** Atualizado conforme Layout Oficial ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png))
 
 ---
 
@@ -10,36 +10,15 @@
 
 | ID | Risco Identificado | Categoria | Probabilidade | Impacto | Estratégia de Mitigação |
 |---|---|---|---|---|---|
-| **R01** | Ausência de definição do serviço de backend para envio de e-mails do formulário de contato | Técnico / Integração | Alta | Alto | Utilizar serviço *serverless* terceirizado sem backend próprio (ex: Formspree, EmailJS ou Resend) ou integrar via API WhatsApp Web como fallback temporário. |
-| **R02** | Imagens e marcas atuais possuem sufixo `_temp` e podem sofrer alteração de proporção | Design / Marca | Média | Médio | Manter os caminhos de imagens em variáveis/CSS e usar containers com `object-fit: contain` e dimensões relativas. |
-| **R03** | Latência no carregamento de fontes externas (Google Fonts) em conexões lentas | Performance | Baixa | Médio | Implementar `<link rel="preconnect">`, utilizar `font-display: swap` e prever fallbacks de fontes do sistema (`Georgia`, `serif`, `Arial`). |
-| **R04** | Ausência de fotos profissionais em alta resolução da equipe de advogados | Conteúdo | Alta | Médio | Desenvolver os cards de equipe com suporte a avatares/silhuetas estilizadas com as cores da marca enquanto o ensaio fotográfico não é concluído. |
-| **R05** | Incompatibilidade com navegadores legados (ex: Internet Explorer) | Compatibilidade | Baixa | Baixo | Utilizar propriedades CSS3 modernas com fallbacks padrão e JavaScript ES6 compilado ou compatível com navegadores evergreen. |
+| **R01** | Ausência de definição do serviço de backend para envio do formulário de contato | Técnico | Alta | Alto | Utilizar serviço *serverless* terceirizado (Formspree/EmailJS) enviando para `contato@salescosta.com.br` ou fallback via WhatsApp API. |
+| **R02** | Fotografias reais dos sócios (AS, CC, FR, LM) ainda não foram tiradas | Conteúdo | Média | Médio | Manter a solução inteligente prevista no layout oficial: placeholders elegantes com iniciais (*AS*, *CC*, *FR*, *LM*) sobre fundo bege `#F8F6F4`. |
+| **R03** | Números da OAB nos cards da equipe constam como `OAB/SP 000.000` | Conteúdo | Baixa | Baixo | Substituir pelas inscrições OAB oficiais dos sócios antes da publicação final. |
+| **R04** | Formatos de imagem PNG `_temp` para logos | Marca | Baixa | Baixo | Ativos parametrizados via CSS/HTML permitindo substituição transparente por vetores SVG. |
 
 ---
 
 ## 2. Perguntas em Aberto (Fila de Decisões)
 
-> [!WARNING]
-> Os pontos abaixo precisam de definição antes ou durante as fases iniciais de desenvolvimento.
-
-### 2.1 Backend e Envio de E-mails
-1. Qual será a ferramenta de recebimento das mensagens do formulário? (Formspree, EmailJS, Webhook N8N/Make, ou e-mail corporativo via SMTP?)
-2. Haverá redirecionamento automático para o WhatsApp Business do escritório ao enviar a mensagem?
-
-### 2.2 Conteúdo e Mídia
-1. Quais são as 6 áreas de atuação prioritárias a serem exibidas na versão inicial da landing page?
-2. Quantos sócios/advogados integrarão a seção "Nossa Equipe" e quais suas descrições e números OAB?
-3. Os números apresentados na seção "Em Números" (anos de experiência, clientes, casos) já foram validados pela diretoria do escritório?
-
-### 2.3 Hospedagem e Infraestrutura
-1. Qual será a plataforma de hospedagem de destino? (Vercel, Netlify, GitHub Pages, cPanel/Hostgator do cliente?)
-2. O domínio `salescosta.com.br` já está registrado e configurado com suporte a HTTPS/SSL?
-
----
-
-## 3. Mapeamento de Dependências Externas
-
-1. **Google Fonts CDN:** Carregamento das famílias `Cormorant Garamond` e `DM Sans`.
-2. **Serviço de Formulário:** Dependência de endpoint HTTPS para recebimento dos dados do formulário sem exposição de credenciais de e-mail.
-3. **Ativos de Marca:** Troca dos arquivos PNG `_temp` pelos vetores finais em SVG assim que fornecidos pelo time de branding.
+1. **Backend do Formulário:** Qual plataforma processará as mensagens enviadas por `contato@salescosta.com.br`?
+2. **Inscrições OAB:** Quais os números de inscrição OAB reais de Antônio Sales, Camila Costa, Felipe Ramos e Luisa Martins?
+3. **Endereço e Telefone:** Confirmar se o endereço `Av. Paulista, 1000 — 12º andar` e telefone `+55 (11) 3000-0000` são definitivos.

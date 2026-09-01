@@ -1,62 +1,51 @@
 # 01. Overview · Visão Geral e Contexto
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
-> **Data:** 2026-08-31  
-> **Status:** Concluído / Pronto para Implementação  
+> **Data:** 2026-09-01  
+> **Status:** Atualizado conforme Layout Oficial com Diretriz Estrita de Responsividade Universal ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png))  
 > **Referência Metodológica:** Skill `spike-solucao`
 
 ---
 
 ## 1. Sumário Executivo
 
-Este documento estabelece o **Overview** (Visão Geral e Contexto) da solução proposta para a **Landing Page Institucional do escritório Sales Costa Advogados**. 
+Este documento estabelece o **Overview** (Visão Geral e Contexto) da solução proposta para a **Landing Page Institucional do escritório Sales Costa Advogados**, atualizado com base no **design oficial de referência** ([images/sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png)).
 
-O objetivo principal desta spike é avaliar, definir e validar a arquitetura visual, a estrutura de seções, o sistema de design tokens e a stack técnica para a criação de uma **landing page single-page (one-page) de alto padrão de sofisticação**, alinhada à excelência da marca jurídica.
-
----
-
-## 2. Contexto Atual do Projeto
-
-### 2.1 Estado Atual do Repositório
-Atualmente, o projeto possui apenas ativos de identidade visual armazenados no diretório `images/` (logos em variados formatos e paleta cromática oficial). Não há código de marcação, estilização ou lógica pré-existente.
-
-### 2.2 Ativos de Marca Encontrados
-- **Wordmark Horizontal:** `images/260701_sales_costa_marca_PREFERENCIAL_temp.png` (Assinatura principal para headers e footers em fundo claro).
-- **Assinatura Completa:** `images/260701_sales_costa_marca_ASSINATURA_temp.png` (Versão institucional estendida).
-- **Brasão Colorido:** `images/260701_sales_costa_marca_BRASAO_COR_temp.png` (Monograma "S" com acento lima, ideal para favicons e ambientes dark).
-- **Brasão Monocromático:** `images/260701_sales_costa_marca_BRASAO_temp.png`.
-- **Padrão Cromático Oficial:** `images/260701_sales_costa_marca_PADRAO_CROMATICO_temp.pdf` e `images/paleta_cores.png`.
-
-> [!IMPORTANT]
-> Os ativos possuem o sufixo `_temp`, indicando que são provisórios. A arquitetura técnica foi concebida para permitir a substituição transparente desses arquivos sem necessidade de refatoração do código HTML/CSS.
+O objetivo principal desta spike é avaliar, definir e validar a arquitetura visual, a estrutura exata das 11 seções, o sistema de design tokens, a stack técnica e a **garantira incondicional de responsividade universal**, assegurando que a aplicação seja totalmente utilizável em **todos os tipos de dispositivos** (smartphones de 320px, phablets, tablets, laptops, monitores 4K e telas dobráveis) **sem qualquer quebra de layout**.
 
 ---
 
-## 3. O Que Está Sendo Avaliado (Escopo da Spike)
+## 2. Diretriz Estrita de Responsividade Universal
 
-Avalia-se a criação de uma presença digital refinada que equilibre **tradição, solidez e modernidade**. Para isso, utilizou-se o benchmarking cruzado de duas referências de mercado:
+A arquitetura da landing page adota a abordagem **Mobile-First** com adaptação fluida contínua. 
 
-### 3.1 Benchmark 1: Lefosse (Linguagem Visual & Sofisticação)
-- **Tom e Estética:** Escritório *full-service*, estética editorial, uso estratégico de espaço em branco (*whitespace*), tipografia serifada de alto luxo combinada com sans-serif técnica.
-- **Interatividade:** Sticky navbar transparente que transiciona suavemente ao scroll para fundo sólido dark (`#53565A`), botões minimalistas com borda sutil e espaçamento de letras (*letter-spacing*).
+### Princípios Inegociáveis de Responsividade:
+- **Zero Overflow Horizontal:** Aplicação estrita de `overflow-x: hidden; width: 100%` impedindo qualquer rolagem lateral indesejada.
+- **Tipografia e Espaçamentos Fluidos:** Utilização de funções CSS `clamp()`, unidades relativas (`rem`, `vw`) e grids flexíveis.
+- **Áreas de Toque Confortáveis:** Alvos de clique e toque com dimensões mínimas de $44 \times 44\text{px}$ em telas sensíveis ao toque.
+- **Prevenção de Zoom Indesejado:** Entradas de formulário com `font-size: 16px` para evitar zoom automático em navegadores móveis (iOS Safari).
+- **Adaptabilidade Fluida por Breakpoint:** Redimensionamento inteligente dos 10 componentes em telas pequenas (320px–480px), médias (768px–1023px) e grandes (1024px+).
 
-### 3.2 Benchmark 2: Higasi Sales (Estrutura de Seções One-Page)
-- **Navegabilidade:** Estrutura contínua e fluida de navegação por ancoragem em página única.
-- **Seções Mapeadas:** Hero Banner, Sobre o Escritório, Áreas de Atuação, Diferenciais, Em Números, Depoimentos, Nossa Equipe, Fale Conosco e Rodapé.
+---
+
+## 3. Estrutura Oficial de Seções da Landing Page
+
+A partir do layout de referência ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png)), a landing page está dividida em **11 seções navegáveis**:
+
+1. **Navbar Sticky:** Marca `SALES COSTA` + Links `Comunicado` | `Sobre` | `Áreas` | `Diferenciais` | `Equipe` | `Fale conosco` (Menu drawer no mobile).
+2. **Hero Banner:** Headline *"Junto nas decisões que constroem o futuro."* + Subtítulo + CTAs *"Conheça o escritório →"* e *"Fale conosco →"* + Indicador de scroll.
+3. **Comunicado ao Mercado:** Seção dark institucional sobre a união de Dilson Higasi Sales e Rodrigo Moreira da Costa, com citações dos sócios-fundadores e marca d'água "S" decorativa.
+4. **Sobre o Escritório:** *"Uma trajetória construída sobre confiança e critério técnico."* + 3 parágrafos de apresentação + 3 pilares (*Comprometimento*, *Confidencialidade*, *Excelência*).
+5. **Áreas de Atuação:** Grid 2x3 com 6 especialidades (*Empresarial*, *Tributário*, *Trabalhista*, *Civil*, *Societário*, *Compliance & Governança*), colapsável para 1 coluna no mobile.
+6. **Por Que Sales Costa (Diferenciais):** Ambiente dark `#404347` com 4 diferenciais adaptáveis para exibição empilhada em smartphones.
+7. **Em Números:** Banner claro com métricas (*15+ Anos*, *500+ Clientes*, *300+ Casos*, *5 Áreas*) em grid 2x2 no mobile.
+8. **Depoimentos:** Citação de cliente (*Marina Albuquerque, Diretora Financeira do Grupo Vantis*) + navegação por dots com suporte a touch swipe.
+9. **Nossa Equipe:** Grid de 4 sócios (*Antônio Sales*, *Camila Costa*, *Felipe Ramos*, *Luisa Martins*) com avatares responsivos.
+10. **Fale Conosco:** Formulário minimalista + Endereço (*Av. Paulista, 1000 — 12º andar, São Paulo/SP*), e-mail, telefone e redes sociais.
+11. **Rodapé Institucional:** Logo e links com alinhamento vertical em telas pequenas.
 
 ---
 
 ## 4. Decisão de Stack Técnica
 
-### 4.1 Comparativo de Arquitetura
-
-| Critério | Opção A: HTML5 / CSS3 / Vanilla JS (Recomendada) | Opção B: Next.js / React / TailwindCSS |
-|---|---|---|
-| **Dependências de Build** | Zero (Executa nativamente no navegador) | Altas (Node.js, npm, Webpack/Turbopack, node_modules) |
-| **Performance (Lighthouse)** | Nativa 98-100 (Sem overhead de JS runtime) | 80-90 (Requer otimização cuidadosa de bundle) |
-| **Manutenibilidade** | Extremamente simples (Qualquer dev HTML/CSS edita) | Requer conhecimento em Framework React/Next |
-| **Custo de Hospedagem** | Gratuito / Qualquer servidor estático (GitHub Pages/Netlify) | Requer Serverless/Node.js host se houver SSR/ISR |
-| **Complexidade** | Mínima (Adequada para landing page estática) | Sobredimensionada para o escopo atual |
-
-### 4.2 Decisão Final
-Adoptou-se a **Opção A (HTML5 / Vanilla CSS / Vanilla JS)**. A escolha garante máxima performance de carregamento, independência de ferramentas de build complexas, facilidade de implantação e controle absoluto sobre as animações e design tokens.
+Adotou-se **HTML5 Semântico / Vanilla CSS3 / Vanilla JS (ES6+)**. A escolha garante 100% de alinhamento com a alta performance e fidelidade visual do layout oficial, sem dependência de frameworks ou ferramentas pesadas de build.

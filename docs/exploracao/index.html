@@ -103,65 +103,54 @@
 # 01. Overview · Visão Geral e Contexto
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
-> **Data:** 2026-08-31  
-> **Status:** Concluído / Pronto para Implementação  
+> **Data:** 2026-09-01  
+> **Status:** Atualizado conforme Layout Oficial com Diretriz Estrita de Responsividade Universal ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png))  
 > **Referência Metodológica:** Skill `spike-solucao`
 
 ---
 
 ## 1. Sumário Executivo
 
-Este documento estabelece o **Overview** (Visão Geral e Contexto) da solução proposta para a **Landing Page Institucional do escritório Sales Costa Advogados**. 
+Este documento estabelece o **Overview** (Visão Geral e Contexto) da solução proposta para a **Landing Page Institucional do escritório Sales Costa Advogados**, atualizado com base no **design oficial de referência** ([images/sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png)).
 
-O objetivo principal desta spike é avaliar, definir e validar a arquitetura visual, a estrutura de seções, o sistema de design tokens e a stack técnica para a criação de uma **landing page single-page (one-page) de alto padrão de sofisticação**, alinhada à excelência da marca jurídica.
-
----
-
-## 2. Contexto Atual do Projeto
-
-### 2.1 Estado Atual do Repositório
-Atualmente, o projeto possui apenas ativos de identidade visual armazenados no diretório `images/` (logos em variados formatos e paleta cromática oficial). Não há código de marcação, estilização ou lógica pré-existente.
-
-### 2.2 Ativos de Marca Encontrados
-- **Wordmark Horizontal:** `images/260701_sales_costa_marca_PREFERENCIAL_temp.png` (Assinatura principal para headers e footers em fundo claro).
-- **Assinatura Completa:** `images/260701_sales_costa_marca_ASSINATURA_temp.png` (Versão institucional estendida).
-- **Brasão Colorido:** `images/260701_sales_costa_marca_BRASAO_COR_temp.png` (Monograma "S" com acento lima, ideal para favicons e ambientes dark).
-- **Brasão Monocromático:** `images/260701_sales_costa_marca_BRASAO_temp.png`.
-- **Padrão Cromático Oficial:** `images/260701_sales_costa_marca_PADRAO_CROMATICO_temp.pdf` e `images/paleta_cores.png`.
-
-> [!IMPORTANT]
-> Os ativos possuem o sufixo `_temp`, indicando que são provisórios. A arquitetura técnica foi concebida para permitir a substituição transparente desses arquivos sem necessidade de refatoração do código HTML/CSS.
+O objetivo principal desta spike é avaliar, definir e validar a arquitetura visual, a estrutura exata das 11 seções, o sistema de design tokens, a stack técnica e a **garantira incondicional de responsividade universal**, assegurando que a aplicação seja totalmente utilizável em **todos os tipos de dispositivos** (smartphones de 320px, phablets, tablets, laptops, monitores 4K e telas dobráveis) **sem qualquer quebra de layout**.
 
 ---
 
-## 3. O Que Está Sendo Avaliado (Escopo da Spike)
+## 2. Diretriz Estrita de Responsividade Universal
 
-Avalia-se a criação de uma presença digital refinada que equilibre **tradição, solidez e modernidade**. Para isso, utilizou-se o benchmarking cruzado de duas referências de mercado:
+A arquitetura da landing page adota a abordagem **Mobile-First** com adaptação fluida contínua. 
 
-### 3.1 Benchmark 1: Lefosse (Linguagem Visual & Sofisticação)
-- **Tom e Estética:** Escritório *full-service*, estética editorial, uso estratégico de espaço em branco (*whitespace*), tipografia serifada de alto luxo combinada com sans-serif técnica.
-- **Interatividade:** Sticky navbar transparente que transiciona suavemente ao scroll para fundo sólido dark (`#53565A`), botões minimalistas com borda sutil e espaçamento de letras (*letter-spacing*).
+### Princípios Inegociáveis de Responsividade:
+- **Zero Overflow Horizontal:** Aplicação estrita de `overflow-x: hidden; width: 100%` impedindo qualquer rolagem lateral indesejada.
+- **Tipografia e Espaçamentos Fluidos:** Utilização de funções CSS `clamp()`, unidades relativas (`rem`, `vw`) e grids flexíveis.
+- **Áreas de Toque Confortáveis:** Alvos de clique e toque com dimensões mínimas de $44 \times 44\text{px}$ em telas sensíveis ao toque.
+- **Prevenção de Zoom Indesejado:** Entradas de formulário com `font-size: 16px` para evitar zoom automático em navegadores móveis (iOS Safari).
+- **Adaptabilidade Fluida por Breakpoint:** Redimensionamento inteligente dos 10 componentes em telas pequenas (320px–480px), médias (768px–1023px) e grandes (1024px+).
 
-### 3.2 Benchmark 2: Higasi Sales (Estrutura de Seções One-Page)
-- **Navegabilidade:** Estrutura contínua e fluida de navegação por ancoragem em página única.
-- **Seções Mapeadas:** Hero Banner, Sobre o Escritório, Áreas de Atuação, Diferenciais, Em Números, Depoimentos, Nossa Equipe, Fale Conosco e Rodapé.
+---
+
+## 3. Estrutura Oficial de Seções da Landing Page
+
+A partir do layout de referência ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png)), a landing page está dividida em **11 seções navegáveis**:
+
+1. **Navbar Sticky:** Marca `SALES COSTA` + Links `Comunicado` | `Sobre` | `Áreas` | `Diferenciais` | `Equipe` | `Fale conosco` (Menu drawer no mobile).
+2. **Hero Banner:** Headline *"Junto nas decisões que constroem o futuro."* + Subtítulo + CTAs *"Conheça o escritório →"* e *"Fale conosco →"* + Indicador de scroll.
+3. **Comunicado ao Mercado:** Seção dark institucional sobre a união de Dilson Higasi Sales e Rodrigo Moreira da Costa, com citações dos sócios-fundadores e marca d'água "S" decorativa.
+4. **Sobre o Escritório:** *"Uma trajetória construída sobre confiança e critério técnico."* + 3 parágrafos de apresentação + 3 pilares (*Comprometimento*, *Confidencialidade*, *Excelência*).
+5. **Áreas de Atuação:** Grid 2x3 com 6 especialidades (*Empresarial*, *Tributário*, *Trabalhista*, *Civil*, *Societário*, *Compliance & Governança*), colapsável para 1 coluna no mobile.
+6. **Por Que Sales Costa (Diferenciais):** Ambiente dark `#404347` com 4 diferenciais adaptáveis para exibição empilhada em smartphones.
+7. **Em Números:** Banner claro com métricas (*15+ Anos*, *500+ Clientes*, *300+ Casos*, *5 Áreas*) em grid 2x2 no mobile.
+8. **Depoimentos:** Citação de cliente (*Marina Albuquerque, Diretora Financeira do Grupo Vantis*) + navegação por dots com suporte a touch swipe.
+9. **Nossa Equipe:** Grid de 4 sócios (*Antônio Sales*, *Camila Costa*, *Felipe Ramos*, *Luisa Martins*) com avatares responsivos.
+10. **Fale Conosco:** Formulário minimalista + Endereço (*Av. Paulista, 1000 — 12º andar, São Paulo/SP*), e-mail, telefone e redes sociais.
+11. **Rodapé Institucional:** Logo e links com alinhamento vertical em telas pequenas.
 
 ---
 
 ## 4. Decisão de Stack Técnica
 
-### 4.1 Comparativo de Arquitetura
-
-| Critério | Opção A: HTML5 / CSS3 / Vanilla JS (Recomendada) | Opção B: Next.js / React / TailwindCSS |
-|---|---|---|
-| **Dependências de Build** | Zero (Executa nativamente no navegador) | Altas (Node.js, npm, Webpack/Turbopack, node_modules) |
-| **Performance (Lighthouse)** | Nativa 98-100 (Sem overhead de JS runtime) | 80-90 (Requer otimização cuidadosa de bundle) |
-| **Manutenibilidade** | Extremamente simples (Qualquer dev HTML/CSS edita) | Requer conhecimento em Framework React/Next |
-| **Custo de Hospedagem** | Gratuito / Qualquer servidor estático (GitHub Pages/Netlify) | Requer Serverless/Node.js host se houver SSR/ISR |
-| **Complexidade** | Mínima (Adequada para landing page estática) | Sobredimensionada para o escopo atual |
-
-### 4.2 Decisão Final
-Adoptou-se a **Opção A (HTML5 / Vanilla CSS / Vanilla JS)**. A escolha garante máxima performance de carregamento, independência de ferramentas de build complexas, facilidade de implantação e controle absoluto sobre as animações e design tokens.
+Adotou-se **HTML5 Semântico / Vanilla CSS3 / Vanilla JS (ES6+)**. A escolha garante 100% de alinhamento com a alta performance e fidelidade visual do layout oficial, sem dependência de frameworks ou ferramentas pesadas de build.
 
 </script>
 
@@ -169,290 +158,201 @@ Adoptou-se a **Opção A (HTML5 / Vanilla CSS / Vanilla JS)**. A escolha garante
 # 02. Model · Arquitetura Visual, Paleta & Componentes
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
-> **Data:** 2026-08-31  
-> **Status:** Concluído / Pronto para Implementação
+> **Data:** 2026-09-01  
+> **Status:** Atualizado conforme Layout Oficial ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png))
 
 ---
 
 ## 1. Sistema de Cores e Identidade Cromática
 
-### 1.1 Cores Oficiais da Marca
+O esquema de cores oficial foi mapeado a partir da prévia visual do layout ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png)):
 
-| Nome da Cor | Hexadecimal | RGB | Conceito / Significado | Uso Principal |
-|---|---|---|---|---|
-| **Personalização** | `#AA9B8F` | `170, 155, 143` | Tom Taupe sofisticado, refinamento | Headers, acentos primários, CTAs, bordas de destaque |
-| **Solidez** | `#53565A` | `83, 86, 90` | Cinza chumbo corporativo, firmeza | Background dark, tipografia principal, navbar escurecida |
-| **Inovação / Sagacidade** | `#E4FF8F` | `228, 255, 143` | Lima vibrante, energia e modernidade | Badges, hover states pontuais, indicadores ativados |
-
-### 1.2 Paleta Derivada (Design System)
-Para garantir contraste adequado (WCAG AAA) e suporte a seções claras e escuras:
-
-```css
-:root {
-  /* Core Brand Colors */
-  --color-primary:      #AA9B8F; /* Taupe — identidade visual */
-  --color-dark:         #53565A; /* Cinza chumbo — solidez */
-  --color-accent:       #E4FF8F; /* Lima — inovação */
-
-  /* Neutral & Base Colors */
-  --color-white:        #FFFFFF;
-  --color-off-white:    #F8F6F4; /* Derivado do taupe, fundo quente suave */
-  --color-text-dark:    #2B2B2B; /* Preto carvão para leitura de alto contraste */
-  --color-text-mid:     #6B6460; /* Cinza quente para textos secundários */
-  --color-border:       #D9D3CE; /* Linha de divisão sutil */
-  --color-overlay:      rgba(83, 86, 90, 0.82); /* Máscara para hero banner */
-}
-```
-
----
-
-## 2. Gestão de Ativos de Marca e Logos
-
-| Arquivo de Imagem | Tipo | Uso Recomendado | Estratégia de Troca |
+| Nome da Cor | Hexadecimal | RGB | Função na Interface |
 |---|---|---|---|
-| `260701_sales_costa_marca_PREFERENCIAL_temp.png` | Wordmark Horizontal | Navbar e Rodapé em fundos claros | Parametrizado via `<img src="images/...">` |
-| `260701_sales_costa_marca_ASSINATURA_temp.png` | Assinatura Institucional | Hero Banner / Módulos de Apresentação | Substituível sem alterar layout |
-| `260701_sales_costa_marca_BRASAO_COR_temp.png` | Brasão "S" + Quadrado Lima | Favicon do site, navbar dark e marcas d'água | Suporta troca para SVG final |
-| `260701_sales_costa_marca_BRASAO_temp.png` | Brasão Monocromático | Elemento gráfico decorativo em background | Aplicação com opacidade 0.05 a 0.1 |
+| **Dark Charcoal (Chumbo)** | `#404347` / `#484B4F` | `64, 67, 71` | Fundo da Navbar, Hero, Comunicado, Diferenciais e Contato |
+| **Personalização (Taupe)** | `#AA9B8F` | `170, 155, 143` | Acentos primários, bordas, CTAs e destaque nos pilares |
+| **Inovação (Lima)** | `#E4FF8F` | `228, 255, 143` | Badges de eyebrow, indicações ativas e acentos pontuais |
+| **Off-White Quente** | `#F8F6F4` | `248, 246, 244` | Fundo das seções Sobre, Em Números e Depoimentos |
+| **Branco Puro** | `#FFFFFF` | `255, 255, 255` | Fundo das seções Áreas de Atuação e Nossa Equipe |
+| **Texto Dark** | `#2B2B2B` / `#1C1E21` | `43, 43, 43` | Tipografia de leitura em fundos claros |
 
 ---
 
-## 3. Tipografia e Hierarquia Visual
+## 2. Tipografia e Hierarquia Visual
 
-O projeto combina duas famílias tipográficas via Google Fonts:
-
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-```
-
-### 3.1 Tabela de Aplicação Tipográfica
-
-| Família | Estilo / Peso | Tamanho (Desktop) | Uso Pretendido |
-|---|---|---|---|
-| **Cormorant Garamond** | 300 Light | `4rem` (64px) | Titular principal H1 do Hero |
-| **Cormorant Garamond** | 400 Regular | `2.25rem` (36px) | Títulos de Seção H2 |
-| **Cormorant Garamond** | 600 SemiBold Italic | `1.375rem` (22px) | Citações, destaques e números decorativos |
-| **DM Sans** | 400 Regular | `1rem` (16px) | Corpo de texto, parágrafos e descrições |
-| **DM Sans** | 500 Medium Uppercase | `0.75rem` (12px) | Sub-headlines (eyebrow tags), labels e botões |
+- **Headings & Titulares (H1/H2):** Tipografia serifada/sans-serif refinada (`DM Sans` / `Cormorant Garamond`).
+- **Corpo de Texto:** `DM Sans` em peso 300 Light e 400 Regular com excelente legibilidade.
+- **Eyebrows & Caixa Alta:** `DM Sans 500` em caixas altas com espaçamento `letter-spacing: 2px` a `4px`.
 
 ---
 
-## 4. Especificação dos Componentes por Seção
+## 3. Especificação Completa por Seção (Layout de Referência)
 
-### 4.1 Navbar (Navegação Superior Sticky)
-- **Componentes:** Brand Logo, Links de Ancoragem (`#sobre`, `#areas`, `#diferenciais`, `#equipe`), CTA "Fale Conosco" em formato de botão vazado (*outline*), Botão Hambúrguer para Mobile.
-- **Comportamento Visual:**
-  - *Estado Inicial (Topo):* Fundo transparente, logo em tom Taupe/Branco.
-  - *Estado Scrolled (> 80px):* Background `#53565A` com sombra sutil `0 4px 20px rgba(0,0,0,0.15)`.
+### 3.1 Navbar (Navegação Superior Sticky)
+- **Logo:** `SALES COSTA` (Wordmark horizontal claro)
+- **Links:** `Comunicado` | `Sobre` | `Áreas` | `Diferenciais` | `Equipe` | `Fale conosco`
 
-### 4.2 Hero Banner
-- **Estrutura:** Fundo com textura/imagem institucional em tom dark, máscara overlay `#53565A` (80%), container centralizado de até 860px.
-- **Elementos:** Eyebrow tag `"SALES COSTA ADVOGADOS"` em caixa alta com `letter-spacing: 4px`, H1 editorial de alto impacto, subtítulo explicativo e dupla de botões CTA.
+### 3.2 Hero Banner
+- **Eyebrow:** `SALES COSTA ADVOGADOS`
+- **H1:** `Junto nas decisões que constroem o futuro.`
+- **Subtítulo:** `Advocacia estratégica e personalizada, com foco em excelência técnica e resultados corporativos de alto impacto.`
+- **CTAs:** `Conheça o escritório →` &nbsp;&nbsp;&nbsp;&nbsp; `Fale conosco →`
+- **Scroll Indicator:** Círculo animado com ponto indicador.
 
-### 4.3 Sobre o Escritório
-- **Grid:** 2 colunas assimétricas (40% / 60%).
-- **Coluna Esquerda:** Título institucional + Monograma "S" em marca d'água decorativa.
-- **Coluna Direita:** 3 parágrafos de apresentação da história e visão do escritório, divididos por linha de acento `#AA9B8F`, finalizando com os pilares: *Comprometimento*, *Confidencialidade* e *Excelência*.
+### 3.3 Comunicado ao Mercado (Nova Seção Dark)
+- **Fundo:** Dark `#404347` com marca d'água "S" decorativa.
+- **Eyebrow:** `COMUNICADO AO MERCADO`
+- **H2:** `Dilson Higasi Sales e Rodrigo Moreira da Costa se unem e dão origem ao Sales Costa Advogados`
+- **Conteúdo Integrado:**
+  - *Parágrafo 1:* O mercado jurídico ganha uma nova banca desenvolvida para atuar nas áreas mais críticas das decisões empresariais e familiares. A Higasi Sales Advogados e Rodrigo Moreira da Costa unem suas trajetórias e expertises para celebrar o início do Sales Costa Advogados.
+  - *Parágrafo 2:* A nova banca consolida mais de uma década de atuação estratégica dos fundadores...
+  - *Parágrafo 3 (Citação):* "A ideia surgiu de uma constatação simples...", afirma Dilson Higasi Sales.
+  - *Parágrafo 4 (Citação):* Para Rodrigo Moreira da Costa, a união reflete uma evolução necessária...
+  - *Parágrafo 5:* O Sales Costa Advogados inicia suas atividades de forma integrada entre as sedes de São Paulo e Florianópolis...
 
-### 4.4 Áreas de Atuação (Cards Grid)
-- **Grid:** 3 colunas (desktop), 2 colunas (tablet), 1 coluna (mobile).
-- **Anatomy do Card:** Ícone SVG linear em tom Taupe, título da especialidade em DM Sans 500, breve descrição funcional e link interativo "Saiba mais →".
+### 3.4 Sobre o Escritório
+- **Fundo:** Off-white `#F8F6F4` / `#FFFFFF`.
+- **H2:** `Uma trajetória construída sobre confiança e critério técnico.`
+- **Pilares:**
+  - *Comprometimento:* Disponibilidade real com cada cliente e cada causa.
+  - *Confidencialidade:* Sigilo absoluto sobre informações estratégicas.
+  - *Excelência:* Rigor técnico em cada peça, parecer e negociação.
 
-### 4.5 Por Que Sales Costa (Diferenciais)
-- **Ambiente:** Fundo totalmente Dark (`#53565A`) para quebrar o ritmo da página.
-- **Diferenciais Mapeados:** Atendimento Personalizado, Equipe Especializada, Resultados Comprovados e Ética & Transparência.
-- **Destaque:** Eyebrow em cor Lima (`#E4FF8F`) ressaltando inovação.
+### 3.5 Áreas de Atuação (Grid 2x3)
+- **Fundo:** Branco `#FFFFFF`.
+- **Eyebrow:** `ÁREAS DE ATUAÇÃO`
+- **H2:** `Especialização que cobre cada frente do seu negócio.`
+- **Especialidades Mapeadas:**
+  1. **Direito Empresarial:** Estruturação societária, contratos comerciais e assessoria contínua para negócios em crescimento.
+  2. **Direito Tributário:** Planejamento fiscal, consultoria preventiva e defesa em processos administrativos e judiciais.
+  3. **Direito Trabalhista:** Gestão de risco trabalhista, compliance de RH e representação em ações individuais e coletivas.
+  4. **Direito Civil:** Contratos, responsabilidade civil e patrimônio, com foco em prevenção e solução célere de conflitos.
+  5. **Direito Societário:** Fusões, aquisições, governança e reestruturação de grupos empresariais e familiares.
+  6. **Compliance & Governança:** Programas de integridade, auditoria de conformidade e assessoria em governança corporativa.
 
-### 4.6 Em Números (Métricas)
-- **Ambiente:** Fundo totalmente Taupe (`#AA9B8F`) com texto em branco.
-- **Mapeamento de Indicadores:**
-  - `+15` Anos de Experiência
-  - `+500` Clientes Atendidos
-  - `+300` Casos Concluídos
-  - `5` Áreas de Especialização
+### 3.6 Por Que Sales Costa (Diferenciais)
+- **Fundo:** Dark `#404347`.
+- **Eyebrow:** `POR QUE SALES COSTA`
+- **H2:** `O diferencial está em como acompanhamos cada caso.`
+- **4 Diferenciais:**
+  1. *Atendimento personalizado:* Acompanhamento direto pelos sócios.
+  2. *Equipe especializada:* Atuação dedicada por área.
+  3. *Resultados comprovados:* Histórico consistente de êxito.
+  4. *Ética & transparência:* Comunicação clara sobre riscos, prazos e honorários.
 
-### 4.7 Depoimentos (Carousel)
-- **Layout:** Fundo Off-White (`#F8F6F4`).
-- **Anatomy do Item:** Aspas gigantes em Cormorant Garamond, citação em itálico, identificação do cliente e setor corporativo. Controle por setas laterais e pontos de navegação.
+### 3.7 Em Números
+- **Fundo:** Off-white `#F8F6F4`.
+- **Métricas:** `15+` Anos de Experiência | `500+` Clientes Atendidos | `300+` Casos Concluídos | `5` Áreas de Especialização.
 
-### 4.8 Nossa Equipe (Cards de Advogados)
-- **Grid:** 4 colunas desktop.
-- **Card:** Aspect-ratio 1:1 para foto, overlay sutil em Taupe no hover, nome, registro OAB, especialidade e link direto para perfil do LinkedIn.
+### 3.8 Depoimentos
+- **Citação:** *"A equipe conduziu uma reestruturação societária complexa com clareza e agilidade que não encontrávamos em outros escritórios."*
+- **Autor:** Marina Albuquerque — Diretora Financeira, Grupo Vantis.
 
-### 4.9 Fale Conosco (Formulário & Contato)
-- **Grid:** 2 Colunas.
-  - *Coluna Esquerda:* Endereço físico, e-mail institucional, telefones e links de redes sociais.
-  - *Coluna Direita:* Formulário com inputs de linha fina (*minimalist border-bottom*), seletores de área e botão de envio.
+### 3.9 Nossa Equipe (Cards dos Sócios)
+- **Eyebrow:** `NOSSA EQUIPE`
+- **H2:** `Os sócios responsáveis por cada caso.`
+- **Sócios Mapeados:**
+  1. **Antônio Sales** (Sócio-fundador · Direito Empresarial | OAB/SP 000.000)
+  2. **Camila Costa** (Sócia-fundadora · Direito Tributário | OAB/SP 000.000)
+  3. **Felipe Ramos** (Sócio · Direito Trabalhista | OAB/SP 000.000)
+  4. **Luisa Martins** (Sócia · Societário & Compliance | OAB/SP 000.000)
 
-### 4.10 Rodapé Institucional
-- **Ambiente:** Dark Charcoal (`#2B2B2B`).
-- **Conteúdo:** Copyright, links para Política de Privacidade, Termos de Uso e dados da OAB.
+### 3.10 Fale Conosco (Formulário & Dados)
+- **Fundo:** Dark `#404347`.
+- **Dados:** Av. Paulista, 1000 — 12º andar, São Paulo/SP | `contato@salescosta.com.br` | `+55 (11) 3000-0000`.
+- **Campos:** Nome Completo, E-mail Corporativo, Telefone, Área de Interesse, Mensagem e Botão *"Enviar mensagem →"*.
+
+### 3.11 Rodapé Institucional
+- **Logo:** `SALES COSTA`
+- **Links:** `Sobre` | `Áreas de atuação` | `Equipe` | `Contato`
 
 </script>
 
 <script type="text/plain" id="spike-salescosta-03-flows">
-# 03. Flows · Fluxos de Navegação, Animações & Interações
+# 03. Flows · Fluxos de Navegação, Animações & Responsividade
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
-> **Data:** 2026-08-31  
-> **Status:** Concluído / Pronto para Implementação
+> **Data:** 2026-09-01  
+> **Status:** Atualizado conforme Layout Oficial ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png)) com Matriz Multi-Dispositivo
 
 ---
 
-## 1. Diagrama Geral de Fluxo do Usuário
-
-O diagrama abaixo ilustra o fluxo completo de interação do usuário ao navegar pela landing page one-page:
+## 1. Diagrama Geral de Fluxo da Landing Page
 
 ```mermaid
 graph TD
-    A[Usuário Acessa a Landing Page] --> B{Scroll > 80px?}
-    B -- Não --> C[Navbar Transparente / Logo Taupe]
-    B -- Sim --> D[Navbar Sticky Dark #53565A / Logo Branco]
+    A[Acesso à Landing Page] --> B{Scroll > 80px?}
+    B -- Não --> C[Navbar Transparente Dark]
+    B -- Sim --> D[Navbar Sticky Solida #404347]
     
-    A --> E[Visualização do Hero Banner]
-    E --> F{Ação do Usuário}
+    A --> E[Hero Banner] --> F{Navegação do Usuário}
     
-    F -- Clique em Link da Nav --> G[Smooth Scroll até a Seção Alvo]
-    F -- Scroll Livre --> H[Intersection Observer Dispara Animações]
-    F -- Clique CTA 'Fale Conosco' --> I[Scroll Suave até Seção Contato]
+    F -- Link 'Comunicado' --> G[Scroll até Comunicado ao Mercado]
+    F -- Link 'Sobre' --> H[Scroll até Sobre o Escritório]
+    F -- Link 'Áreas' --> I[Scroll até Grid de Especialidades]
+    F -- Link 'Diferenciais' --> J[Scroll até Por que Sales Costa]
+    F -- Link 'Equipe' --> K[Scroll até Cards dos Sócios]
+    F -- Link 'Fale conosco' --> L[Scroll até Formulário de Contato]
     
-    H --> J[Cards de Áreas Ganham Hover State]
-    H --> K[Contadores da Seção Números Animam 0 a Target]
-    H --> L[Carousel de Depoimentos Transiciona Autoplay 5s]
-    
-    I --> M[Preenchimento do Formulário]
-    M --> N{Validação HTML5 OK?}
-    N -- Não --> O[Exibe Mensagem de Erro Inline no Campo]
-    N -- Sim --> P[Submissão do Form e Exibição de Feedback de Sucesso]
+    G --> M[Intersection Observer Anima Entrada de Texto/Imagens]
+    I --> N[Hover State ativa borda Taupe e seta Saiba Mais]
+    L --> O[Validação dos Inputs do Formulário] --> P[Envio e Alerta de Sucesso]
 ```
 
 ---
 
-## 2. Fluxos Interativos de Javascript
+## 2. Matriz Estrita de Responsividade por Dispositivo
 
-### 2.1 Fluxo da Sticky Navbar
+A tabela abaixo especifica o comportamento exato de cada um dos 10 componentes em diferentes larguras de tela, **garantindo a ausência de quebras ou rolagem horizontal**:
 
+| Componente | Smartphone (320px – 479px) | Tablet / Phablet (480px – 1023px) | Desktop / Ultra-wide (>= 1024px) |
+|---|---|---|---|
+| **Componente 1 (Navbar & Hero)** | Logo + Hambúrguer; H1 32px; CTAs empilhados | Logo + Hambúrguer; H1 44px; CTAs em linha | Logo + 6 Links Horizontais; H1 64px |
+| **Componente 2 (Comunicado)** | 1 Coluna; Texto 15px; Marca d'água sutil | 1 Coluna; Citações destacadas | 1 Coluna ampla com marca d'água "S" à direita |
+| **Componente 3 (Sobre)** | 1 Coluna empilhada; Pilares em cartões | 2 Colunas (40/60); Pilares lado a lado | 2 Colunas (40/60); Pilares com divisores |
+| **Componente 4 (Áreas Grid)** | Grid 1 Coluna (1x6 cards) | Grid 2 Colunas (2x3 cards) | Grid 3 Colunas (3x2 cards) |
+| **Componente 5 (Diferenciais)** | 1 Coluna por diferencial | Grid 2x2 | 4 Colunas horizontais |
+| **Componente 6 (Números)** | Grid 2x2 sem divisores verticais | Grid 2x2 com divisores | 4 Colunas em linha com divisores |
+| **Componente 7 (Depoimentos)** | 1 Card com toque tátil (swipe) | 1 Card com dots ampliados | 1 Card centralizado com aspas e dots |
+| **Componente 8 (Nossa Equipe)** | 1 Card por linha (Sócios *AS*, *CC*, *FR*, *LM*) | Grid 2x2 | 4 Cards em linha horizontal |
+| **Componente 9 (Fale Conosco)** | 1 Coluna (Dados no topo, Form abaixo) | 1 Coluna empilhada | 2 Colunas lado a lado |
+| **Componente 10 (Rodapé)** | Logo no topo, links empilhados abaixo | Logo à esquerda, links à direita | Logo à esquerda, links à direita em linha |
+
+---
+
+## 3. Fluxos Interativos de JavaScript
+
+### 3.1 Prevenção de Zoom em Navegadores Mobile (iOS Safari)
 ```javascript
-// main.js - Gerenciamento de estado da Navbar ao rolar a página
-const navbar = document.querySelector('.navbar');
-const SCROLL_THRESHOLD = 80;
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > SCROLL_THRESHOLD) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-}, { passive: true });
-```
-
-### 2.2 Fluxo de Smooth Scroll por Âncoras
-
-```javascript
-// Navegação suave com offset para compensar a altura da navbar fixa (80px)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const targetId = this.getAttribute('href');
-    if (targetId === '#') return;
-    
-    const targetElement = document.querySelector(targetId);
-    if (targetElement) {
-      const headerOffset = 80;
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  });
+// main.js - Garantia de tamanho mínimo de fonte para inputs móveis
+document.querySelectorAll('input, select, textarea').forEach(input => {
+  input.style.fontSize = '16px'; // Impede o zoom automático de tela no iOS
 });
 ```
 
-### 2.3 Fluxo do Intersection Observer (Animação ao Scroll)
-
+### 3.2 Suporte a Gestos Táteis no Carousel de Depoimentos (Touch Swipe)
 ```javascript
-// animations.js - Revelação progressiva dos elementos
-const observerOptions = {
-  root: null,
-  rootMargin: '0px 0px -60px 0px',
-  threshold: 0.15
-};
+// Suporte a swipe em dispositivos móveis
+let touchstartX = 0;
+let touchendX = 0;
 
-const revealObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target); // Anima apenas na primeira entrada
-    }
-  });
-}, observerOptions);
+const carousel = document.querySelector('.testimonials-carousel');
+if (carousel) {
+  carousel.addEventListener('touchstart', e => {
+    touchstartX = e.changedTouches[0].screenX;
+  }, { passive: true });
 
-document.querySelectorAll('[data-animate]').forEach(el => revealObserver.observe(el));
-```
+  carousel.addEventListener('touchend', e => {
+    touchendX = e.changedTouches[0].screenX;
+    handleGesture();
+  }, { passive: true });
+}
 
-```css
-/* Respeito à preferência de redução de movimento do sistema operacional */
-@media (prefers-reduced-motion: reduce) {
-  [data-animate] {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
+function handleGesture() {
+  if (touchendX < touchstartX - 50) nextSlide();
+  if (touchendX > touchstartX + 50) prevSlide();
 }
 ```
-
-### 2.4 Fluxo do Contador Animado ("Em Números")
-
-```javascript
-function animateCounters() {
-  const counters = document.querySelectorAll('.counter-number');
-  const speed = 200; // Duração total aproximada em ms
-
-  counters.forEach(counter => {
-    const updateCount = () => {
-      const target = +counter.getAttribute('data-target');
-      const count = +counter.innerText;
-      const inc = target / speed;
-
-      if (count < target) {
-        counter.innerText = Math.ceil(count + inc);
-        setTimeout(updateCount, 15);
-      } else {
-        counter.innerText = target;
-      }
-    };
-    updateCount();
-  });
-}
-```
-
----
-
-## 3. Matriz de Responsividade e Layout Breakpoints
-
-```css
-/* Breakpoints Padrão Mobile-First */
-/* Smartphone portrait: < 480px */
-/* Smartphone landscape / Phablet: 480px - 767px */
-/* Tablet portrait: 768px - 1023px */
-/* Desktop / Laptop: 1024px - 1279px */
-/* Wide Desktop: >= 1280px */
-```
-
-| Seção | Mobile (< 768px) | Tablet (768px - 1023px) | Desktop (>= 1024px) |
-|---|---|---|---|
-| **Navbar** | Hambúrguer + Drawer Lateral | Hambúrguer + Drawer Lateral | Links Horizontais + Botão CTA |
-| **Hero** | 1 Coluna, texto 32px | 1 Coluna, texto 48px | 1 Coluna Centralizada, texto 64px |
-| **Sobre** | 1 Coluna empilhada | 2 Colunas (40/60) | 2 Colunas (40/60) |
-| **Áreas** | 1 Card por linha | 2 Cards por linha | 3 Cards por linha |
-| **Diferenciais**| 1 Coluna por diferencial | 2 Colunas x 2 Linhas | 4 Colunas em linha |
-| **Números** | Grid 2 x 2 | Grid 2 x 2 | 4 Colunas em linha com divisores |
-| **Equipe** | 1 Card por linha | 2 Cards por linha | 4 Cards por linha |
-| **Contato** | 1 Coluna empilhada | 1 Coluna empilhada | 2 Colunas lado a lado |
 
 </script>
 
@@ -460,8 +360,8 @@ function animateCounters() {
 # 04. Risks · Riscos, Dependências & Perguntas em Aberto
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
-> **Data:** 2026-08-31  
-> **Status:** Concluído / Pronto para Implementação
+> **Data:** 2026-09-01  
+> **Status:** Atualizado conforme Layout Oficial ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png))
 
 ---
 
@@ -469,39 +369,18 @@ function animateCounters() {
 
 | ID | Risco Identificado | Categoria | Probabilidade | Impacto | Estratégia de Mitigação |
 |---|---|---|---|---|---|
-| **R01** | Ausência de definição do serviço de backend para envio de e-mails do formulário de contato | Técnico / Integração | Alta | Alto | Utilizar serviço *serverless* terceirizado sem backend próprio (ex: Formspree, EmailJS ou Resend) ou integrar via API WhatsApp Web como fallback temporário. |
-| **R02** | Imagens e marcas atuais possuem sufixo `_temp` e podem sofrer alteração de proporção | Design / Marca | Média | Médio | Manter os caminhos de imagens em variáveis/CSS e usar containers com `object-fit: contain` e dimensões relativas. |
-| **R03** | Latência no carregamento de fontes externas (Google Fonts) em conexões lentas | Performance | Baixa | Médio | Implementar `<link rel="preconnect">`, utilizar `font-display: swap` e prever fallbacks de fontes do sistema (`Georgia`, `serif`, `Arial`). |
-| **R04** | Ausência de fotos profissionais em alta resolução da equipe de advogados | Conteúdo | Alta | Médio | Desenvolver os cards de equipe com suporte a avatares/silhuetas estilizadas com as cores da marca enquanto o ensaio fotográfico não é concluído. |
-| **R05** | Incompatibilidade com navegadores legados (ex: Internet Explorer) | Compatibilidade | Baixa | Baixo | Utilizar propriedades CSS3 modernas com fallbacks padrão e JavaScript ES6 compilado ou compatível com navegadores evergreen. |
+| **R01** | Ausência de definição do serviço de backend para envio do formulário de contato | Técnico | Alta | Alto | Utilizar serviço *serverless* terceirizado (Formspree/EmailJS) enviando para `contato@salescosta.com.br` ou fallback via WhatsApp API. |
+| **R02** | Fotografias reais dos sócios (AS, CC, FR, LM) ainda não foram tiradas | Conteúdo | Média | Médio | Manter a solução inteligente prevista no layout oficial: placeholders elegantes com iniciais (*AS*, *CC*, *FR*, *LM*) sobre fundo bege `#F8F6F4`. |
+| **R03** | Números da OAB nos cards da equipe constam como `OAB/SP 000.000` | Conteúdo | Baixa | Baixo | Substituir pelas inscrições OAB oficiais dos sócios antes da publicação final. |
+| **R04** | Formatos de imagem PNG `_temp` para logos | Marca | Baixa | Baixo | Ativos parametrizados via CSS/HTML permitindo substituição transparente por vetores SVG. |
 
 ---
 
 ## 2. Perguntas em Aberto (Fila de Decisões)
 
-> [!WARNING]
-> Os pontos abaixo precisam de definição antes ou durante as fases iniciais de desenvolvimento.
-
-### 2.1 Backend e Envio de E-mails
-1. Qual será a ferramenta de recebimento das mensagens do formulário? (Formspree, EmailJS, Webhook N8N/Make, ou e-mail corporativo via SMTP?)
-2. Haverá redirecionamento automático para o WhatsApp Business do escritório ao enviar a mensagem?
-
-### 2.2 Conteúdo e Mídia
-1. Quais são as 6 áreas de atuação prioritárias a serem exibidas na versão inicial da landing page?
-2. Quantos sócios/advogados integrarão a seção "Nossa Equipe" e quais suas descrições e números OAB?
-3. Os números apresentados na seção "Em Números" (anos de experiência, clientes, casos) já foram validados pela diretoria do escritório?
-
-### 2.3 Hospedagem e Infraestrutura
-1. Qual será a plataforma de hospedagem de destino? (Vercel, Netlify, GitHub Pages, cPanel/Hostgator do cliente?)
-2. O domínio `salescosta.com.br` já está registrado e configurado com suporte a HTTPS/SSL?
-
----
-
-## 3. Mapeamento de Dependências Externas
-
-1. **Google Fonts CDN:** Carregamento das famílias `Cormorant Garamond` e `DM Sans`.
-2. **Serviço de Formulário:** Dependência de endpoint HTTPS para recebimento dos dados do formulário sem exposição de credenciais de e-mail.
-3. **Ativos de Marca:** Troca dos arquivos PNG `_temp` pelos vetores finais em SVG assim que fornecidos pelo time de branding.
+1. **Backend do Formulário:** Qual plataforma processará as mensagens enviadas por `contato@salescosta.com.br`?
+2. **Inscrições OAB:** Quais os números de inscrição OAB reais de Antônio Sales, Camila Costa, Felipe Ramos e Luisa Martins?
+3. **Endereço e Telefone:** Confirmar se o endereço `Av. Paulista, 1000 — 12º andar` e telefone `+55 (11) 3000-0000` são definitivos.
 
 </script>
 
@@ -509,193 +388,405 @@ function animateCounters() {
 # 05. Goals & Not Goals · Objetivos, Não-Objetivos e Critérios
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
-> **Data:** 2026-08-31  
-> **Status:** Concluído / Pronto para Implementação
+> **Data:** 2026-09-01  
+> **Status:** Atualizado com Diretriz Estrita de Responsividade Universal sem Quebra de Layout
 
 ---
 
 ## 1. Objetivos do Projeto (Goals)
 
-O escopo principal contemplado nesta solução inclui:
+O escopo contemplado nesta solução visa à implementação fiel do layout oficial ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png)), com a seguinte prioridade estrutural:
 
-- [x] **Identidade Visual Fiel e Elegante:** Implementar uma landing page que traduza a identidade corporativa do escritório Sales Costa Advogados utilizando as cores oficiais (Taupe `#AA9B8F`, Cinza Chumbo `#53565A`, Lima `#E4FF8F`) e tipografia refinada (`Cormorant Garamond` e `DM Sans`).
-- [x] **Arquitetura One-Page Fluida:** Estruturar uma única página com 10 seções altamente coesas e navegação por ancoragem sem recarregamento da página.
-- [x] **Sticky Navbar Inteligente:** Desenvolver barra de navegação responsiva com alteração de background ao scroll (transparente para dark).
-- [x] **Interações e Micro-Animações:** Incorporar animações de entrada ao scroll (*reveal on scroll* via Intersection Observer), contadores numéricos animados e carousel de depoimentos.
-- [x] **Design Totalmente Responsivo:** Garantir adaptação perfeita em dispositivos móveis (320px), tablets (768px) e monitores wide (1280px+).
-- [x] **Alta Performance e SEO Nativo:** Construir uma solução leve (HTML/CSS/JS Vanilla) que alcance nota máxima nos testes de performance do Google Lighthouse e suporte tags Open Graph/meta SEO.
-
----
-
-## 2. Não-Objetivos (Not Goals / Fora de Escopo da V1)
-
-Para evitar desvio de escopo (*scope creep*), os seguintes itens estão **explicitamente fora do escopo desta versão**:
-
-- [ ] **Desenvolvimento de Painel CMS / Gestor de Conteúdo:** Não haverá painel administrativo nesta fase (conteúdo é estático e gerenciado via código).
-- [ ] **Blog Corporativo ou Área de Artigos:** Módulos de notícias ou artigos jurídicos não fazem parte do MVP.
-- [ ] **Suporte Multi-Idioma (i18n):** A versão inicial será entregue exclusivamente em Língua Portuguesa (PT-BR).
-- [ ] **Área de Cliente / Portal Restrito:** Não haverá sistema de autenticação, login de clientes ou consulta de processos.
-- [ ] **Redesenho de Marcas ou Logos:** A spike utiliza as imagens provisórias existentes e não prevê alteração na identidade gráfica oficial da marca.
+- [x] **Responsividade Universal e Adaptabilidade sem Quebra:** A landing page DEVE ser totalmente responsiva e utilizável em TODOS os tipos de dispositivos (smartphones de 320px, phablets, tablets, laptops, monitores 4K e dobráveis) sem nenhum tipo de quebra de layout, sobreposição de texto ou rolagem horizontal indesejada (`overflow-x: hidden`).
+- [x] **Fidelidade Visual 1:1 aos 10 Componentes:** Aplicação estrita do esquema cromático oficial (`#404347` Dark, `#AA9B8F` Taupe, `#E4FF8F` Lima, `#F8F6F4` Off-White e `#FFFFFF` Branco).
+- [x] **Construção dos 10 Componentes Visuais Mapeados:**
+  - **Componente 1 (Navbar & Hero Banner):** Header fixo responsivo com drawer mobile e H1 *"Junto nas decisões que constroem o futuro."*.
+  - **Componente 2 (Comunicado ao Mercado):** Seção dark `#404347` com a notícia da união entre Dilson Higasi Sales e Rodrigo Moreira da Costa, 5 parágrafos e marca d'água "S".
+  - **Componente 3 (Sobre o Escritório):** *"Uma trajetória construída sobre confiança e critério técnico."* + 3 pilares (*Comprometimento*, *Confidencialidade*, *Excelência*).
+  - **Componente 4 (Áreas de Atuação):** Grid 2x3 de especialidades colapsável (3 colunas no desktop, 2 no tablet, 1 no mobile).
+  - **Componente 5 (Por Que Sales Costa):** 4 diferenciais adaptáveis para visualização empilhada em telas pequenas.
+  - **Componente 6 (Em Números):** Banner com 4 métricas (grid 2x2 no mobile, 4 colunas no desktop).
+  - **Componente 7 (Depoimentos):** Citação de cliente com suporte a gestos de toque (swipe) em dispositivos móveis.
+  - **Componente 8 (Nossa Equipe):** Cards dos sócios (*AS*, *CC*, *FR*, *LM*) com redimensionamento fluido de imagem e texto.
+  - **Componente 9 (Fale Conosco):** Formulário de linha fina com inputs confortáveis para toque ($\ge 44\text{px}$) e teclado virtual.
+  - **Componente 10 (Rodapé Institucional):** Fundo dark `#2B2D30` com alinhamento vertical automático em smartphones.
+- [x] **Performance e Acessibilidade:** Solução nativa leve (HTML/CSS/JS Vanilla) atingindo nota $\ge 90$ em auditoria Lighthouse em dispositivos móveis e desktop.
 
 ---
 
-## 3. Mapeamento de User Stories
+## 2. Não-Objetivos (Not Goals V1)
 
-| Código | História de Usuário (User Story) | Seção Relacionada |
+- [ ] **Sem Painel CMS / Gestor de Conteúdo:** Conteúdo estático de alta performance.
+- [ ] **Sem Blog Corporativo Externo:** Notícias e comunicados diretamente na página.
+- [ ] **Sem Suporte Multi-Idioma (i18n):** Entrega inicial exclusivamente em Português (PT-BR).
+
+---
+
+## 3. Mapeamento Completo de User Stories (US-01 a US-10)
+
+| Código | História de Usuário (User Story) | Garantia de Responsividade |
 |---|---|---|
-| **US-01** | Como potencial cliente, quero visualizar imediatamente o posicionamento do escritório no Hero Banner para entender a proposta de valor. | Hero Banner |
-| **US-02** | Como visitante, quero navegar pelas seções da página através de links de ancoragem na navbar para acessar dados específicos rapidamente. | Navbar Sticky |
-| **US-03** | Como cliente corporativo, quero conhecer a história e os valores do escritório para avaliar sua reputação e autoridade. | Sobre o Escritório |
-| **US-04** | Como visitante, quero visualizar a lista de áreas de atuação com descrições objetivas para saber se o escritório atende à minha necessidade. | Áreas de Atuação |
-| **US-05** | Como visitante, quero observar os números e depoimentos de outros clientes para obter prova social antes de entrar em contato. | Em Números / Depoimentos |
-| **US-06** | Como potencial cliente, quero consultar o perfil dos advogados e sócios para identificar a equipe responsável. | Nossa Equipe |
-| **US-07** | Como usuário em dispositivo móvel, quero enviar uma mensagem pelo formulário de contato simplificado sem sair da página. | Fale Conosco |
-| **US-08** | Como visitante, quero acessar os canais oficiais de comunicação e redes sociais no rodapé da página. | Rodapé |
+| **US-01** | Como visitante em qualquer tela, quero ver o Hero Banner sem cortes de imagem ou texto. | Adaptabilidade fluida de tipografia (`clamp()`) |
+| **US-02** | Como cliente em smartphone, quero ler o Comunicado ao Mercado com tamanho de fonte confortável. | Parágrafos com espaçamento tátil |
+| **US-03** | Como usuário em tablet, quero visualizar a seção Sobre em 2 colunas proporcionais. | Grid flexível com media queries |
+| **US-04** | Como visitante mobile, quero navegar pelas 6 áreas de atuação em cards empilhados. | Grid 1 coluna em telas pequenas |
+| **US-05** | Como visitante, quero ver os diferenciais organizados sem quebra de caixa. | Flexbox wrappable |
+| **US-06** | Como usuário mobile, quero visualizar as métricas organizadas em grid 2x2. | Disposição 2x2 no mobile |
+| **US-07** | Como visitante em smartphone, quero navegar pelo depoimento com botões táteis. | Alvo de clique $\ge 44\text{px}$ |
+| **US-08** | Como usuário em qualquer dispositivo, quero ver a equipe de sócios sem overflow. | Image aspect-ratio mantido |
+| **US-09** | Como cliente mobile, quero preencher o formulário facilmente pelo teclado virtual. | Touch target amplo nos inputs |
+| **US-10** | Como visitante, quero acessar o rodapé perfeitamente alinhado em dispositivos móveis. | Reorganização vertical automática |
 
 ---
 
-## 4. Critérios de Aceitação e Metas de Qualidade
+## 4. Critérios de Aceitação e Testes de Responsividade
 
 | Métrica / Critério | Meta Alvo | Método de Verificação |
 |---|---|---|
-| **Lighthouse Performance** | $\ge 90$ | Audit Chrome DevTools em ambiente de produção |
-| **Lighthouse Acessibilidade** | $\ge 90$ | Audit Chrome DevTools (contraste, aria-labels, alt em imagens) |
-| **Lighthouse SEO** | $\ge 90$ | Audit Chrome DevTools (meta tags, títulos H1-H3 semânticos) |
-| **First Contentful Paint (FCP)** | $< 1.5\text{s}$ | Chrome Performance Profiler |
-| **Layout Responsivo** | $100\%$ sem overflow horizontal | Testes em 320px, 480px, 768px, 1024px e 1440px |
-| **Validação de Formulário** | Impede envio de campos obrigatórios vazios ou e-mails inválidos | Validação nativa HTML5 + JS |
+| **Zero Rolagem Horizontal** | $0\text{px}$ de estravazamento horizontal | Chrome DevTools responsive view em 320px–2560px |
+| **Integridade de Layout** | $100\%$ de adaptação sem quebra | Testes em iPhone SE (375px), iPad (768px), Full HD (1920px) |
+| **Tamanho de Alvo Tátil** | $\ge 44\times 44\text{px}$ nos botões e links | Teste de acessibilidade Lighthouse Touch Targets |
+| **Lighthouse Performance Mobile** | $\ge 90$ | Audit Lighthouse com throttling 4G e CPU 4x |
 
 </script>
 
 <script type="text/plain" id="spike-salescosta-06-visual-layout">
-# 06. Visual Layout · Wireframes, Ativos & Previews da Interface
+# 06. Visual Layout · Decomposição de Componentes, Design Oficial & Diretrizes de Responsividade
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
-> **Data:** 2026-08-31  
-> **Status:** Concluído / Visualização Disponível
+> **Data:** 2026-09-01  
+> **Fonte das Imagens:** Extraído diretamente de [images/sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png)  
+> **Garantia Estrutural:** Matriz de Adaptabilidade para SmartPhones (320px–479px), Tablets (480px–1023px) e Desktops (>= 1024px) sem Quebra de Layout
 
 ---
 
-## 1. Ativos de Marca Mapeados e Aplicação
+## 1. Visão Geral do Layout Oficial Completo
 
-Abaixo estão dispostos os ativos visuais oficiais da marca Sales Costa Advogados mapeados no repositório, acompanhados de suas diretrizes de aplicação na interface:
+Abaixo apresenta-se o layout contínuo projetado para a landing page do Sales Costa Advogados:
 
-### 1.1 Assinaturas e Wordmarks Principais
-
-| Ativo da Marca | Arquivo Fonte | Aplicação Recomendada na UI |
-|---|---|---|
-| **Wordmark Horizontal** | `images/260701_sales_costa_marca_PREFERENCIAL_temp.png` | Utilizado na Navbar (fundo claro) e no Rodapé |
-| **Assinatura Completa** | `images/260701_sales_costa_marca_ASSINATURA_temp.png` | Banner Hero e documentos de apresentação |
-| **Brasão Colorido** | `images/260701_sales_costa_marca_BRASAO_COR_temp.png` | Favicon do site, Navbar Dark e marcas d'água |
-| **Brasão Monocromático**| `images/260701_sales_costa_marca_BRASAO_temp.png` | Elemento gráfico decorativo em background |
-
-#### Visualização dos Ativos da Marca:
-
-![Wordmark Preferencial Sales Costa](../images/260701_sales_costa_marca_PREFERENCIAL_temp.png)  
-*Figura 1.1 — Wordmark Preferencial Taupe (Utilizado na Navbar e Rodapé)*
-
-![Brasão Colorido Sales Costa](../images/260701_sales_costa_marca_BRASAO_COR_temp.png)  
-*Figura 1.2 — Brasão Monograma "S" com Acento Lima (Utilizado como Favicon e Ícone Dark)*
+![Layout Completo da Landing Page](../images/sales-costa-layout-previa.png)
 
 ---
 
-## 2. Paleta Cromática Oficial
+## 2. Decomposição dos 10 Componentes e Ajustes de Responsividade
 
-![Paleta Cromática Oficial Sales Costa](../images/paleta_cores.png)  
-*Figura 2.1 — Padrão Cromático Oficial Sales Costa Advogados*
-
-### Resumo dos Tokens Cromáticos:
-- **Taupe (#AA9B8F):** Cor primária de personalização e sofisticação.
-- **Cinza Chumbo (#53565A):** Cor secundária para fundos dark e solidez institucional.
-- **Lima (#E4FF8F):** Cor de acento para inovação, destaques e badges ativadas.
-- **Off-White (#F8F6F4):** Fundo secundário claro e quente para seções de leitura.
+Abaixo estão detalhados cada um dos **10 componentes visuais** extraídos do layout oficial, acompanhados de suas **regras estritas de responsividade por tipo de tela**:
 
 ---
 
-## 3. Mockups e Previews da Interface
+### Componente 1: Navbar & Hero Banner
 
-### 3.1 Hero Banner & Navbar (Desktop View)
+![Componente 1 - Navbar & Hero Banner](../images/components/01_navbar_hero.png)
 
-![Preview Hero Banner Sales Costa](../images/salescosta_hero_preview.jpg)  
-*Figura 3.1 — Renderização conceitual da Navbar Sticky e Hero Banner do escritório Sales Costa Advogados.*
+#### Especificações Visuais & Layout Desktop (>= 1024px):
+- **Background:** Dark Charcoal (`#484B4F` / `#404347`).
+- **Navbar Layout:** Logo `SALES COSTA` à esquerda e 6 links de ancoragem horizontais à direita (`Comunicado`, `Sobre`, `Áreas`, `Diferenciais`, `Equipe`, `Fale conosco`).
+- **Hero Typography:** Eyebrow `SALES COSTA ADVOGADOS` (Taupe `#AA9B8F`, 12px, `letter-spacing: 4px`), H1 *"Junto nas decisões que constroem o futuro."* (64px branca) e Subtítulo (18px). CTAs alinhados em linha.
 
-#### Detalhes do Layout da Hero Section:
+#### 📱 Ajustes de Responsividade (Mobile & Tablet < 1024px):
+- **Navbar:** Transforma-se em botão hambúrguer ($\ge 44\times 44\text{px}$) com drawer lateral deslizante (*slide-out*).
+- **Tipografia Fluida:** H1 ajusta-se via `font-size: clamp(2rem, 5vw, 4rem)` (evita estouro de caixa).
+- **CTAs:** Dispostos em 1 coluna empilhada no mobile (`width: 100%`), garantindo facilidade de toque.
+- **Scroll Indicator:** Centralizado na base com espaçamento relativo `margin-top: clamp(2rem, 4vh, 4rem)`.
+
 ```
-+-------------------------------------------------------------------------------+
-| LOGO [SALESCOSTA]    Sobre  Áreas  Diferenciais  Equipe    [ FALE CONOSCO ]   | (Navbar Sticky)
-+-------------------------------------------------------------------------------+
-|                                                                               |
-|                   SALES COSTA ADVOGADOS (Eyebrow Tag)                         |
-|                                                                               |
-|          Junto nas decisões que constroem o futuro.                           | (H1 Serif 64px)
-|                                                                               |
-|     Advocacia estratégica e personalizada com foco em excelência e           | (Subtítulo 18px)
-|     resultados corporativos de alto impacto.                                 |
-|                                                                               |
-|             [ CONHEÇA O ESCRITÓRIO ]     [ FALE CONOSCO ]                     | (CTAs)
-|                                                                               |
-|                                     v (Scroll Indicator)                      |
-+-------------------------------------------------------------------------------+
+[ WIREFRAME MOBILE — COMPONENTE 1 ]
++-----------------------------------+
+| LOGO [SALES COSTA]           [≡]  | (Hambúrguer >= 44px)
++-----------------------------------+
+|                                   |
+|       SALES COSTA ADVOGADOS       |
+|                                   |
+|   Junto nas decisões que          | (H1 fluido clamp)
+|   constroem o futuro.             |
+|                                   |
+|  Advocacia estratégica e...       |
+|                                   |
+|  [ CONHEÇA O ESCRITÓRIO -> ]      | (CTA Full Width)
+|  [ FALE CONOSCO -> ]              | (CTA Full Width)
+|                                   |
+|                (o)                |
++-----------------------------------+
 ```
 
 ---
 
-### 3.2 Seções de Conteúdo, Áreas de Atuação e Números
+### Componente 2: Comunicado ao Mercado
 
-![Preview Seções da Landing Page](../images/salescosta_sections_preview.jpg)  
-*Figura 3.2 — Renderização conceitual do grid de Áreas de Atuação, seção Sobre e banner Em Números.*
+![Componente 2 - Comunicado ao Mercado](../images/components/02_comunicado.png)
 
-#### Wireframe da Seção "Áreas de Atuação" (3 Colunas Grid):
-```
-+-------------------------------------------------------------------------------+
-|                         NOSSAS ESPECIALIDADES                                 |
-|            Atuação estratégica em múltiplas frentes jurídicas                 |
-|                                                                               |
-|  +--------------------+  +--------------------+  +--------------------+       |
-|  | [Ícone Direito Emp]|  | [Ícone Tributário] |  | [Ícone Imobiliário]|       |
-|  | Direito Empresarial|  | Direito Tributário |  | Direito Imobiliário|       |
-|  | Descrição curta    |  | Descrição curta    |  | Descrição curta    |       |
-|  | Saiba mais ->      |  | Saiba mais ->      |  | Saiba mais ->      |       |
-|  +--------------------+  +--------------------+  +--------------------+       |
-|                                                                               |
-|  +--------------------+  +--------------------+  +--------------------+       |
-|  | [Ícone Cível]      |  | [Ícone Contratos]  |  | [Ícone M&A]        |       |
-|  | Direito Cível      |  | Contratos Empres.  |  | Fusões & Aquisições|       |
-|  | Descrição curta    |  | Descrição curta    |  | Descrição curta    |       |
-|  | Saiba mais ->      |  | Saiba mais ->      |  | Saiba mais ->      |       |
-|  +--------------------+  +--------------------+  +--------------------+       |
-+-------------------------------------------------------------------------------+
-```
+#### Especificações Visuais & Layout Desktop (>= 1024px):
+- **Background:** Dark `#404347` com marca d'água "S" à direita (opacidade 5%).
+- **Conteúdo:** Container centralizado de max-width `860px`, Eyebrow em Lima `#E4FF8F` (`COMUNICADO AO MERCADO`), H2 da fusão entre Dilson Higasi Sales e Rodrigo Moreira da Costa e 5 parágrafos explicativos.
 
----
-
-### 3.3 Wireframe da Seção "Em Números" (Fundo Taupe #AA9B8F)
+#### 📱 Ajustes de Responsividade (Mobile & Tablet < 1024px):
+- **Largura do Container:** Ocupa `100%` da largura da tela com padding lateral de `20px`.
+- **Marca d'água:** Posiciona-se como overlay centralizado em background sem sobrepor ou prejudicar o contraste do texto (`z-index: 0`).
+- **Tamanho de Fonte:** Parágrafos ajustados para `15px`/`16px` com `line-height: 1.65` para leitura tátil confortável.
 
 ```
-+-------------------------------------------------------------------------------+
-|     +15              +500             +300              5                     |
-|  Anos de          Clientes         Casos de         Áreas de                  |
-| Experiência       Atendidos        Sucesso       Especialidade                |
-+-------------------------------------------------------------------------------+
+[ WIREFRAME MOBILE — COMPONENTE 2 ]
++-----------------------------------+
+| COMUNICADO AO MERCADO             | (Lima #E4FF8F)
+| Dilson Higasi Sales e Rodrigo     |
+| Moreira da Costa se unem...       | (H2 24px)
+|                                   |
+| O mercado jurídico ganha uma      |
+| nova banca desenvolvida...        | (Parágrafo 15px)
+|                                   |
+| "A ideia surgiu de uma            |
+| constatação simples...", afirma   | (Citação destacada)
+| Dilson Higasi Sales.              |
++-----------------------------------+
 ```
 
 ---
 
-### 3.4 Wireframe da Seção "Fale Conosco" (Fundo Dark #53565A)
+### Componente 3: Sobre o Escritório
+
+![Componente 3 - Sobre o Escritório](../images/components/03_sobre.png)
+
+#### Especificações Visuais & Layout Desktop (>= 1024px):
+- **Background:** Off-White Quente (`#F8F6F4`).
+- **Layout:** Grid de 2 colunas (40% H2 / 60% texto & pilares).
+
+#### 📱 Ajustes de Responsividade (Mobile < 768px):
+- **Migração de Grid:** Converte-se de 2 colunas para **1 coluna vertical empilhada**.
+- **Ordem de Leitura:** H2 no topo, seguido dos 3 parágrafos e dos 3 pilares (*Comprometimento*, *Confidencialidade*, *Excelência*).
+- **Pilares:** Separados por linhas horizontais sutis em Taupe (`1px solid #D9D3CE`).
 
 ```
-+---------------------------------------------------+---------------------------+
-| ENTRE EM CONTATO                                  | FORMULÁRIO DE CONTATO     |
-| Fale diretamente com nossos advogados.            |                           |
-|                                                   | Nome Completo:            |
-| Endereço: Av. Paulista, 1000 - São Paulo/SP       | [_______________________] |
-| E-mail: contato@salescosta.com.br                 | E-mail Corporativo:       |
-| Telefone: +55 (11) 3000-0000                      | [_______________________] |
-| Redes: [LinkedIn] [Instagram]                     | Mensagem:                 |
-|                                                   | [                       ] |
-|                                                   | [ ENVIAR MENSAGEM ]       |
-+---------------------------------------------------+---------------------------+
+[ WIREFRAME MOBILE — COMPONENTE 3 ]
++-----------------------------------+
+| Uma trajetória construída sobre   |
+| confiança e critério técnico.     | (H2 26px)
+|-----------------------------------|
+| Há mais de quinze anos, o Sales   |
+| Costa Advogados acompanha...      |
+|-----------------------------------|
+| Comprometimento                   |
+| Disponibilidade real com cada...  |
+|-----------------------------------|
+| Confidencialidade                 |
+| Sigilo absoluto sobre...          |
+|-----------------------------------|
+| Excelência                        |
+| Rigor técnico em cada peça...     |
++-----------------------------------+
 ```
+
+---
+
+### Componente 4: Áreas de Atuação (Grid de Especialidades)
+
+![Componente 4 - Áreas de Atuação](../images/components/04_areas.png)
+
+#### Especificações Visuais & Layout Desktop (>= 1024px):
+- **Background:** Branco Puro (`#FFFFFF`).
+- **Grid Desktop:** 2 Linhas × 3 Colunas (6 Cards).
+
+#### 📱 Ajustes de Responsividade (Mobile & Tablet < 1024px):
+- **Tablet (768px – 1023px):** Converte-se para **Grid 2 Colunas × 3 Linhas**.
+- **Mobile (< 768px):** Converte-se para **1 Coluna x 6 Cards empilhados** (`grid-template-columns: 1fr`).
+- **Alvos de Clique:** Links *"Saiba mais →"* possuem padding vertical expandido ($\ge 44\text{px}$) para toque seguro.
+- **Card Hover:** Borda Taupe ativa no foco tátil (*touch/active state*).
+
+```
+[ WIREFRAME MOBILE — COMPONENTE 4 ]
++-----------------------------------+
+| ÁREAS DE ATUAÇÃO                  |
+| Especialização que cobre cada...  |
+|                                   |
+| +-------------------------------+ |
+| | [Ícone] Direito Empresarial   | |
+| | Estruturação societária...    | |
+| | Saiba mais ->                 | | (>= 44px)
+| +-------------------------------+ |
+| +-------------------------------+ |
+| | [Ícone] Direito Tributário    | |
+| | Planejamento fiscal...        | |
+| | Saiba mais ->                 | |
+| +-------------------------------+ |
+| (Demais 4 cards empilhados...)    |
++-----------------------------------+
+```
+
+---
+
+### Componente 5: Por Que Sales Costa (Diferenciais)
+
+![Componente 5 - Por Que Sales Costa](../images/components/05_diferenciais.png)
+
+#### Especificações Visuais & Layout Desktop (>= 1024px):
+- **Background:** Dark Charcoal (`#404347`).
+- **Layout:** 4 Colunas horizontais alinhadas.
+
+#### 📱 Ajustes de Responsividade (Mobile & Tablet < 1024px):
+- **Tablet (768px – 1023px):** Reorganiza-se em **Grid 2x2**.
+- **Mobile (< 768px):** Empilha-se em **1 Coluna vertical** (4 cartões empilhados com padding interno de `24px`).
+
+```
+[ WIREFRAME MOBILE — COMPONENTE 5 ]
++-----------------------------------+
+| POR QUE SALES COSTA               |
+| O diferencial está em como...     |
+|                                   |
+| ① Atendimento personalizado       |
+| Cada cliente é acompanhado...     |
+|                                   |
+| ② Equipe especializada            |
+| Advogados com formação...         |
+|                                   |
+| ③ Resultados comprovados          |
+| Histórico consistente de êxito... |
+|                                   |
+| ④ Ética & transparência           |
+| Comunicação clara sobre riscos... |
++-----------------------------------+
+```
+
+---
+
+### Componente 6: Em Números (Métricas)
+
+![Componente 6 - Em Números](../images/components/06_numeros.png)
+
+#### Especificações Visuais & Layout Desktop (>= 1024px):
+- **Background:** Off-White Quente (`#F8F6F4`).
+- **Layout:** 4 Colunas alinhadas com divisores verticais.
+
+#### 📱 Ajustes de Responsividade (Mobile < 768px):
+- **Reorganização para Mobile:** Disposto em **Grid 2x2** (2 números por linha).
+- **Divisores:** Divisores verticais ocultados no mobile para otimizar espaço tátil.
+- **Tamanho dos Números:** Ajuste fluido via `font-size: clamp(2.5rem, 8vw, 4rem)`.
+
+```
+[ WIREFRAME MOBILE — COMPONENTE 6 ]
++-----------------------------------+
+|     15            500             |
+|  + ANOS DE     + CLIENTES         |
+| EXPERIÊNCIA    ATENDIDOS          |
+|-----------------------------------|
+|     300            5              |
+|  + CASOS       ÁREAS DE           |
+| CONCLUÍDOS    ESPECIALIZAÇÃO      |
++-----------------------------------+
+```
+
+---
+
+### Componente 7: Depoimentos
+
+![Componente 7 - Depoimentos](../images/components/07_depoimentos.png)
+
+#### Especificações Visuais & Layout Desktop (>= 1024px):
+- **Background:** Off-White Quente (`#F8F6F4`).
+- **Anatomy:** Card de depoimento centralizado com aspas e dots de controle.
+
+#### 📱 Ajustes de Responsividade (Mobile < 768px):
+- **Gesto Touch Swipe:** Suporte a deslizamento tátil (*swipe esquerdo/direito*) via `touchstart` e `touchend`.
+- **Dots de Navegação:** Pontos de controle expandidos para alvo de toque ($\ge 44\times 44\text{px}$).
+- **Texto da Citação:** Fonte ajustada para `18px` em dispositivos móveis.
+
+---
+
+### Componente 8: Nossa Equipe (Cards dos Sócios)
+
+![Componente 8 - Nossa Equipe](../images/components/08_equipe.png)
+
+#### Especificações Visuais & Layout Desktop (>= 1024px):
+- **Background:** Branco Puro (`#FFFFFF`).
+- **Layout:** 4 Cards de Sócios em 1 linha horizontal.
+
+#### 📱 Ajustes de Responsividade (Mobile & Tablet < 1024px):
+- **Tablet (768px – 1023px):** Reorganiza-se em **Grid 2x2**.
+- **Mobile (< 768px):** Empilha-se em **1 Coluna vertical (1 card por linha)**.
+- **Imagens/Avatares:** Mantêm proporção perfeita `aspect-ratio: 1/1` sem achatamento.
+
+```
+[ WIREFRAME MOBILE — COMPONENTE 8 ]
++-----------------------------------+
+| NOSSA EQUIPE                      |
+| Os sócios responsáveis por...     |
+|                                   |
+| +-------------------------------+ |
+| |             AS                | | (Avatar 1:1)
+| +-------------------------------+ |
+| Antônio Sales                     |
+| Sócio-fundador · Direito Empresar |
+| OAB/SP 000.000                    |
+| (Demais 3 sócios empilhados...)   |
++-----------------------------------+
+```
+
+---
+
+### Componente 9: Fale Conosco (Formulário & Dados)
+
+![Componente 9 - Fale Conosco](../images/components/09_contato.png)
+
+#### Especificações Visuais & Layout Desktop (>= 1024px):
+- **Background:** Dark Charcoal (`#404347`).
+- **Layout:** 2 Colunas (Dados à esquerda / Formulário à direita).
+
+#### 📱 Ajustes de Responsividade (Mobile & Tablet < 1024px):
+- **Empilhamento Vertical:** Coluna de dados de contato posiciona-se **no topo**, e o formulário fica **logo abaixo**.
+- **Prevenção de Zoom iOS:** Inputs e select configurados com `font-size: 16px` para evitar zoom automático em telefones Apple.
+- **Botão de Envio:** Ocupa `100%` da largura da tela no mobile com altura de `52px`.
+
+```
+[ WIREFRAME MOBILE — COMPONENTE 9 ]
++-----------------------------------+
+| FALE CONOSCO                      |
+| Entre em contato com nossos...    |
+|                                   |
+| ENDEREÇO: Av. Paulista, 1000...   |
+| TELEFONE: +55 (11) 3000-0000      |
+| E-MAIL: contato@salescosta.com.br |
+|-----------------------------------|
+| NOME COMPLETO                     |
+| [_______________________________] |
+| E-MAIL CORPORATIVO                |
+| [_______________________________] |
+| TELEFONE                          |
+| [_______________________________] |
+| ÁREA DE INTERESSE                 |
+| [Selecione ------------------- v] |
+| MENSAGEM                          |
+| [                               ] |
+| [ ENVIAR MENSAGEM -> ] (Full Width)|
++-----------------------------------+
+```
+
+---
+
+### Componente 10: Rodapé Institucional
+
+![Componente 10 - Rodapé](../images/components/10_rodape.png)
+
+#### Especificações Visuais & Layout Desktop (>= 1024px):
+- **Background:** Dark `#2B2D30`.
+- **Layout:** Logo à esquerda e links horizontais à direita.
+
+#### 📱 Ajustes de Responsividade (Mobile < 768px):
+- **Alinhamento Vertical:** Logo centralizado no topo e links empilhados verticalmente com alvos de toque amplos.
+
+---
+
+## 3. Matriz Consolidada de Breakpoints
+
+| Componente | Mobile (320px – 479px) | Tablet (480px – 1023px) | Desktop (>= 1024px) |
+|---|---|---|---|
+| **01. Navbar & Hero** | Hambúrguer + Drawer; CTAs 1 col | Hambúrguer + Drawer; CTAs em linha | 6 Links Horizontais + CTAs em linha |
+| **02. Comunicado** | 1 Coluna 100%; Marca d'água overlay | 1 Coluna max 768px | Container max 860px + Marca d'água "S" |
+| **03. Sobre** | 1 Coluna empilhada | 2 Colunas (40/60) | 2 Colunas (40/60) com divisores |
+| **04. Áreas Grid** | Grid 1 Coluna (1x6 cards) | Grid 2 Colunas (2x3 cards) | Grid 3 Colunas (3x2 cards) |
+| **05. Diferenciais** | 1 Coluna empilhada | Grid 2x2 | 4 Colunas horizontais |
+| **06. Números** | Grid 2x2 sem divisores | Grid 2x2 com divisores | 4 Colunas em linha |
+| **07. Depoimentos** | 1 Card com Touch Swipe | 1 Card com Dots $\ge 44\text{px}$ | 1 Card centralizado |
+| **08. Nossa Equipe** | 1 Card por linha | Grid 2x2 | 4 Cards em linha |
+| **09. Fale Conosco** | 1 Coluna empilhada; Form Full Width | 1 Coluna empilhada | 2 Colunas (Dados / Form) |
+| **10. Rodapé** | Empilhado verticalmente | Logo à esq / Links à dir | Logo à esq / Links em linha à dir |
 
 </script>
 
@@ -703,173 +794,994 @@ Abaixo estão dispostos os ativos visuais oficiais da marca Sales Costa Advogado
 # 07. Tasks · Checklist de Desenvolvimento e Implementação
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
-> **Data:** 2026-08-31  
-> **Status:** Pronto para Execução  
-> **Estimativa de Fases:** 7 Épicos de Desenvolvimento
+> **Data:** 2026-09-01  
+> **Status:** Revisado e Mapeado com as Diretrizes de Responsividade por Componente ([06-visual-layout.md](06-visual-layout.md))
 
 ---
 
-## 1. Visão Geral da Roadmap de Tarefas
+## 1. Roadmap em 7 Épicos de Desenvolvimento (Foco em Adaptabilidade Universal)
 
-O plano de execução está estruturado em 7 épicos sequenciais. Cada tarefa especifica seus arquivos-alvo, critérios de aceitação e verificações necessárias.
+O plano de execução está estruturado em **7 Épicos funcionais**, cobrindo o desenvolvimento e os testes de responsividade dos **10 componentes visuais** mapeados no layout de referência.
 
 ---
 
-## 2. Épico 1: Setup do Projeto & Design System Tokens (Dia 1)
+## 2. Épico 1: Setup do Projeto & Design Tokens Responsivos (Dia 1)
 
-- [ ] **Task 1.1 — Estruturação de Pastas e Arquivos Base**
+- [ ] **Task 1.1 — Estruturação de Pastas e Configuração de Viewport**
   - **Arquivos:** `index.html`, `css/reset.css`, `css/variables.css`, `css/components.css`, `css/sections.css`, `js/main.js`, `js/animations.js`
-  - **Descrição:** Criar a árvore de diretórios e arquivos em branco no projeto.
-  - **Aceite:** Todos os arquivos criados e vinculados no `index.html`.
+  - **Descrição:** Criar diretórios e incluir `<meta name="viewport" content="width=device-width, initial-scale=1.0">`.
+  - **Aceite:** Viewport configurado corretamente impedindo distorção de escala em dispositivos móveis.
 
-- [ ] **Task 1.2 — Definição dos Design Tokens (`css/variables.css`)**
+- [ ] **Task 1.2 — Tokens de Tipografia e Layout Fluido (`css/variables.css`)**
   - **Arquivos:** `css/variables.css`
-  - **Descrição:** Declarar as variáveis CSS para cores (`--color-primary`, `--color-dark`, `--color-accent`, etc.), tipografia (`--font-serif`, `--font-sans`), espaçamentos (`--space-xs` a `--space-2xl`) e transições.
-  - **Aceite:** Todas as variáveis acessíveis globalmente no `:root`.
+  - **Descrição:** Declarar funções CSS `clamp()` para tipografia fluida (ex: `font-size: clamp(2rem, 5vw, 4rem)`) e variáveis de breakpoints (`320px`, `480px`, `768px`, `1024px`, `1280px`).
+  - **Aceite:** Textos e títulos ajustam-se suavemente à largura da tela.
 
-- [ ] **Task 1.3 — Reset CSS e Integração Google Fonts**
-  - **Arquivos:** `index.html`, `css/reset.css`
-  - **Descrição:** Configurar reset CSS de caixa (`box-sizing: border-border`) e importar `Cormorant Garamond` + `DM Sans` via CDN.
-  - **Aceite:** Fontes renderizando corretamente sem FOUT (*Flash of Unstyled Text*).
-
-- [ ] **Task 1.4 — Favicon e Meta Tags SEO**
-  - **Arquivos:** `index.html`, `images/260701_sales_costa_marca_BRASAO_COR_temp.png`
-  - **Descrição:** Adicionar tag `<link rel="icon">` e meta tags de viewport, descrição e Open Graph.
-  - **Aceite:** Ícone exibido na aba do navegador e meta tags presentes no `<head>`.
+- [ ] **Task 1.3 — Reset CSS e Prevenção de Rolagem Horizontal**
+  - **Arquivos:** `css/reset.css`
+  - **Descrição:** Aplicar `html, body { overflow-x: hidden; width: 100%; }` e `img { max-width: 100%; height: auto; }`.
+  - **Aceite:** Zero rolagem horizontal (`0px` overflow-x) em qualquer resolução.
 
 ---
 
-## 3. Épico 2: Header & Sticky Navigation (Dia 1-2)
+## 3. Épico 2: Componente 1 — Header & Sticky Navigation Responsiva (Dia 1-2)
 
-- [ ] **Task 2.1 — Marcação Semântica da Navbar**
-  - **Arquivos:** `index.html`
-  - **Descrição:** Criar elemento `<header class="navbar">` contendo o logo em `<img>`, lista de links `<nav>` e botão CTA "Fale Conosco".
-  - **Aceite:** Estrutura HTML limpa e semântica.
-
-- [ ] **Task 2.2 — Estilização da Navbar (Transparente x Dark Scrolled)**
-  - **Arquivos:** `css/components.css`
-  - **Descrição:** Estilizar a navbar fixa (`position: fixed`) com transparência inicial e transição para background `#53565A` na classe `.scrolled`.
-  - **Aceite:** Navbar fixa no topo com transição de cor de 300ms.
-
-- [ ] **Task 2.3 — JavaScript da Sticky Navbar**
-  - **Arquivos:** `js/main.js`
-  - **Descrição:** Escrever listener de scroll para alternar a classe `.scrolled` quando `window.scrollY > 80`.
-  - **Aceite:** Alternância automática de classe ao rolar a página.
-
-- [ ] **Task 2.4 — Drawer e Hambúrguer Mobile**
+- [ ] **Task 2.1 — Navbar Desktop & Drawer Mobile**
   - **Arquivos:** `index.html`, `css/components.css`, `js/main.js`
-  - **Descrição:** Desenvolver o botão hambúrguer visível em `< 1024px` e o painel de navegação lateral com animação de slide.
-  - **Aceite:** Menu mobile abre/fecha com suporte a atributo `aria-expanded`.
+  - **Descrição:** Implementar navbar desktop com 6 links e menu hambúrguer com drawer lateral滑动 (*slide-out*) para telas `< 1024px`.
+  - **Aceite:** Colapso automático da navegação em telas pequenas.
 
-- [ ] **Task 2.5 — Script de Smooth Scroll por Âncoras**
-  - **Arquivos:** `js/main.js`
-  - **Descrição:** Interceptar cliques em `a[href^="#"]` para rolar suavemente a página com compensação da altura da navbar (80px).
-  - **Aceite:** Clique nos links de navegação leva exatamente à seção correspondente.
-
----
-
-## 4. Épico 3: Hero Banner Section (Dia 2)
-
-- [ ] **Task 3.1 — Estrutura HTML do Hero**
-  - **Arquivos:** `index.html`
-  - **Descrição:** Criar `<section id="hero">` com eyebrow tag, H1 "Junto nas decisões que constroem o futuro.", subtítulo e dupla de botões CTA.
-  - **Aceite:** Conteúdo textual completo na marcação.
-
-- [ ] **Task 3.2 — Estilização Visual e Overlay Dark**
-  - **Arquivos:** `css/sections.css`
-  - **Descrição:** Definir altura de `100vh`, background `#53565A` com overlay, H1 em `Cormorant Garamond 64px` na cor branca.
-  - **Aceite:** Layout refinado com alto contraste de leitura.
-
-- [ ] **Task 3.3 — Estilização dos Botões CTA**
+- [ ] **Task 2.2 — Áreas de Toque Confortáveis ($\ge 44\text{px}$)**
   - **Arquivos:** `css/components.css`
-  - **Descrição:** Estilizar botão primário (preenchimento Taupe `#AA9B8F`) e botão secundário (vazado com `border: 1px solid #AA9B8F` e uppercase com letter-spacing).
-  - **Aceite:** Hover states fluidos nos botões.
-
-- [ ] **Task 3.4 — Seta Animada de Scroll**
-  - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Criar indicador de scroll no rodape da hero section com animação CSS `@keyframes bounce`.
-  - **Aceite:** Seta pulsando suavemente e levando à seção "Sobre" ao ser clicada.
+  - **Descrição:** Aplicar padding e dimensões mínimas de $44 \times 44\text{px}$ nos alvos de clique da navbar no mobile.
+  - **Aceite:** Navegação tátil sem erros de clique.
 
 ---
 
-## 5. Épico 4: Seções Institucionais — Sobre & Diferenciais (Dia 2-3)
+## 4. Épico 3: Componentes 1 e 2 — Hero Banner & Comunicado ao Mercado (Dia 2)
 
-- [ ] **Task 4.1 — Seção "Sobre o Escritório"**
+- [ ] **Task 3.1 — Componente 1: Hero Banner Responsivo**
   - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Montar layout em 2 colunas (40% / 60%) em fundo Off-White `#F8F6F4`, com parágrafos institucionais, linha divisória Taupe e os 3 pilares da marca.
-  - **Aceite:** Layout responsivo colapsando para 1 coluna no mobile.
+  - **Descrição:** Desenvolver Hero Section com `min-height: 100vh`, H1 em `font-size: clamp(2rem, 5vw, 4rem)` e CTAs empilhados em 1 coluna no mobile (`width: 100%`).
+  - **Aceite:** Leitura limpa e botões confortáveis em telas de 320px a 2560px.
 
-- [ ] **Task 4.2 — Seção "Por Que Sales Costa" (Diferenciais)**
+- [ ] **Task 3.2 — Componente 2: Comunicado ao Mercado Responsivo**
   - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Criar seção com fundo Dark `#53565A`, eyebrow em cor Lima `#E4FF8F` e grid de 4 diferenciais com ícones em SVG.
-  - **Aceite:** Grid 4 colunas no desktop e 1 coluna no mobile.
+  - **Descrição:** Ajustar parágrafos e marca d'água "S" para que no mobile a marca d'água permaneça no fundo sem comprometer o contraste do texto.
+  - **Aceite:** Container de texto com padding lateral de `20px` e leitura confortável.
 
 ---
 
-## 6. Épico 5: Módulos Funcionais Interativos (Dia 3-4)
+## 5. Épico 4: Componentes 3 e 5 — Seções Institucionais Responsivas (Dia 2-3)
 
-- [ ] **Task 5.1 — Seção "Áreas de Atuação" (Cards Grid)**
+- [ ] **Task 4.1 — Componente 3: Sobre o Escritório (Migração 2Col -> 1Col)**
   - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Criar grid de 6 cards de especialidades com ícone, título, descrição e link "Saiba mais".
-  - **Aceite:** Hover state nos cards elevando a borda inferior em Taupe `#AA9B8F`.
+  - **Descrição:** Configurar grid de 2 colunas no desktop que migra para 1 coluna empilhada em telas `< 768px`, adicionando divisores horizontais nos 3 pilares.
+  - **Aceite:** Pilares (*Comprometimento*, *Confidencialidade*, *Excelência*) empilhados com clareza no mobile.
 
-- [ ] **Task 5.2 — Seção "Em Números" (Contadores JS)**
+- [ ] **Task 4.2 — Componente 5: Por Que Sales Costa (Diferenciais)**
+  - **Arquivos:** `index.html`, `css/sections.css`
+  - **Descrição:** Configurar as 4 caixas de diferenciais para exibição em 4 colunas (desktop), 2x2 (tablet) e 1 coluna (mobile).
+  - **Aceite:** Nenhuma caixa estoura a largura do container.
+
+---
+
+## 6. Épico 5: Componentes 4, 6, 7 e 8 — Módulos Funcionais Multi-Tela (Dia 3-4)
+
+- [ ] **Task 5.1 — Componente 4: Grid de Áreas de Atuação (Grid 3x2 -> 1x6)**
+  - **Arquivos:** `index.html`, `css/sections.css`
+  - **Descrição:** Implementar grid responsivo com `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))` para as 6 especialidades.
+  - **Aceite:** Reordenamento automático para 1 coluna no mobile e links *Saiba mais →* com alvos táteis ($\ge 44\text{px}$).
+
+- [ ] **Task 5.2 — Componente 6: Banner Em Números (Métricas Grid 2x2)**
   - **Arquivos:** `index.html`, `css/sections.css`, `js/animations.js`
-  - **Descrição:** Criar banner com fundo Taupe `#AA9B8F` e 4 contadores numéricos. Escrever script de counter-up animado disparado ao entrar na tela.
-  - **Aceite:** Números contam de 0 até o valor alvo em ~2 segundos.
+  - **Descrição:** Dispor os 4 números em linha no desktop (com divisores verticais) e em grid 2x2 no mobile (sem divisores).
+  - **Aceite:** Números centralizados e legíveis.
 
-- [ ] **Task 5.3 — Seção "Depoimentos" (Carousel)**
+- [ ] **Task 5.3 — Componente 7: Depoimentos com Touch Swipe Gestures**
   - **Arquivos:** `index.html`, `css/sections.css`, `js/main.js`
-  - **Descrição:** Desenvolver carousel funcional de depoimentos em fundo Off-White com aspas decorativas, controle por setas e autoplay de 5 segundos.
-  - **Aceite:** Transição suave entre depoimentos com pausa no hover.
+  - **Descrição:** Adicionar handlers `touchstart` e `touchend` para permitir deslizamento de depoimentos com o dedo em smartphones.
+  - **Aceite:** Transição de depoimentos via gesto tátil e dots de controle ($\ge 44\text{px}$).
 
-- [ ] **Task 5.4 — Seção "Nossa Equipe" (Cards de Advogados)**
+- [ ] **Task 5.4 — Componente 8: Nossa Equipe (Cards dos Sócios 1Col Mobile)**
   - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Construir grid de 4 cards de advogados com imagem 1:1, nome, registro OAB e link para o LinkedIn.
-  - **Aceite:** Overlay sutil na foto ao passar o cursor.
+  - **Descrição:** Cards dos sócios (*AS*, *CC*, *FR*, *LM*) em 1 coluna no mobile com preservação de proporção de avatar `aspect-ratio: 1/1`.
+  - **Aceite:** Avatares sem distorção em qualquer resolução.
 
 ---
 
-## 7. Épico 6: Formulário de Contato & Rodapé (Dia 4-5)
+## 7. Épico 6: Componentes 9 e 10 — Formulário & Rodapé Responsivos (Dia 4-5)
 
-- [ ] **Task 6.1 — Seção "Fale Conosco" (Formulário Minimalista)**
+- [ ] **Task 6.1 — Componente 9: Fale Conosco (Prevenção de Auto-Zoom iOS)**
+  - **Arquivos:** `index.html`, `css/sections.css`, `js/main.js`
+  - **Descrição:** Formatar formulário para empilhamento vertical no mobile com inputs em `font-size: 16px` para evitar auto-zoom no Safari iOS. Botão de envio com `width: 100%`.
+  - **Aceite:** Digitação confortável no teclado virtual sem desconfigurar o viewport.
+
+- [ ] **Task 6.2 — Componente 10: Rodapé Institucional Alinhado**
   - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Desenvolver layout 2 colunas com dados de contato à esquerda e formulário com inputs de linha fina (`border-bottom`) à direita.
-  - **Aceite:** Estilização alinhada à estética da marca.
-
-- [ ] **Task 6.2 — Script de Validação e Feedback do Formulário**
-  - **Arquivos:** `js/main.js`
-  - **Descrição:** Implementar validação HTML5 nativa + JavaScript para checagem de campos obrigatórios e exibição de alerta/mensagem de sucesso.
-  - **Aceite:** Envio bloqueado para campos vazios ou e-mails em formato inválido.
-
-- [ ] **Task 6.3 — Rodapé Institucional**
-  - **Arquivos:** `index.html`, `css/sections.css`
-  - **Descrição:** Montar rodapé em fundo `#2B2B2B` com logo claro, links institucionais, copyright e redes sociais.
-  - **Aceite:** Todos os links operacionais e responsivos.
+  - **Descrição:** Rodapé `#2B2D30` com alinhamento vertical centralizado do logo e links em smartphones.
+  - **Aceite:** Links e marca organizados no mobile.
 
 ---
 
-## 8. Épico 7: Polimento, Animações & Qualidade (Dia 5-6)
+## 8. Épico 7: Polimento, Testes Multi-Dispositivo & Qualidade (Dia 5-6)
 
-- [ ] **Task 7.1 — Animações com Intersection Observer**
-  - **Arquivos:** `js/animations.js`, `css/sections.css`
-  - **Descrição:** Adicionar atributo `data-animate` nos elementos principais e aplicar efeito de fade-in e subida (`translateY(30px) -> 0`).
-  - **Aceite:** Elementos surgem suavemente à medida que a página é rolada.
+- [ ] **Task 7.1 — Testes em Matriz de Dispositivos Reais/Simulados**
+  - **Arquivos:** Todo o projeto
+  - **Descrição:** Testar em 320px (iPhone SE), 375px (iPhone 12), 768px (iPad portrait), 1024px (iPad landscape), 1440px (Laptop) e 2560px (Ultra-wide).
+  - **Aceite:** Zero erros de layout ou rolagem lateral em todas as telas.
 
-- [ ] **Task 7.2 — Suporte a `prefers-reduced-motion`**
-  - **Arquivos:** `css/sections.css`
-  - **Descrição:** Adicionar media query para desativar animações caso o usuário prefira movimentos reduzidos no sistema operacional.
-  - **Aceite:** Animações são desativadas instantaneamente sob a media query.
+- [ ] **Task 7.2 — Auditoria Google Lighthouse Mobile & Desktop**
+  - **Arquivos:** Todo o projeto
+  - **Descrição:** Executar o Lighthouse em modo Mobile (com throttling 4G e CPU 4x) e garantir notas $\ge 90$ em Performance, Acessibilidade e SEO.
+  - **Aceite:** Relatório aprovado com notas $\ge 90$ em ambas as auditorias.
 
-- [ ] **Task 7.3 — Auditoria e Otimização Google Lighthouse**
-  - **Arquivos:** Todos os arquivos do projeto
-  - **Descrição:** Executar o Lighthouse no Chrome DevTools e resolver apontamentos de performance, acessibilidade e SEO.
-  - **Aceite:** Notas $\ge 90$ nas categorias Performance, Acessibilidade e SEO.
+</script>
+
+<script type="text/plain" id="spike-salescosta-prds-us-01-hero-banner">
+# PRD — US-01: Hero Banner & Proposta de Valor
+
+> **Origem:** US-01 em [05-goals-and-not-goals.md](../05-goals-and-not-goals.md)  
+> **Componente:** Componente 1 em [06-visual-layout.md](../06-visual-layout.md)  
+> **Status:** Pronta para Desenvolvimento
+
+---
+
+## 1. Contexto e Problema
+
+### 1.1 Contexto
+Ao acessar o portal institucional da banca Sales Costa Advogados, o visitante (potencial cliente corporativo ou parceiro) precisa identificar imediatamente o posicionamento do escritório, sua reputação e autoridade no mercado jurídico sem necessitar de busca prolongada.
+
+### 1.2 Problema
+Páginas iniciais genéricas sem clareza de mensagem ou com tempo de carregamento elevado geram dispersão, perda de interesse e alta taxa de rejeição (*bounce rate*).
+
+### 1.3 Persona Afetada
+- **Diretores Executivos, CFOs, Gerentes Jurídicos e Famílias com Gestão Patrimonial** buscando assessoria de alta complexidade.
+
+---
+
+## 2. Objetivos
+
+- **O01:** Apresentar a proposta de valor principal do escritório nos primeiros 3 segundos de visualização da página.
+- **O02:** Disponibilizar chamadas para ação (CTAs) diretas e visíveis em qualquer resolução de tela (320px a 2560px).
+
+---
+
+## 3. Métricas de Sucesso
+
+- **M01:** Taxa de retenção no topo da página (*Above-the-fold engagement*) $> 80\%$.
+- **M02:** Clique nos botões CTA (*Conheça o escritório* e *Fale conosco*) $> 12\%$ dos acessos totais.
+- **M03:** Tempo de carregamento da Hero Banner (First Contentful Paint) $< 1.5\text{s}$.
+
+---
+
+## 4. Solução Proposta
+
+Desenvolvimento da **Hero Section** institucional em fundo dark (`#484B4F` / `#404347`), apresentando a eyebrow tag `"SALES COSTA ADVOGADOS"`, a headline principal H1 em alto impacto visual (*"Junto nas decisões que constroem o futuro."*), o subtítulo de posicionamento corporativo, a dupla de botões CTA interativos com indicação vetorial e o elemento animado de indução ao scroll.
+
+---
+
+## 5. Handoff de Design
+
+- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Componente Visual:** `images/components/01_navbar_hero.png`
+- **Esquema de Cores:** Fundo Dark Charcoal `#404347`, Eyebrow Taupe `#AA9B8F`, Texto Branco `#FFFFFF`.
+- **Tipografia:** Eyebrow `DM Sans 500` (12px, `letter-spacing: 4px`), H1 `DM Sans` / `Cormorant Garamond` (`font-size: clamp(2rem, 5vw, 4rem)`).
+- **Responsividade:** CTAs alinhados horizontalmente no desktop; empilhados em 1 coluna full width no mobile (`< 1024px`).
+
+---
+
+## 6. Regras de Negócio
+
+- **RN-01:** O H1 deve permanecer visível e legível em todos os tamanhos de viewport sem sobreposição de caixas.
+- **RN-02:** O botão *"Fale conosco →"* deve direcionar o scroll suave até a seção `#contato`.
+- **RN-03:** O botão *"Conheça o escritório →"* deve direcionar o scroll suave até a seção `#sobre`.
+- **RN-04:** O elemento animado de scroll deve indicar a continuidade da página e rolar suavemente ao ser clicado.
+
+---
+
+## 7. Critérios de Aceitação (Testáveis)
+
+### CA-01: Exibição da Headline e Subtítulo
+- **Dado** que o usuário acessa a landing page no desktop ou mobile,
+- **Quando** a Hero Section é carregada,
+- **Então** o texto H1 *"Junto nas decisões que constroem o futuro."* deve ser exibido com destaque e sem quebras de layout.
+
+### CA-02: Interatividade dos Botões CTA
+- **Dado** que o usuário clica no botão *"Fale conosco →"*,
+- **Quando** a ação de clique/toque ocorre,
+- **Então** a página rola suavemente até o formulário da seção `#contato` compensando o offset da navbar (80px).
+
+### CA-03: Responsividade dos CTAs no Mobile
+- **Dado** um viewport com largura $< 1024\text{px}$,
+- **Quando** a Hero Banner é renderizada,
+- **Então** os botões CTA são empilhados em 1 coluna com alvos de toque $\ge 44\times 44\text{px}$.
+
+---
+
+## 8. Fora de Escopo e Riscos
+
+### Fora de Escopo
+- Vídeos de fundo ou carrossel de imagens na hero section (foco em minimalismo e performance estática).
+
+### Riscos
+- **Risco:** Lentidão no carregamento da fonte serifada via CDN.
+- **Mitigação:** Uso de `<link rel="preconnect">` e `font-display: swap`.
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-prds-us-02-comunicado-ao-mercado">
+# PRD — US-02: Comunicado ao Mercado (União das Bancas)
+
+> **Origem:** US-02 em [05-goals-and-not-goals.md](../05-goals-and-not-goals.md)  
+> **Componente:** Componente 2 em [06-visual-layout.md](../06-visual-layout.md)  
+> **Status:** Pronta para Desenvolvimento
+
+---
+
+## 1. Contexto e Problema
+
+### 1.1 Contexto
+A nova marca **Sales Costa Advogados** é fruto da união estratégica entre a **Higasi Sales Advogados** e **Rodrigo Moreira da Costa**. Mercado, clientes existentes e parceiros comerciais precisam entender a evolução institucional, a fusão de expertises e os valores que fundamentam o nascimento da banca.
+
+### 1.2 Problema
+A ausência de uma declaração institucional clara sobre a origem da nova marca pode gerar dúvidas em clientes atuais sobre a continuidade dos serviços e a composição societária.
+
+### 1.3 Persona Afetada
+- Clientes ativos da Higasi Sales, novos clientes empresariais, mercado jurídico e veículos de imprensa.
+
+---
+
+## 2. Objetivos
+
+- **O01:** Comunicar formalmente a união dos sócios-fundadores Dilson Higasi Sales e Rodrigo Moreira da Costa.
+- **O02:** Apresentar a visão integrada de atendimento Cobrindo São Paulo e Florianópolis nas áreas tributária, societária, cível, imobiliária e trabalhista.
+
+---
+
+## 3. Métricas de Sucesso
+
+- **M01:** Leitura completa do comunicado (tempo médio na seção $> 45\text{s}$).
+- **M02:** Redução a zero de dúvidas sobre a transição de marca por clientes antigos.
+
+---
+
+## 4. Solução Proposta
+
+Desenvolvimento de uma seção institucional em fundo dark (`#404347`), destacando o eyebrow em tom Lima (`#E4FF8F`), o titular sobre a fundação do Sales Costa Advogados, a marca d'água "S" decorativa e a publicação dos 5 parágrafos oficiais com as citações dos fundadores.
+
+---
+
+## 5. Handoff de Design
+
+- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Componente Visual:** `images/components/02_comunicado.png`
+- **Esquema de Cores:** Fundo Dark `#404347`, Eyebrow Lima `#E4FF8F`, Texto Cinza Claro `#D1D5DB`.
+- **Marca d'água:** Monograma "S" posicionado à direita no desktop (opacidade 5%, `z-index: 0`).
+- **Responsividade:** Container de texto max-width 860px no desktop; largura 100% com padding 20px no mobile; marca d'água atua como overlay sutil no fundo em telas pequenas.
+
+---
+
+## 6. Regras de Negócio
+
+- **RN-01:** O texto do comunicado deve ser exatamente o aprovado pelos sócios-fundadores, sem alterações na declaração oficial.
+- **RN-02:** As citações de Dilson Higasi Sales e Rodrigo Moreira da Costa devem possuir destaque tipográfico.
+- **RN-03:** A marca d'água "S" nunca deve comprometer a taxa de contraste de leitura do texto (WCAG AAA).
+
+---
+
+## 7. Critérios de Aceitação (Testáveis)
+
+### CA-01: Exibição do Texto do Comunicado
+- **Dado** que o visitante navega até a seção `#comunicado`,
+- **Quando** o conteúdo é renderizado,
+- **Então** os 5 parágrafos institucionais e as citações dos sócios são exibidos com legibilidade em fundo `#404347`.
+
+### CA-02: Comportamento Responsivo no Mobile
+- **Dado** um smartphone com largura de 320px,
+- **Quando** o comunicado é visualizado,
+- **Então** o texto ajusta-se com padding lateral de 20px sem causar rolagem horizontal.
+
+---
+
+## 8. Fora de Escopo e Riscos
+
+### Fora de Escopo
+- Módulo de comentários ou compartilhamento social na seção de comunicado.
+
+### Riscos
+- **Risco:** Texto extenso causar fadiga visual em smartphones.
+- **Mitigação:** Tipografia com `line-height: 1.65` e espaçamento entre parágrafos de 20px.
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-prds-us-03-sobre-o-escritorio">
+# PRD — US-03: Sobre o Escritório & Pilares Estratégicos
+
+> **Origem:** US-03 em [05-goals-and-not-goals.md](../05-goals-and-not-goals.md)  
+> **Componente:** Componente 3 em [06-visual-layout.md](../06-visual-layout.md)  
+> **Status:** Pronta para Desenvolvimento
+
+---
+
+## 1. Contexto e Problema
+
+### 1.1 Contexto
+Clientes empresariais que buscam contratação de serviços jurídicos de alto valor necessitam de provas claras sobre os princípios de atuação, o histórico de experiência e o modelo de relacionamento do escritório antes de tomar a decisão de contato.
+
+### 1.2 Problema
+Apresentações institucionais longas e prolixas sem pilares objetivos geram desconfiança sobre a verdadeira capacidade técnica e ética do escritório.
+
+### 1.3 Persona Afetada
+- Diretores, empresários, investidores e famílias de alta renda.
+
+---
+
+## 2. Objetivos
+
+- **O01:** Apresentar a trajetória de mais de 15 anos do escritório com foco em confiança e critério técnico.
+- **O02:** Destacar os 3 pilares de atuação: *Comprometimento*, *Confidencialidade* e *Excelência*.
+
+---
+
+## 3. Métricas de Sucesso
+
+- **M01:** Taxa de leitura da seção Sobre $> 70\%$.
+- **M02:** Índice de clareza percebida nos pilares em pesquisas com clientes $> 90\%$.
+
+---
+
+## 4. Solução Proposta
+
+Desenvolvimento da seção *"Sobre o Escritório"* em fundo Off-White Quente (`#F8F6F4`), disposta em 2 colunas no desktop (40% para o H2 *"Uma trajetória construída sobre confiança e critério técnico."* e 60% para o texto introdutório e os 3 pilares estruturados).
+
+---
+
+## 5. Handoff de Design
+
+- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Componente Visual:** `images/components/03_sobre.png`
+- **Esquema de Cores:** Fundo Off-White `#F8F6F4`, Texto Dark `#2B2B2B`, Linha Divisória Taupe `#D9D3CE`.
+- **Pilares:**
+  - **Comprometimento:** *Disponibilidade real com cada cliente e cada causa.*
+  - **Confidencialidade:** *Sigilo absoluto sobre informações estratégicas.*
+  - **Excelência:** *Rigor técnico em cada peça, parecer e negociação.*
+- **Responsividade:** Grid de 2 colunas no desktop que migra para 1 coluna vertical empilhada no mobile (`< 768px`) com divisores horizontais.
+
+---
+
+## 6. Regras de Negócio
+
+- **RN-01:** Os 3 pilares devem possuir destaque em negrito e descrição curta em itálico/subtítulo.
+- **RN-02:** No mobile, os pilares devem empilhar verticalmente mantendo espaçamento mínimo de `16px` entre cartões.
+
+---
+
+## 7. Critérios de Aceitação (Testáveis)
+
+### CA-01: Exibição dos Pilares Estratégicos
+- **Dado** que o visitante visualiza a seção `#sobre`,
+- **Quando** a seção é renderizada,
+- **Então** os 3 pilares (*Comprometimento*, *Confidencialidade*, *Excelência*) são exibidos com suas descrições associadas.
+
+### CA-02: Adaptação Responsiva 1 Coluna no Mobile
+- **Dado** um dispositivo com largura $< 768\text{px}$,
+- **Quando** a seção Sobre é acessada,
+- **Então** o layout colapsa para 1 coluna vertical sem estouro de texto.
+
+---
+
+## 8. Fora de Escopo e Riscos
+
+### Fora de Escopo
+- Linha do tempo interativa ano a ano (mantida a apresentação simplificada em parágrafos e pilares).
+
+### Riscos
+- N/A.
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-prds-us-04-areas-de-atuacao">
+# PRD — US-04: Áreas de Atuação (Grid de Especialidades)
+
+> **Origem:** US-04 em [05-goals-and-not-goals.md](../05-goals-and-not-goals.md)  
+> **Componente:** Componente 4 em [06-visual-layout.md](../06-visual-layout.md)  
+> **Status:** Pronta para Desenvolvimento
+
+---
+
+## 1. Contexto e Problema
+
+### 1.1 Contexto
+Visitantes corporativos acessam o portal para confirmar se o escritório possui capacidade técnica e especialização direta na área jurídica específica de seu interesse.
+
+### 1.2 Problema
+Apresentar áreas de atuação em listas de texto simples sem ícones ou descrições dificulta a navegação rápida e reduz a percepção de especialização do escritório.
+
+### 1.3 Persona Afetada
+- Gestores jurídicos, diretores administrativos, CFOs e empreendedores.
+
+---
+
+## 2. Objetivos
+
+- **O01:** Exibir de forma visualmente organizada e categorizada as 6 especialidades jurídicas do escritório.
+- **O02:** Permitir o acesso imediato à síntese descritiva de cada área com chamadas de interatividade (*Saiba mais →*).
+
+---
+
+## 3. Métricas de Sucesso
+
+- **M01:** Interação com os cards de especialidades (hover/touch) em $> 40\%$ dos acessos.
+- **M02:** Identificação imediata da área de interesse em $< 5\text{s}$.
+
+---
+
+## 4. Solução Proposta
+
+Desenvolvimento de um grid de cards responsivo (3 colunas no desktop, 2 no tablet, 1 no mobile) em fundo Branco Puro (`#FFFFFF`), exibindo as 6 áreas de atuação:
+1. **Direito Empresarial:** Estruturação societária, contratos comerciais e assessoria contínua.
+2. **Direito Tributário:** Planejamento fiscal, consultoria preventiva e defesa.
+3. **Direito Trabalhista:** Gestão de risco trabalhista, compliance de RH e representação.
+4. **Direito Civil:** Contratos, responsabilidade civil e patrimônio.
+5. **Direito Societário:** Fusões, aquisições, governança e reestruturação.
+6. **Compliance & Governança:** Programas de integridade e auditoria de conformidade.
+
+---
+
+## 5. Handoff de Design
+
+- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Componente Visual:** `images/components/04_areas.png`
+- **Esquema de Cores:** Fundo Branco `#FFFFFF`, Ícones em tom Taupe `#AA9B8F`, Borda de Hover em Taupe.
+- **Responsividade:** Desktop `repeat(3, 1fr)`; Tablet `repeat(2, 1fr)`; Mobile `1fr` empilhado. Links *Saiba mais →* com alvo tátil $\ge 44\text{px}$.
+
+---
+
+## 6. Regras de Negócio
+
+- **RN-01:** Cada card deve conter obrigatoriamente: Ícone SVG em linha fina, Título em DM Sans 500, Breve Descrição e Link interativo *"Saiba mais →"*.
+- **RN-02:** O passar do cursor (hover no desktop ou toque no mobile) deve elevar visualmente o card com uma borda inferior em tom Taupe `#AA9B8F`.
+
+---
+
+## 7. Critérios de Aceitação (Testáveis)
+
+### CA-01: Renderização dos 6 Cards de Especialidades
+- **Dado** que o usuário acessa a seção `#areas`,
+- **Quando** a seção carrega,
+- **Então** os 6 cards (*Empresarial*, *Tributário*, *Trabalhista*, *Civil*, *Societário*, *Compliance*) são exibidos com ícone, título, descrição e botão.
+
+### CA-02: Reordenamento Automático no Mobile
+- **Dado** um viewport móvel com largura de 375px,
+- **Quando** a seção é exibida,
+- **Então** os cards são organizados em 1 coluna vertical sem estouro de margens.
+
+---
+
+## 8. Fora de Escopo e Riscos
+
+### Fora de Escopo
+- Modais com artigos jurídicos completos por área (links de *Saiba mais* direcionam ao formulário de contato ou scroll).
+
+### Riscos
+- N/A.
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-prds-us-05-diferenciais-atendimento">
+# PRD — US-05: Por Que Sales Costa (Diferenciais de Atendimento)
+
+> **Origem:** US-05 em [05-goals-and-not-goals.md](../05-goals-and-not-goals.md)  
+> **Componente:** Componente 5 em [06-visual-layout.md](../06-visual-layout.md)  
+> **Status:** Pronta para Desenvolvimento
+
+---
+
+## 1. Contexto e Problema
+
+### 1.1 Contexto
+Em um mercado jurídico altamente competitivo, demonstrar diferenciais concretos de atendimento e metodologia de acompanhamento é essencial para converter a intenção do visitante em contato direto.
+
+### 1.2 Problema
+Escritórios de advocacia frequentemente utilizam jargões genéricos ("qualidade", "agilidade") sem detalhar como o acompanhamento do caso é de fato executado.
+
+### 1.3 Persona Afetada
+- Clientes corporativos em busca de atendimento direto e transparente pelos sócios.
+
+---
+
+## 2. Objetivos
+
+- **O01:** Apresentar os 4 pilares de diferenciação do Sales Costa Advogados em um ambiente visual de destaque.
+- **O02:** Reforçar a premissa de acompanhamento direto pelos sócios-fundadores sem delegação generalista.
+
+---
+
+## 3. Métricas de Sucesso
+
+- **M01:** Leitura completa dos 4 diferenciais (tempo na seção $> 30\text{s}$).
+- **M02:** Aumento na percepção de valor e transparência corporativa.
+
+---
+
+## 4. Solução Proposta
+
+Desenvolvimento de uma seção em ambiente Dark Charcoal (`#404347`), com eyebrow em Lima (`#E4FF8F`), H2 *"O diferencial está em como acompanhamos cada caso."* e grid de 4 colunas:
+1. **Atendimento personalizado:** Acompanhamento direto pelos sócios responsáveis.
+2. **Equipe especializada:** Formação dedicada por área, sem generalismo.
+3. **Resultados comprovados:** Histórico consistente de êxito em negociações e operações.
+4. **Ética & transparência:** Comunicação clara sobre riscos, prazos e honorários.
+
+---
+
+## 5. Handoff de Design
+
+- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Componente Visual:** `images/components/05_diferenciais.png`
+- **Esquema de Cores:** Fundo Dark `#404347`, Eyebrow Lima `#E4FF8F`, H2 Branco `#FFFFFF`.
+- **Responsividade:** 4 colunas no desktop; 2x2 no tablet; 1 coluna empilhada no mobile (< 768px).
+
+---
+
+## 6. Regras de Negócio
+
+- **RN-01:** Os 4 diferenciais devem possuir o mesmo peso visual e alinhamento vertical.
+- **RN-02:** O texto descritivo deve evidenciar a atuação direta dos sócios e a transparência de honorários.
+
+---
+
+## 7. Critérios de Aceitação (Testáveis)
+
+### CA-01: Exibição dos 4 Diferenciais
+- **Dado** que o usuário navega até a seção `#diferenciais`,
+- **Quando** a seção é renderizada,
+- **Então** os 4 diferenciais (*Atendimento personalizado*, *Equipe especializada*, *Resultados comprovados*, *Ética & transparência*) são exibidos.
+
+### CA-02: Empilhamento no Mobile
+- **Dado** um dispositivo mobile (< 768px),
+- **Quando** a seção é exibida,
+- **Então** os cartões empilham-se em 1 coluna vertical com padding interno de 24px.
+
+---
+
+## 8. Fora de Escopo e Riscos
+
+### Fora de Escopo
+- Animações complexas em 3D (mantidas animações CSS suaves de fade-in no scroll).
+
+### Riscos
+- N/A.
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-prds-us-06-em-numeros">
+# PRD — US-06: Em Números (Métricas de Autoridade)
+
+> **Origem:** US-06 em [05-goals-and-not-goals.md](../05-goals-and-not-goals.md)  
+> **Componente:** Componente 6 em [06-visual-layout.md](../06-visual-layout.md)  
+> **Status:** Pronta para Desenvolvimento
+
+---
+
+## 1. Contexto e Problema
+
+### 1.1 Contexto
+Métricas numéricas de volume de clientes, anos de atuação e histórico de casos atuam como gatilho de prova social e autoridade instantânea para clientes em fase de avaliação.
+
+### 1.2 Problema
+Apresentar números estáticos e sem destaque visual perde a oportunidade de capturar o interesse do usuário durante a rolagem da página.
+
+### 1.3 Persona Afetada
+- Novos clientes e tomadores de decisão corporativos.
+
+---
+
+## 2. Objetivos
+
+- **O01:** Exibir em destaque 4 indicadores consolidados da banca Sales Costa Advogados.
+- **O02:** Animar a contagem numérica progressiva (0 ao alvo) quando a seção entrar na viewport do usuário.
+
+---
+
+## 3. Métricas de Sucesso
+
+- **M01:** Execução da animação do contador em $100\%$ dos dispositivos compatíveis.
+- **M02:** Aumento do tempo de permanência na página.
+
+---
+
+## 4. Solução Proposta
+
+Desenvolvimento de um banner em fundo Off-White Quente (`#F8F6F4`) disposta em 4 colunas com divisores verticais sutis no desktop:
+- `15` &nbsp;&nbsp; `+ ANOS DE EXPERIÊNCIA`
+- `500` &nbsp;&nbsp; `+ CLIENTES ATENDIDOS`
+- `300` &nbsp;&nbsp; `+ CASOS CONCLUÍDOS`
+- `5` &nbsp;&nbsp; `ÁREAS DE ESPECIALIZAÇÃO`
+
+---
+
+## 5. Handoff de Design
+
+- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Componente Visual:** `images/components/06_numeros.png`
+- **Esquema de Cores:** Fundo Off-White `#F8F6F4`, Números Dark `#2B2B2B`, Labels em caixa alta com `letter-spacing: 2px`.
+- **Responsividade:** 4 colunas em linha no desktop; Grid 2x2 no mobile sem divisores verticais. Fonte ajustada via `clamp(2.5rem, 8vw, 4rem)`.
+
+---
+
+## 6. Regras de Negócio
+
+- **RN-01:** A contagem animada deve ser disparada apenas uma única vez quando a seção entrar no campo de visão (via `IntersectionObserver`).
+- **RN-02:** Em dispositivos com preferência por movimento reduzido (`prefers-reduced-motion: reduce`), o número final deve ser exibido estaticamente sem animação.
+
+---
+
+## 7. Critérios de Aceitação (Testáveis)
+
+### CA-01: Animação do Contador Numérico
+- **Dado** que a seção `#numeros` entra na tela do usuário,
+- **Quando** o observador dispara o evento,
+- **Então** os valores iniciam em 0 e incrementam suavemente até atingir 15, 500, 300 e 5 em ~2 segundos.
+
+### CA-02: Disposição Grid 2x2 no Mobile
+- **Dado** uma tela mobile com largura $< 768\text{px}$,
+- **Quando** a seção é visualizada,
+- **Então** as 4 métricas são organizadas em um grid de 2 linhas x 2 colunas.
+
+---
+
+## 8. Fora de Escopo e Riscos
+
+### Fora de Escopo
+- Atualização em tempo real via API dinâmica (valores estáticos definidos pelo escritório).
+
+### Riscos
+- N/A.
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-prds-us-07-depoimentos-prova-social">
+# PRD — US-07: Depoimentos (Prova Social & Validação de Clientes)
+
+> **Origem:** US-07 em [05-goals-and-not-goals.md](../05-goals-and-not-goals.md)  
+> **Componente:** Componente 7 em [06-visual-layout.md](../06-visual-layout.md)  
+> **Status:** Pronta para Desenvolvimento
+
+---
+
+## 1. Contexto e Problema
+
+### 1.1 Contexto
+Depoimentos reais de executivos e diretores financeiros servem como validação de confiança, comprovando a capacidade técnica do escritório em casos societários e estratégicos de grande porte.
+
+### 1.2 Problema
+A ausência de depoimentos com nome, cargo e empresa identificada enfraquece a credibilidade da landing page frente a clientes corporativos exigentes.
+
+### 1.3 Persona Afetada
+- CFOs, diretores jurídicos e investidores avaliando a contratação do escritório.
+
+---
+
+## 2. Objetivos
+
+- **O01:** Exibir depoimentos reais de clientes corporativos com destaque para a liderança técnica e agilidade do escritório.
+- **O02:** Disponibilizar navegação simples por dots e suporte a gestos de deslizamento tátil (*touch swipe*) em celulares.
+
+---
+
+## 3. Métricas de Sucesso
+
+- **M01:** Interação com o carousel de depoimentos $> 25\%$.
+- **M02:** Aumento do índice de confiança na avaliação inicial do escritório.
+
+---
+
+## 4. Solução Proposta
+
+Desenvolvimento de um módulo de citação em fundo Off-White Quente (`#F8F6F4`), exibindo aspas em tom Taupe no topo, a citação *"A equipe conduziu uma reestruturação societária complexa com clareza e agilidade que não encontrávamos em outros escritórios."*, a identificação de **Marina Albuquerque** (*Diretora Financeira, Grupo Vantis*) e os pontos de navegação (dots).
+
+---
+
+## 5. Handoff de Design
+
+- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Componente Visual:** `images/components/07_depoimentos.png`
+- **Esquema de Cores:** Fundo Off-White `#F8F6F4`, Aspas Taupe `#AA9B8F`, Citação em itálico Dark `#2B2B2B`.
+- **Responsividade:** Card centralizado; suporte a touch swipe em mobile; dots com alvo tátil $\ge 44\times 44\text{px}$.
+
+---
+
+## 6. Regras de Negócio
+
+- **RN-01:** O depoimento deve exibir explicitamente a autoridade do autor (Nome, Cargo e Nome da Empresa).
+- **RN-02:** Em smartphones, a transição entre depoimentos deve aceitar gestos laterais de deslizamento (*swipe*).
+
+---
+
+## 7. Critérios de Aceitação (Testáveis)
+
+### CA-01: Exibição da Citação e Autor
+- **Dado** que o visitante visualiza a seção de depoimentos,
+- **Quando** o card é renderizado,
+- **Então** a citação da reestruturação societária e a identificação de Marina Albuquerque (Grupo Vantis) são apresentadas.
+
+### CA-02: Navegação por Gestos no Mobile
+- **Dado** um usuário navegando em um smartphone,
+- **Quando** ele desliza o dedo para a esquerda no card,
+- **Então** o próximo depoimento do carousel é exibido.
+
+---
+
+## 8. Fora de Escopo e Riscos
+
+### Fora de Escopo
+- Vídeos de depoimento de clientes (mantido formato texto estático refinado).
+
+### Riscos
+- N/A.
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-prds-us-08-nossa-equipe-socios">
+# PRD — US-08: Nossa Equipe (Cards dos Sócios Responsáveis)
+
+> **Origem:** US-08 em [05-goals-and-not-goals.md](../05-goals-and-not-goals.md)  
+> **Componente:** Componente 8 em [06-visual-layout.md](../06-visual-layout.md)  
+> **Status:** Pronta para Desenvolvimento
+
+---
+
+## 1. Contexto e Problema
+
+### 1.1 Contexto
+No meio jurídico corporativo, clientes contratam pessoas e reputações individuais. Apresentar os sócios fundadores e responsáveis por cada área reforça a transparência e a promessa de atendimento direto.
+
+### 1.2 Problema
+A ausência de fotos ou de apresentações claras da equipe gera sensação de obscuridade institucional e falta de pessoalidade no atendimento.
+
+### 1.3 Persona Afetada
+- Clientes corporativos, parceiros e potenciais contratantes de assessoria contínua.
+
+---
+
+## 2. Objetivos
+
+- **O01:** Apresentar individualmente os 4 sócios da banca Sales Costa Advogados.
+- **O02:** Disponibilizar avatares elegantes de iniciais (*AS*, *CC*, *FR*, *LM*) com suporte a substituição direta por fotografias reais de ensaio profissional.
+
+---
+
+## 3. Métricas de Sucesso
+
+- **M01:** Identificação imediata da liderança responsável por cada área de atuação.
+- **M02:** Transição transparente de avatares para fotos reais sem alteração na estrutura HTML/CSS.
+
+---
+
+## 4. Solução Proposta
+
+Desenvolvimento da seção *"Nossa Equipe"* em fundo Branco Puro (`#FFFFFF`), com eyebrow `NOSSA EQUIPE`, H2 *"Os sócios responsáveis por cada caso."* e grid de 4 cards:
+1. **Antônio Sales:** Sócio-fundador · Direito Empresarial | OAB/SP 000.000 (Avatar *AS*)
+2. **Camila Costa:** Sócia-fundadora · Direito Tributário | OAB/SP 000.000 (Avatar *CC*)
+3. **Felipe Ramos:** Sócio · Direito Trabalhista | OAB/SP 000.000 (Avatar *FR*)
+4. **Luisa Martins:** Sócia · Societário & Compliance | OAB/SP 000.000 (Avatar *LM*)
+
+---
+
+## 5. Handoff de Design
+
+- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Componente Visual:** `images/components/08_equipe.png`
+- **Esquema de Cores:** Fundo Branco `#FFFFFF`, Avatares em fundo Off-White `#F8F6F4` com iniciais em Taupe `#AA9B8F`.
+- **Responsividade:** 4 colunas horizontais no desktop; Grid 2x2 no tablet; 1 coluna empilhada no mobile (< 768px). Proporção do avatar travada em `aspect-ratio: 1/1`.
+
+---
+
+## 6. Regras de Negócio
+
+- **RN-01:** Os avatares de iniciais (*AS*, *CC*, *FR*, *LM*) devem ser centralizados sobre o container quadrado bege `#F8F6F4`.
+- **RN-02:** Cada card deve exibir obrigatoriamente: Nome do Sócio, Cargo/Título, Área de Atuação e Registro OAB.
+
+---
+
+## 7. Critérios de Aceitação (Testáveis)
+
+### CA-01: Exibição dos 4 Sócios
+- **Dado** que o visitante navega até a seção `#equipe`,
+- **Quando** a seção é renderizada,
+- **Então** os 4 sócios (*Antônio Sales*, *Camila Costa*, *Felipe Ramos*, *Luisa Martins*) são exibidos com suas áreas e OAB.
+
+### CA-02: Empilhamento 1 Coluna no Mobile
+- **Dado** um smartphone (< 768px),
+- **Quando** a seção é aberta,
+- **Então** os cards da equipe são empilhados em 1 coluna sem distorção das caixas de avatar.
+
+---
+
+## 8. Fora de Escopo e Riscos
+
+### Fora de Escopo
+- Modais com biografia estendida ou currículo Lattes dos advogados (dados mantidos nos cards principais).
+
+### Riscos
+- **Risco:** Inscrições reais da OAB ainda constam como `OAB/SP 000.000`.
+- **Mitigação:** Marcar como "Pergunta em aberto (não coberta por `spike-salescosta/`)" até o envio dos registros finais.
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-prds-us-09-fale-conosco-formulario">
+# PRD — US-09: Fale Conosco (Formulário de Contato & Informações)
+
+> **Origem:** US-09 em [05-goals-and-not-goals.md](../05-goals-and-not-goals.md)  
+> **Componente:** Componente 9 em [06-visual-layout.md](../06-visual-layout.md)  
+> **Status:** Pronta para Desenvolvimento
+
+---
+
+## 1. Contexto e Problema
+
+### 1.1 Contexto
+O objetivo final da landing page é a conversão do visitante em um ponto de contato direto (*lead qualificado*), permitindo que potenciais clientes solicitem reuniões, façam tiragem de dúvidas ou iniciem processos de contratação.
+
+### 1.2 Problema
+Formulários com excesso de campos ou com estilização genérica reduzem drasticamente a taxa de conversão. Além disso, a ausência de telefones ou endereço físico gera desconfiança sobre a existência da sede do escritório.
+
+### 1.3 Persona Afetada
+- Diretores, empresários, executivos e clientes em busca de atendimento jurídico corporativo.
+
+---
+
+## 2. Objetivos
+
+- **O01:** Disponibilizar formulário minimalista de contato com 5 campos essenciais (`Nome Completo`, `E-mail Corporativo`, `Telefone`, `Área de Interesse`, `Mensagem`).
+- **O02:** Exibir claramente os dados da sede física (*Av. Paulista, 1000 — 12º andar, São Paulo/SP*), e-mail (*contato@salescosta.com.br*) e telefone de atendimento (*+55 11 3000-0000*).
+
+---
+
+## 3. Métricas de Sucesso
+
+- **M01:** Taxa de conversão do formulário de contato $> 5\%$ dos visitantes totais.
+- **M02:** Redução a zero de erros de validação por preenchimento incorreto.
+
+---
+
+## 4. Solução Proposta
+
+Desenvolvimento da seção em fundo Dark Charcoal (`#404347`), com layout em 2 colunas:
+- **Coluna Esquerda (Dados de Contato):** H2 *"Entre em contato com nossos advogados."*, subtítulo *"Respondemos em até um dia útil. Para casos urgentes, prefira o telefone."*, dados da sede na Av. Paulista, e-mail institucional, telefone e links de redes sociais.
+- **Coluna Direita (Formulário):** Inputs minimalistas de linha sublinhada (`border-bottom`), seletor de áreas jurídicas e botão CTA *"Enviar mensagem →"*.
+
+---
+
+## 5. Handoff de Design
+
+- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Componente Visual:** `images/components/09_contato.png`
+- **Esquema de Cores:** Fundo Dark `#404347`, Inputs transparentes com `border-bottom: 1px solid rgba(255,255,255,0.4)`, Botão Taupe `#AA9B8F`.
+- **Prevenção de Zoom iOS:** Inputs e select configurados obrigatoriamente com `font-size: 16px` para impedir o zoom automático de tela no iOS Safari.
+- **Responsividade:** 2 colunas no desktop; empilhado em 1 coluna no mobile (Dados no topo / Form abaixo; botão full width `100%`).
+
+---
+
+## 6. Regras de Negócio
+
+- **RN-01:** Os campos `Nome Completo`, `E-mail Corporativo` e `Mensagem` são de preenchimento obrigatorio.
+- **RN-02:** O campo `E-mail Corporativo` deve validar o formato de e-mail válido antes da submissão.
+- **RN-03:** A seleção de `Área de Interesse` deve conter as 6 especialidades (*Empresarial*, *Tributário*, *Trabalhista*, *Civil*, *Societário*, *Compliance*).
+- **RN-04:** O envio deve exibir mensagem de confirmação de recebimento ou redirecionar o usuário com feedback de sucesso.
+
+---
+
+## 7. Critérios de Aceitação (Testáveis)
+
+### CA-01: Validação de Campos Obrigatórios
+- **Dado** que o usuário tenta enviar o formulário sem preencher o e-mail,
+- **Quando** o botão *"Enviar mensagem →"* é clicado,
+- **Então** o navegador deve exibir a validação nativa de campo obrigatório e impedir a submissão.
+
+### CA-02: Prevenção de Zoom Automático no Mobile
+- **Dado** que o formulário é acessado através de um iPhone (iOS Safari),
+- **Quando** o usuário clica no campo `Nome Completo`,
+- **Então** o teclado virtual abre sem causar zoom ou deslocamento lateral na página (`font-size: 16px`).
+
+---
+
+## 8. Fora de Escopo e Riscos
+
+### Fora de Escopo
+- Desenvolvimento de backend próprio de e-mail (utilização de endpoint serverless terceirizado ou Formspree).
+
+### Riscos
+- **Risco:** Definição final do serviço de backend de envio de e-mail.
+- **Mitigação:** Marcar como "Pergunta em aberto (não coberta por `spike-salescosta/`)" até definição da plataforma de e-mail corporativo.
+
+</script>
+
+<script type="text/plain" id="spike-salescosta-prds-us-10-rodape-institucional">
+# PRD — US-10: Rodapé Institucional & Navegação Global
+
+> **Origem:** US-10 em [05-goals-and-not-goals.md](../05-goals-and-not-goals.md)  
+> **Componente:** Componente 10 em [06-visual-layout.md](../06-visual-layout.md)  
+> **Status:** Pronta para Desenvolvimento
+
+---
+
+## 1. Contexto e Problema
+
+### 1.1 Contexto
+O rodapé fecha a navegação da landing page, oferecendo ao visitante que rolou até a base da página os links de acesso rápido às seções principais e o encerramento da identidade visual da banca.
+
+### 1.2 Problema
+Rodapés poluídos ou desalinhados em telefones celulares transmitem amadorismo e dificultam o retorno às seções superiores da página.
+
+### 1.3 Persona Afetada
+- Todos os visitantes da landing page.
+
+---
+
+## 2. Objetivos
+
+- **O01:** Proporcionar fecho institucional elegante com a marca `SALES COSTA` e os links de atalho global (`Sobre`, `Áreas de atuação`, `Equipe`, `Contato`).
+- **O02:** Garantir alinhamento automático em telas pequenas sem rolagem lateral.
+
+---
+
+## 3. Métricas de Sucesso
+
+- **M01:** Taxa de retenção e navegação no rodapé.
+- **M02:** Ausência total de erros de layout no encerramento da página.
+
+---
+
+## 4. Solução Proposta
+
+Desenvolvimento do rodapé institucional em fundo Dark `#2B2D30`, posicionando a marca `SALES COSTA` em tom claro à esquerda e a lista de links navegáveis à direita.
+
+---
+
+## 5. Handoff de Design
+
+- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Componente Visual:** `images/components/10_rodape.png`
+- **Esquema de Cores:** Fundo Dark Charcoal `#2B2D30`, Marca e Links em tom Taupe/Branco.
+- **Responsividade:** Alinhado horizontalmente no desktop; alinhado verticalmente no mobile (< 768px) com alvos de clique táteis $\ge 44\text{px}$.
+
+---
+
+## 6. Regras de Negócio
+
+- **RN-01:** Todos os links do rodapé devem acionar o scroll suave até as seções correspondentes na landing page.
+- **RN-02:** O texto de copyright deve exibir o ano corrente e a titulação institucional.
+
+---
+
+## 7. Critérios de Aceitação (Testáveis)
+
+### CA-01: Exibição da Marca e Links
+- **Dado** que o usuário atinge o fim da página,
+- **Quando** o rodapé é renderizado,
+- **Então** a marca `SALES COSTA` e os links da nav são exibidos.
+
+### CA-02: Navegação Suave pelas Âncoras
+- **Dado** que o usuário clica no link *"Equipe"* no rodapé,
+- **Quando** o clique ocorre,
+- **Então** a página rola suavemente até a seção `#equipe`.
+
+---
+
+## 8. Fora de Escopo e Riscos
+
+### Fora de Escopo
+- Links para páginas internas secundárias (toda a estrutura é concentrada na landing page single-page).
+
+### Riscos
+- N/A.
 
 </script>
 
 <script>
-const NAV = [{"section": "Documentação do Spike", "items": [{"id": "spike-salescosta-01-overview", "title": "01 · Overview", "path": "spike-salescosta/01-overview.md"}, {"id": "spike-salescosta-02-model", "title": "02 · Model", "path": "spike-salescosta/02-model.md"}, {"id": "spike-salescosta-03-flows", "title": "03 · Flows", "path": "spike-salescosta/03-flows.md"}, {"id": "spike-salescosta-04-risks", "title": "04 · Risks", "path": "spike-salescosta/04-risks.md"}, {"id": "spike-salescosta-05-goals-and-not-goals", "title": "05 · Goals & Not Goals", "path": "spike-salescosta/05-goals-and-not-goals.md"}, {"id": "spike-salescosta-06-visual-layout", "title": "06 · Visual Layout", "path": "spike-salescosta/06-visual-layout.md"}, {"id": "spike-salescosta-07-tasks", "title": "07 · Tasks & Roadmap", "path": "spike-salescosta/07-tasks.md"}]}];
+const NAV = [{"section": "Documentação do Spike", "items": [{"id": "spike-salescosta-01-overview", "title": "01 · Overview", "path": "spike-salescosta/01-overview.md"}, {"id": "spike-salescosta-02-model", "title": "02 · Model", "path": "spike-salescosta/02-model.md"}, {"id": "spike-salescosta-03-flows", "title": "03 · Flows", "path": "spike-salescosta/03-flows.md"}, {"id": "spike-salescosta-04-risks", "title": "04 · Risks", "path": "spike-salescosta/04-risks.md"}, {"id": "spike-salescosta-05-goals-and-not-goals", "title": "05 · Goals & Not Goals", "path": "spike-salescosta/05-goals-and-not-goals.md"}, {"id": "spike-salescosta-06-visual-layout", "title": "06 · Visual Layout", "path": "spike-salescosta/06-visual-layout.md"}, {"id": "spike-salescosta-07-tasks", "title": "07 · Tasks & Roadmap", "path": "spike-salescosta/07-tasks.md"}]}, {"section": "PRDs · Requisitos de Produto", "items": [{"id": "spike-salescosta-prds-us-01-hero-banner", "title": "PRD · US-01 Hero Banner", "path": "spike-salescosta/PRDs/US-01-hero-banner.md"}, {"id": "spike-salescosta-prds-us-02-comunicado-ao-mercado", "title": "PRD · US-02 Comunicado ao Mercado", "path": "spike-salescosta/PRDs/US-02-comunicado-ao-mercado.md"}, {"id": "spike-salescosta-prds-us-03-sobre-o-escritorio", "title": "PRD · US-03 Sobre o Escritório", "path": "spike-salescosta/PRDs/US-03-sobre-o-escritorio.md"}, {"id": "spike-salescosta-prds-us-04-areas-de-atuacao", "title": "PRD · US-04 Áreas de Atuação", "path": "spike-salescosta/PRDs/US-04-areas-de-atuacao.md"}, {"id": "spike-salescosta-prds-us-05-diferenciais-atendimento", "title": "PRD · US-05 Por Que Sales Costa", "path": "spike-salescosta/PRDs/US-05-diferenciais-atendimento.md"}, {"id": "spike-salescosta-prds-us-06-em-numeros", "title": "PRD · US-06 Em Números", "path": "spike-salescosta/PRDs/US-06-em-numeros.md"}, {"id": "spike-salescosta-prds-us-07-depoimentos-prova-social", "title": "PRD · US-07 Depoimentos", "path": "spike-salescosta/PRDs/US-07-depoimentos-prova-social.md"}, {"id": "spike-salescosta-prds-us-08-nossa-equipe-socios", "title": "PRD · US-08 Nossa Equipe", "path": "spike-salescosta/PRDs/US-08-nossa-equipe-socios.md"}, {"id": "spike-salescosta-prds-us-09-fale-conosco-formulario", "title": "PRD · US-09 Fale Conosco", "path": "spike-salescosta/PRDs/US-09-fale-conosco-formulario.md"}, {"id": "spike-salescosta-prds-us-10-rodape-institucional", "title": "PRD · US-10 Rodapé Institucional", "path": "spike-salescosta/PRDs/US-10-rodape-institucional.md"}]}];
 const FLAT = NAV.flatMap(s => s.items);
 const navEl = document.getElementById('nav');
 NAV.forEach(s => {
