@@ -8,7 +8,7 @@
 
 ## 1. Objetivos do Projeto (Goals)
 
-O escopo contemplado nesta solução visa à implementação fiel do layout oficial ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png)), com a seguinte prioridade estrutural:
+O escopo contemplado nesta solução visa à implementação fiel do layout oficial ([sales-costa-layout1.png](../images/sales-costa-layout1.png)), com a seguinte prioridade estrutural:
 
 - [x] **Responsividade Universal e Adaptabilidade sem Quebra:** A landing page DEVE ser totalmente responsiva e utilizável em TODOS os tipos de dispositivos (smartphones de 320px, phablets, tablets, laptops, monitores 4K e dobráveis) sem nenhum tipo de quebra de layout, sobreposição de texto ou rolagem horizontal indesejada (`overflow-x: hidden`).
 - [x] **Fidelidade Visual 1:1 aos 10 Componentes:** Aplicação estrita do esquema cromático oficial (`#404347` Dark, `#AA9B8F` Taupe, `#E4FF8F` Lima, `#F8F6F4` Off-White e `#FFFFFF` Branco).

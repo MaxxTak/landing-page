@@ -45,7 +45,7 @@ Desenvolvimento de uma seção em ambiente Dark Charcoal (`#404347`), com eyebro
 
 ## 5. Handoff de Design
 
-- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Layout de Referência:** [sales-costa-layout1.png](../../images/sales-costa-layout1.png)
 - **Componente Visual:** `images/components/05_diferenciais.png`
 - **Esquema de Cores:** Fundo Dark `#404347`, Eyebrow Lima `#E4FF8F`, H2 Branco `#FFFFFF`.
 - **Responsividade:** 4 colunas no desktop; 2x2 no tablet; 1 coluna empilhada no mobile (< 768px).

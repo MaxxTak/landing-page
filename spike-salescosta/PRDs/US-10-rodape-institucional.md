@@ -41,7 +41,7 @@ Desenvolvimento do rodapé institucional em fundo Dark `#2B2D30`, posicionando a
 
 ## 5. Handoff de Design
 
-- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Layout de Referência:** [sales-costa-layout1.png](../../images/sales-costa-layout1.png)
 - **Componente Visual:** `images/components/10_rodape.png`
 - **Esquema de Cores:** Fundo Dark Charcoal `#2B2D30`, Marca e Links em tom Taupe/Branco.
 - **Responsividade:** Alinhado horizontalmente no desktop; alinhado verticalmente no mobile (< 768px) com alvos de clique táteis $\ge 44\text{px}$.

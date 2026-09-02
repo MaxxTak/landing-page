@@ -42,7 +42,7 @@ Desenvolvimento da **Hero Section** institucional em fundo dark (`#484B4F` / `#4
 
 ## 5. Handoff de Design
 
-- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Layout de Referência:** [sales-costa-layout1.png](../../images/sales-costa-layout1.png)
 - **Componente Visual:** `images/components/01_navbar_hero.png`
 - **Esquema de Cores:** Fundo Dark Charcoal `#404347`, Eyebrow Taupe `#AA9B8F`, Texto Branco `#FFFFFF`.
 - **Tipografia:** Eyebrow `DM Sans 500` (12px, `letter-spacing: 4px`), H1 `DM Sans` / `Cormorant Garamond` (`font-size: clamp(2rem, 5vw, 4rem)`).

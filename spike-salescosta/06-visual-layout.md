@@ -1,336 +1,146 @@
-# 06. Visual Layout · Decomposição de Componentes, Design Oficial & Diretrizes de Responsividade
+# 06. Visual Layout · Decomposição de Componentes (Desktop & Mobile)
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
-> **Data:** 2026-09-01  
-> **Fonte das Imagens:** Extraído diretamente de [images/sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png)  
-> **Garantia Estrutural:** Matriz de Adaptabilidade para SmartPhones (320px–479px), Tablets (480px–1023px) e Desktops (>= 1024px) sem Quebra de Layout
+> **Data:** 2026-09-02  
+> **Fontes das Imagens:**  
+> - **Layout Desktop (1658x6400):** [images/sales-costa-layout1.png](../images/sales-costa-layout1.png)  
+> - **Layout Mobile (420x10080):** [images/sales-costa-layout1-mobi.png](../images/sales-costa-layout1-mobi.png)  
+> **Garantia de Fidelidade:** Mapeamento de precisão 1:1 entre a versão Desktop e Mobile para cada um dos 10 componentes visuais recortados.
 
 ---
 
-## 1. Visão Geral do Layout Oficial Completo
+## 1. Visão Geral dos Layouts Oficiais (Desktop & Mobile)
 
-Abaixo apresenta-se o layout contínuo projetado para a landing page do Sales Costa Advogados:
+Abaixo apresentam-se os layouts completos de referência para Desktop e Dispositivos Móveis:
 
-![Layout Completo da Landing Page](../images/sales-costa-layout-previa.png)
+| Layout Desktop Oficial (1658px) | Layout Mobile Oficial (420px) |
+|:---:|:---:|
+| ![Layout Desktop](../images/sales-costa-layout1.png) | ![Layout Mobile](../images/sales-costa-layout1-mobi.png) |
 
 ---
 
-## 2. Decomposição dos 10 Componentes e Ajustes de Responsividade
+## 2. Decomposição Par-a-Par dos 10 Componentes Visuais (Corrigida)
 
-Abaixo estão detalhados cada um dos **10 componentes visuais** extraídos do layout oficial, acompanhados de suas **regras estritas de responsividade por tipo de tela**:
+Abaixo estão apresentados os **10 componentes visuais** com seus recortes exatos recém-ajustados a partir do layout mobile ([images/sales-costa-layout1-mobi.png](../images/sales-costa-layout1-mobi.png)):
 
 ---
 
 ### Componente 1: Navbar & Hero Banner
 
-![Componente 1 - Navbar & Hero Banner](../images/components/01_navbar_hero.png)
+| Desktop (01_navbar_hero.png) | Mobile (01_navbar_hero_mobile.png) |
+|:---:|:---:|
+| ![Componente 1 Desktop](../images/components/01_navbar_hero.png) | ![Componente 1 Mobile](../images/components/mobile/01_navbar_hero_mobile.png) |
 
-#### Especificações Visuais & Layout Desktop (>= 1024px):
-- **Background:** Dark Charcoal (`#484B4F` / `#404347`).
-- **Navbar Layout:** Logo `SALES COSTA` à esquerda e 6 links de ancoragem horizontais à direita (`Comunicado`, `Sobre`, `Áreas`, `Diferenciais`, `Equipe`, `Fale conosco`).
-- **Hero Typography:** Eyebrow `SALES COSTA ADVOGADOS` (Taupe `#AA9B8F`, 12px, `letter-spacing: 4px`), H1 *"Junto nas decisões que constroem o futuro."* (64px branca) e Subtítulo (18px). CTAs alinhados em linha.
-
-#### 📱 Ajustes de Responsividade (Mobile & Tablet < 1024px):
-- **Navbar:** Transforma-se em botão hambúrguer ($\ge 44\times 44\text{px}$) com drawer lateral deslizante (*slide-out*).
-- **Tipografia Fluida:** H1 ajusta-se via `font-size: clamp(2rem, 5vw, 4rem)` (evita estouro de caixa).
-- **CTAs:** Dispostos em 1 coluna empilhada no mobile (`width: 100%`), garantindo facilidade de toque.
-- **Scroll Indicator:** Centralizado na base com espaçamento relativo `margin-top: clamp(2rem, 4vh, 4rem)`.
-
-```
-[ WIREFRAME MOBILE — COMPONENTE 1 ]
-+-----------------------------------+
-| LOGO [SALES COSTA]           [≡]  | (Hambúrguer >= 44px)
-+-----------------------------------+
-|                                   |
-|       SALES COSTA ADVOGADOS       |
-|                                   |
-|   Junto nas decisões que          | (H1 fluido clamp)
-|   constroem o futuro.             |
-|                                   |
-|  Advocacia estratégica e...       |
-|                                   |
-|  [ CONHEÇA O ESCRITÓRIO -> ]      | (CTA Full Width)
-|  [ FALE CONOSCO -> ]              | (CTA Full Width)
-|                                   |
-|                (o)                |
-+-----------------------------------+
-```
+#### Especificações de Comparação & Responsividade:
+- **Navbar Desktop:** Logo `SALES COSTA` à esquerda e 6 links de ancoragem horizontais à direita.
+- **Navbar Mobile:** Logo `SALES COSTA` à esquerda e botão hambúrguer ($\ge 44\times 44\text{px}$) à direita com drawer lateral.
+- **Hero Headline:** H1 *"Junto nas decisões que constroem o futuro."* redimensiona suavemente via `font-size: clamp(2rem, 5vw, 4rem)` (64px no desktop, 32px no mobile).
+- **Botões CTA:** Dispostos lado a lado no desktop; empilhados em 1 coluna full width no mobile (`width: 100%`).
 
 ---
 
 ### Componente 2: Comunicado ao Mercado
 
-![Componente 2 - Comunicado ao Mercado](../images/components/02_comunicado.png)
+| Desktop (02_comunicado.png) | Mobile (02_comunicado_mobile.png) |
+|:---:|:---:|
+| ![Componente 2 Desktop](../images/components/02_comunicado.png) | ![Componente 2 Mobile](../images/components/mobile/02_comunicado_mobile.png) |
 
-#### Especificações Visuais & Layout Desktop (>= 1024px):
-- **Background:** Dark `#404347` com marca d'água "S" à direita (opacidade 5%).
-- **Conteúdo:** Container centralizado de max-width `860px`, Eyebrow em Lima `#E4FF8F` (`COMUNICADO AO MERCADO`), H2 da fusão entre Dilson Higasi Sales e Rodrigo Moreira da Costa e 5 parágrafos explicativos.
-
-#### 📱 Ajustes de Responsividade (Mobile & Tablet < 1024px):
-- **Largura do Container:** Ocupa `100%` da largura da tela com padding lateral de `20px`.
-- **Marca d'água:** Posiciona-se como overlay centralizado em background sem sobrepor ou prejudicar o contraste do texto (`z-index: 0`).
-- **Tamanho de Fonte:** Parágrafos ajustados para `15px`/`16px` com `line-height: 1.65` para leitura tátil confortável.
-
-```
-[ WIREFRAME MOBILE — COMPONENTE 2 ]
-+-----------------------------------+
-| COMUNICADO AO MERCADO             | (Lima #E4FF8F)
-| Dilson Higasi Sales e Rodrigo     |
-| Moreira da Costa se unem...       | (H2 24px)
-|                                   |
-| O mercado jurídico ganha uma      |
-| nova banca desenvolvida...        | (Parágrafo 15px)
-|                                   |
-| "A ideia surgiu de uma            |
-| constatação simples...", afirma   | (Citação destacada)
-| Dilson Higasi Sales.              |
-+-----------------------------------+
-```
+#### Especificações de Comparação & Responsividade:
+- **Desktop:** Container max-width 860px centralizado com a marca d'água "S" decorativa posicionada à direita no plano de fundo.
+- **Mobile:** Container 100% de largura com padding lateral de 20px; marca d'água atua como overlay sutil no fundo (`z-index: 0`) sem comprometer a leitura.
 
 ---
 
 ### Componente 3: Sobre o Escritório
 
-![Componente 3 - Sobre o Escritório](../images/components/03_sobre.png)
+| Desktop (03_sobre.png) | Mobile (03_sobre_mobile.png) |
+|:---:|:---:|
+| ![Componente 3 Desktop](../images/components/03_sobre.png) | ![Componente 3 Mobile](../images/components/mobile/03_sobre_mobile.png) |
 
-#### Especificações Visuais & Layout Desktop (>= 1024px):
-- **Background:** Off-White Quente (`#F8F6F4`).
-- **Layout:** Grid de 2 colunas (40% H2 / 60% texto & pilares).
-
-#### 📱 Ajustes de Responsividade (Mobile < 768px):
-- **Migração de Grid:** Converte-se de 2 colunas para **1 coluna vertical empilhada**.
-- **Ordem de Leitura:** H2 no topo, seguido dos 3 parágrafos e dos 3 pilares (*Comprometimento*, *Confidencialidade*, *Excelência*).
-- **Pilares:** Separados por linhas horizontais sutis em Taupe (`1px solid #D9D3CE`).
-
-```
-[ WIREFRAME MOBILE — COMPONENTE 3 ]
-+-----------------------------------+
-| Uma trajetória construída sobre   |
-| confiança e critério técnico.     | (H2 26px)
-|-----------------------------------|
-| Há mais de quinze anos, o Sales   |
-| Costa Advogados acompanha...      |
-|-----------------------------------|
-| Comprometimento                   |
-| Disponibilidade real com cada...  |
-|-----------------------------------|
-| Confidencialidade                 |
-| Sigilo absoluto sobre...          |
-|-----------------------------------|
-| Excelência                        |
-| Rigor técnico em cada peça...     |
-+-----------------------------------+
-```
+#### Especificações de Comparação & Responsividade:
+- **Desktop:** Layout em 2 colunas assimétricas (40% H2 / 60% texto e pilares com divisores verticais).
+- **Mobile:** Migração para **1 coluna empilhada**; pilares (*Comprometimento*, *Confidencialidade*, *Excelência*) separados por linhas divisórias horizontais.
 
 ---
 
 ### Componente 4: Áreas de Atuação (Grid de Especialidades)
 
-![Componente 4 - Áreas de Atuação](../images/components/04_areas.png)
+| Desktop (04_areas.png) | Mobile (04_areas_mobile.png) |
+|:---:|:---:|
+| ![Componente 4 Desktop](../images/components/04_areas.png) | ![Componente 4 Mobile](../images/components/mobile/04_areas_mobile.png) |
 
-#### Especificações Visuais & Layout Desktop (>= 1024px):
-- **Background:** Branco Puro (`#FFFFFF`).
-- **Grid Desktop:** 2 Linhas × 3 Colunas (6 Cards).
-
-#### 📱 Ajustes de Responsividade (Mobile & Tablet < 1024px):
-- **Tablet (768px – 1023px):** Converte-se para **Grid 2 Colunas × 3 Linhas**.
-- **Mobile (< 768px):** Converte-se para **1 Coluna x 6 Cards empilhados** (`grid-template-columns: 1fr`).
-- **Alvos de Clique:** Links *"Saiba mais →"* possuem padding vertical expandido ($\ge 44\text{px}$) para toque seguro.
-- **Card Hover:** Borda Taupe ativa no foco tátil (*touch/active state*).
-
-```
-[ WIREFRAME MOBILE — COMPONENTE 4 ]
-+-----------------------------------+
-| ÁREAS DE ATUAÇÃO                  |
-| Especialização que cobre cada...  |
-|                                   |
-| +-------------------------------+ |
-| | [Ícone] Direito Empresarial   | |
-| | Estruturação societária...    | |
-| | Saiba mais ->                 | | (>= 44px)
-| +-------------------------------+ |
-| +-------------------------------+ |
-| | [Ícone] Direito Tributário    | |
-| | Planejamento fiscal...        | |
-| | Saiba mais ->                 | |
-| +-------------------------------+ |
-| (Demais 4 cards empilhados...)    |
-+-----------------------------------+
-```
+#### Especificações de Comparação & Responsividade:
+- **Desktop:** Grid de 3 colunas x 2 linhas (6 cards).
+- **Mobile:** Grid de 1 coluna x 6 cards empilhados (`grid-template-columns: 1fr`) com botões *"Saiba mais →"* expansivos e táteis ($\ge 44\text{px}$).
 
 ---
 
 ### Componente 5: Por Que Sales Costa (Diferenciais)
 
-![Componente 5 - Por Que Sales Costa](../images/components/05_diferenciais.png)
+| Desktop (05_diferenciais.png) | Mobile (05_diferenciais_mobile.png) |
+|:---:|:---:|
+| ![Componente 5 Desktop](../images/components/05_diferenciais.png) | ![Componente 5 Mobile](../images/components/mobile/05_diferenciais_mobile.png) |
 
-#### Especificações Visuais & Layout Desktop (>= 1024px):
-- **Background:** Dark Charcoal (`#404347`).
-- **Layout:** 4 Colunas horizontais alinhadas.
-
-#### 📱 Ajustes de Responsividade (Mobile & Tablet < 1024px):
-- **Tablet (768px – 1023px):** Reorganiza-se em **Grid 2x2**.
-- **Mobile (< 768px):** Empilha-se em **1 Coluna vertical** (4 cartões empilhados com padding interno de `24px`).
-
-```
-[ WIREFRAME MOBILE — COMPONENTE 5 ]
-+-----------------------------------+
-| POR QUE SALES COSTA               |
-| O diferencial está em como...     |
-|                                   |
-| ① Atendimento personalizado       |
-| Cada cliente é acompanhado...     |
-|                                   |
-| ② Equipe especializada            |
-| Advogados com formação...         |
-|                                   |
-| ③ Resultados comprovados          |
-| Histórico consistente de êxito... |
-|                                   |
-| ④ Ética & transparência           |
-| Comunicação clara sobre riscos... |
-+-----------------------------------+
-```
+#### Especificações de Comparação & Responsividade:
+- **Desktop:** 4 colunas horizontais em ambiente Dark `#404347`.
+- **Mobile:** 4 cartões empilhados em 1 coluna vertical com padding de 24px entre blocos.
 
 ---
 
 ### Componente 6: Em Números (Métricas)
 
-![Componente 6 - Em Números](../images/components/06_numeros.png)
+| Desktop (06_numeros.png) | Mobile (06_numeros_mobile.png) |
+|:---:|:---:|
+| ![Componente 6 Desktop](../images/components/06_numeros.png) | ![Componente 6 Mobile](../images/components/mobile/06_numeros_mobile.png) |
 
-#### Especificações Visuais & Layout Desktop (>= 1024px):
-- **Background:** Off-White Quente (`#F8F6F4`).
-- **Layout:** 4 Colunas alinhadas com divisores verticais.
-
-#### 📱 Ajustes de Responsividade (Mobile < 768px):
-- **Reorganização para Mobile:** Disposto em **Grid 2x2** (2 números por linha).
-- **Divisores:** Divisores verticais ocultados no mobile para otimizar espaço tátil.
-- **Tamanho dos Números:** Ajuste fluido via `font-size: clamp(2.5rem, 8vw, 4rem)`.
-
-```
-[ WIREFRAME MOBILE — COMPONENTE 6 ]
-+-----------------------------------+
-|     15            500             |
-|  + ANOS DE     + CLIENTES         |
-| EXPERIÊNCIA    ATENDIDOS          |
-|-----------------------------------|
-|     300            5              |
-|  + CASOS       ÁREAS DE           |
-| CONCLUÍDOS    ESPECIALIZAÇÃO      |
-+-----------------------------------+
-```
+#### Especificações de Comparação & Responsividade:
+- **Desktop:** 4 colunas em linha com divisores verticais finos em fundo Off-White `#F8F6F4`.
+- **Mobile:** Reorganização para **Grid 2x2** (2 números por linha) com divisores verticais ocultados para ampliar a legibilidade tátil.
 
 ---
 
 ### Componente 7: Depoimentos
 
-![Componente 7 - Depoimentos](../images/components/07_depoimentos.png)
+| Desktop (07_depoimentos.png) | Mobile (07_depoimentos_mobile.png) |
+|:---:|:---:|
+| ![Componente 7 Desktop](../images/components/07_depoimentos.png) | ![Componente 7 Mobile](../images/components/mobile/07_depoimentos_mobile.png) |
 
-#### Especificações Visuais & Layout Desktop (>= 1024px):
-- **Background:** Off-White Quente (`#F8F6F4`).
-- **Anatomy:** Card de depoimento centralizado com aspas e dots de controle.
-
-#### 📱 Ajustes de Responsividade (Mobile < 768px):
-- **Gesto Touch Swipe:** Suporte a deslizamento tátil (*swipe esquerdo/direito*) via `touchstart` e `touchend`.
-- **Dots de Navegação:** Pontos de controle expandidos para alvo de toque ($\ge 44\times 44\text{px}$).
-- **Texto da Citação:** Fonte ajustada para `18px` em dispositivos móveis.
+#### Especificações de Comparação & Responsividade:
+- **Desktop:** Card de citação centralizado com aspas e dots de navegação.
+- **Mobile:** Card 100% de largura com suporte a gestos laterais de deslizamento (*touch swipe*) e dots de controle ampliados ($\ge 44\times 44\text{px}$).
 
 ---
 
 ### Componente 8: Nossa Equipe (Cards dos Sócios)
 
-![Componente 8 - Nossa Equipe](../images/components/08_equipe.png)
+| Desktop (08_equipe.png) | Mobile (08_equipe_mobile.png) |
+|:---:|:---:|
+| ![Componente 8 Desktop](../images/components/08_equipe.png) | ![Componente 8 Mobile](../images/components/mobile/08_equipe_mobile.png) |
 
-#### Especificações Visuais & Layout Desktop (>= 1024px):
-- **Background:** Branco Puro (`#FFFFFF`).
-- **Layout:** 4 Cards de Sócios em 1 linha horizontal.
-
-#### 📱 Ajustes de Responsividade (Mobile & Tablet < 1024px):
-- **Tablet (768px – 1023px):** Reorganiza-se em **Grid 2x2**.
-- **Mobile (< 768px):** Empilha-se em **1 Coluna vertical (1 card por linha)**.
-- **Imagens/Avatares:** Mantêm proporção perfeita `aspect-ratio: 1/1` sem achatamento.
-
-```
-[ WIREFRAME MOBILE — COMPONENTE 8 ]
-+-----------------------------------+
-| NOSSA EQUIPE                      |
-| Os sócios responsáveis por...     |
-|                                   |
-| +-------------------------------+ |
-| |             AS                | | (Avatar 1:1)
-| +-------------------------------+ |
-| Antônio Sales                     |
-| Sócio-fundador · Direito Empresar |
-| OAB/SP 000.000                    |
-| (Demais 3 sócios empilhados...)   |
-+-----------------------------------+
-```
+#### Especificações de Comparação & Responsividade:
+- **Desktop:** 4 cards de sócios (*AS*, *CC*, *FR*, *LM*) dispostos em linha.
+- **Mobile:** 1 card por linha empilhado verticalmente; avatares travados em proporção quadrada `aspect-ratio: 1/1`.
 
 ---
 
 ### Componente 9: Fale Conosco (Formulário & Dados)
 
-![Componente 9 - Fale Conosco](../images/components/09_contato.png)
+| Desktop (09_contato.png) | Mobile (09_contato_mobile.png) |
+|:---:|:---:|
+| ![Componente 9 Desktop](../images/components/09_contato.png) | ![Componente 9 Mobile](../images/components/mobile/09_contato_mobile.png) |
 
-#### Especificações Visuais & Layout Desktop (>= 1024px):
-- **Background:** Dark Charcoal (`#404347`).
-- **Layout:** 2 Colunas (Dados à esquerda / Formulário à direita).
-
-#### 📱 Ajustes de Responsividade (Mobile & Tablet < 1024px):
-- **Empilhamento Vertical:** Coluna de dados de contato posiciona-se **no topo**, e o formulário fica **logo abaixo**.
-- **Prevenção de Zoom iOS:** Inputs e select configurados com `font-size: 16px` para evitar zoom automático em telefones Apple.
-- **Botão de Envio:** Ocupa `100%` da largura da tela no mobile com altura de `52px`.
-
-```
-[ WIREFRAME MOBILE — COMPONENTE 9 ]
-+-----------------------------------+
-| FALE CONOSCO                      |
-| Entre em contato com nossos...    |
-|                                   |
-| ENDEREÇO: Av. Paulista, 1000...   |
-| TELEFONE: +55 (11) 3000-0000      |
-| E-MAIL: contato@salescosta.com.br |
-|-----------------------------------|
-| NOME COMPLETO                     |
-| [_______________________________] |
-| E-MAIL CORPORATIVO                |
-| [_______________________________] |
-| TELEFONE                          |
-| [_______________________________] |
-| ÁREA DE INTERESSE                 |
-| [Selecione ------------------- v] |
-| MENSAGEM                          |
-| [                               ] |
-| [ ENVIAR MENSAGEM -> ] (Full Width)|
-+-----------------------------------+
-```
+#### Especificações de Comparação & Responsividade:
+- **Desktop:** 2 colunas lado a lado (Dados de Contato à esquerda / Formulário à direita).
+- **Mobile:** Empilhamento vertical (Dados de contato no topo / Formulário abaixo); inputs configurados com `font-size: 16px` para evitar o zoom automático no Safari iOS.
 
 ---
 
 ### Componente 10: Rodapé Institucional
 
-![Componente 10 - Rodapé](../images/components/10_rodape.png)
+| Desktop (10_rodape.png) | Mobile (10_rodape_mobile.png) |
+|:---:|:---:|
+| ![Componente 10 Desktop](../images/components/10_rodape.png) | ![Componente 10 Mobile](../images/components/mobile/10_rodape_mobile.png) |
 
-#### Especificações Visuais & Layout Desktop (>= 1024px):
-- **Background:** Dark `#2B2D30`.
-- **Layout:** Logo à esquerda e links horizontais à direita.
-
-#### 📱 Ajustes de Responsividade (Mobile < 768px):
-- **Alinhamento Vertical:** Logo centralizado no topo e links empilhados verticalmente com alvos de toque amplos.
-
----
-
-## 3. Matriz Consolidada de Breakpoints
-
-| Componente | Mobile (320px – 479px) | Tablet (480px – 1023px) | Desktop (>= 1024px) |
-|---|---|---|---|
-| **01. Navbar & Hero** | Hambúrguer + Drawer; CTAs 1 col | Hambúrguer + Drawer; CTAs em linha | 6 Links Horizontais + CTAs em linha |
-| **02. Comunicado** | 1 Coluna 100%; Marca d'água overlay | 1 Coluna max 768px | Container max 860px + Marca d'água "S" |
-| **03. Sobre** | 1 Coluna empilhada | 2 Colunas (40/60) | 2 Colunas (40/60) com divisores |
-| **04. Áreas Grid** | Grid 1 Coluna (1x6 cards) | Grid 2 Colunas (2x3 cards) | Grid 3 Colunas (3x2 cards) |
-| **05. Diferenciais** | 1 Coluna empilhada | Grid 2x2 | 4 Colunas horizontais |
-| **06. Números** | Grid 2x2 sem divisores | Grid 2x2 com divisores | 4 Colunas em linha |
-| **07. Depoimentos** | 1 Card com Touch Swipe | 1 Card com Dots $\ge 44\text{px}$ | 1 Card centralizado |
-| **08. Nossa Equipe** | 1 Card por linha | Grid 2x2 | 4 Cards em linha |
-| **09. Fale Conosco** | 1 Coluna empilhada; Form Full Width | 1 Coluna empilhada | 2 Colunas (Dados / Form) |
-| **10. Rodapé** | Empilhado verticalmente | Logo à esq / Links à dir | Logo à esq / Links em linha à dir |
+#### Especificações de Comparação & Responsividade:
+- **Desktop:** Logo `SALES COSTA` à esquerda e links institucionais horizontais à direita em fundo Dark `#2B2D30`.
+- **Mobile:** Alinhamento vertical (Logo centralizado no topo e links dispostos em lista com área tátil $\ge 44\text{px}$).

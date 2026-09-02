@@ -47,7 +47,7 @@ Desenvolvimento de um grid de cards responsivo (3 colunas no desktop, 2 no table
 
 ## 5. Handoff de Design
 
-- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Layout de Referência:** [sales-costa-layout1.png](../../images/sales-costa-layout1.png)
 - **Componente Visual:** `images/components/04_areas.png`
 - **Esquema de Cores:** Fundo Branco `#FFFFFF`, Ícones em tom Taupe `#AA9B8F`, Borda de Hover em Taupe.
 - **Responsividade:** Desktop `repeat(3, 1fr)`; Tablet `repeat(2, 1fr)`; Mobile `1fr` empilhado. Links *Saiba mais →* com alvo tátil $\ge 44\text{px}$.

@@ -45,7 +45,7 @@ Desenvolvimento da seção *"Nossa Equipe"* em fundo Branco Puro (`#FFFFFF`), co
 
 ## 5. Handoff de Design
 
-- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Layout de Referência:** [sales-costa-layout1.png](../../images/sales-costa-layout1.png)
 - **Componente Visual:** `images/components/08_equipe.png`
 - **Esquema de Cores:** Fundo Branco `#FFFFFF`, Avatares em fundo Off-White `#F8F6F4` com iniciais em Taupe `#AA9B8F`.
 - **Responsividade:** 4 colunas horizontais no desktop; Grid 2x2 no tablet; 1 coluna empilhada no mobile (< 768px). Proporção do avatar travada em `aspect-ratio: 1/1`.

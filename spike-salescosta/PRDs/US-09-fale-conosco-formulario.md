@@ -43,7 +43,7 @@ Desenvolvimento da seção em fundo Dark Charcoal (`#404347`), com layout em 2 c
 
 ## 5. Handoff de Design
 
-- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Layout de Referência:** [sales-costa-layout1.png](../../images/sales-costa-layout1.png)
 - **Componente Visual:** `images/components/09_contato.png`
 - **Esquema de Cores:** Fundo Dark `#404347`, Inputs transparentes com `border-bottom: 1px solid rgba(255,255,255,0.4)`, Botão Taupe `#AA9B8F`.
 - **Prevenção de Zoom iOS:** Inputs e select configurados obrigatoriamente com `font-size: 16px` para impedir o zoom automático de tela no iOS Safari.

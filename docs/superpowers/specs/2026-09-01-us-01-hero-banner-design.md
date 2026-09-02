@@ -2,7 +2,7 @@
 
 > **Feature:** Hero Banner & Proposta de Valor  
 > **PRD de Origem:** [US-01-hero-banner.md](../../../spike-salescosta/PRDs/US-01-hero-banner.md)  
-> **Layout de Referência:** [sales-costa-layout-previa.png](../../../images/sales-costa-layout-previa.png)  
+> **Layout de Referência:** [sales-costa-layout1.png](../../../images/sales-costa-layout1.png)  
 > **Componente Visual:** `images/components/01_navbar_hero.png`  
 > **Data:** 2026-09-01  
 > **Status:** Aprovado pelo Usuário

@@ -2,13 +2,13 @@
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
 > **Data:** 2026-09-01  
-> **Status:** Atualizado conforme Layout Oficial ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png))
+> **Status:** Atualizado conforme Layout Oficial ([sales-costa-layout1.png](../images/sales-costa-layout1.png))
 
 ---
 
 ## 1. Sistema de Cores e Identidade Cromática
 
-O esquema de cores oficial foi mapeado a partir da prévia visual do layout ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png)):
+O esquema de cores oficial foi mapeado a partir da prévia visual do layout ([sales-costa-layout1.png](../images/sales-costa-layout1.png)):
 
 | Nome da Cor | Hexadecimal | RGB | Função na Interface |
 |---|---|---|---|

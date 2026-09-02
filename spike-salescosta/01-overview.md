@@ -1,17 +1,17 @@
 # 01. Overview · Visão Geral e Contexto
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
-> **Data:** 2026-09-01  
-> **Status:** Atualizado conforme Layout Oficial com Diretriz Estrita de Responsividade Universal ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png))  
+> **Data:** 2026-09-02  
+> **Status:** Atualizado conforme Layouts Oficiais Desktop ([sales-costa-layout1.png](../images/sales-costa-layout1.png)) e Mobile ([sales-costa-layout1-mobi.png](../images/sales-costa-layout1-mobi.png))  
 > **Referência Metodológica:** Skill `spike-solucao`
 
 ---
 
 ## 1. Sumário Executivo
 
-Este documento estabelece o **Overview** (Visão Geral e Contexto) da solução proposta para a **Landing Page Institucional do escritório Sales Costa Advogados**, atualizado com base no **design oficial de referência** ([images/sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png)).
+Este documento estabelece o **Overview** (Visão Geral e Contexto) da solução proposta para a **Landing Page Institucional do escritório Sales Costa Advogados**, atualizado com base nos **designs oficiais de referência para Desktop e Mobile** ([images/sales-costa-layout1.png](../images/sales-costa-layout1.png) e [images/sales-costa-layout1-mobi.png](../images/sales-costa-layout1-mobi.png)).
 
-O objetivo principal desta spike é avaliar, definir e validar a arquitetura visual, a estrutura exata das 11 seções, o sistema de design tokens, a stack técnica e a **garantira incondicional de responsividade universal**, assegurando que a aplicação seja totalmente utilizável em **todos os tipos de dispositivos** (smartphones de 320px, phablets, tablets, laptops, monitores 4K e telas dobráveis) **sem qualquer quebra de layout**.
+O objetivo principal desta spike é avaliar, definir e validar a arquitetura visual, a estrutura exata das 11 seções, o sistema de design tokens, a stack técnica e a **garantia incondicional de responsividade universal**, assegurando que a aplicação seja totalmente utilizável em **todos os tipos de dispositivos** (smartphones de 320px, phablets, tablets, laptops, monitores 4K e telas dobráveis) **sem qualquer quebra de layout**.
 
 ---
 
@@ -28,9 +28,9 @@ A arquitetura da landing page adota a abordagem **Mobile-First** com adaptação
 
 ---
 
-## 3. Estrutura Oficial de Seções da Landing Page
+## 3. Estrutura Oficial de Seções da Landing Page (Desktop & Mobile)
 
-A partir do layout de referência ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png)), a landing page está dividida em **11 seções navegáveis**:
+A partir dos layouts de referência ([sales-costa-layout1.png](../images/sales-costa-layout1.png) e [sales-costa-layout1-mobi.png](../images/sales-costa-layout1-mobi.png)), a landing page está dividida em **11 seções navegáveis**:
 
 1. **Navbar Sticky:** Marca `SALES COSTA` + Links `Comunicado` | `Sobre` | `Áreas` | `Diferenciais` | `Equipe` | `Fale conosco` (Menu drawer no mobile).
 2. **Hero Banner:** Headline *"Junto nas decisões que constroem o futuro."* + Subtítulo + CTAs *"Conheça o escritório →"* e *"Fale conosco →"* + Indicador de scroll.
@@ -48,4 +48,4 @@ A partir do layout de referência ([sales-costa-layout-previa.png](../images/sal
 
 ## 4. Decisão de Stack Técnica
 
-Adotou-se **HTML5 Semântico / Vanilla CSS3 / Vanilla JS (ES6+)**. A escolha garante 100% de alinhamento com a alta performance e fidelidade visual do layout oficial, sem dependência de frameworks ou ferramentas pesadas de build.
+Adotou-se **HTML5 Semântico / Vanilla CSS3 / Vanilla JS (ES6+)**. A escolha garante 100% de alinhamento com a alta performance e fidelidade visual dos layouts oficiais, sem dependência de frameworks ou ferramentas pesadas de build.

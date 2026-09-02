@@ -45,7 +45,7 @@ Desenvolvimento de um banner em fundo Off-White Quente (`#F8F6F4`) disposta em 4
 
 ## 5. Handoff de Design
 
-- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Layout de Referência:** [sales-costa-layout1.png](../../images/sales-costa-layout1.png)
 - **Componente Visual:** `images/components/06_numeros.png`
 - **Esquema de Cores:** Fundo Off-White `#F8F6F4`, Números Dark `#2B2B2B`, Labels em caixa alta com `letter-spacing: 2px`.
 - **Responsividade:** 4 colunas em linha no desktop; Grid 2x2 no mobile sem divisores verticais. Fonte ajustada via `clamp(2.5rem, 8vw, 4rem)`.

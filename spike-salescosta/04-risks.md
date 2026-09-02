@@ -2,7 +2,7 @@
 
 > **Spike de Solução:** Landing Page — Sales Costa Advogados  
 > **Data:** 2026-09-01  
-> **Status:** Atualizado conforme Layout Oficial ([sales-costa-layout-previa.png](../images/sales-costa-layout-previa.png))
+> **Status:** Atualizado conforme Layout Oficial ([sales-costa-layout1.png](../images/sales-costa-layout1.png))
 
 ---
 

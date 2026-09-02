@@ -10,7 +10,7 @@
 
 Toda a documentação técnica, requisitos de produto e tarefas de desenvolvimento seguem 100% o layout oficial da landing page:
 
-![Layout Oficial Sales Costa Advogados](images/sales-costa-layout-previa.png)
+![Layout Oficial Sales Costa Advogados](images/sales-costa-layout1.png)
 
 ---
 

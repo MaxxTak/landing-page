@@ -41,7 +41,7 @@ Desenvolvimento de uma seção institucional em fundo dark (`#404347`), destacan
 
 ## 5. Handoff de Design
 
-- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Layout de Referência:** [sales-costa-layout1.png](../../images/sales-costa-layout1.png)
 - **Componente Visual:** `images/components/02_comunicado.png`
 - **Esquema de Cores:** Fundo Dark `#404347`, Eyebrow Lima `#E4FF8F`, Texto Cinza Claro `#D1D5DB`.
 - **Marca d'água:** Monograma "S" posicionado à direita no desktop (opacidade 5%, `z-index: 0`).

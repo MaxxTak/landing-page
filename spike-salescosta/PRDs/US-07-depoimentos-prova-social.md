@@ -41,7 +41,7 @@ Desenvolvimento de um módulo de citação em fundo Off-White Quente (`#F8F6F4`)
 
 ## 5. Handoff de Design
 
-- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Layout de Referência:** [sales-costa-layout1.png](../../images/sales-costa-layout1.png)
 - **Componente Visual:** `images/components/07_depoimentos.png`
 - **Esquema de Cores:** Fundo Off-White `#F8F6F4`, Aspas Taupe `#AA9B8F`, Citação em itálico Dark `#2B2B2B`.
 - **Responsividade:** Card centralizado; suporte a touch swipe em mobile; dots com alvo tátil $\ge 44\times 44\text{px}$.

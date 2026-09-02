@@ -41,7 +41,7 @@ Desenvolvimento da seção *"Sobre o Escritório"* em fundo Off-White Quente (`#
 
 ## 5. Handoff de Design
 
-- **Layout de Referência:** [sales-costa-layout-previa.png](../../images/sales-costa-layout-previa.png)
+- **Layout de Referência:** [sales-costa-layout1.png](../../images/sales-costa-layout1.png)
 - **Componente Visual:** `images/components/03_sobre.png`
 - **Esquema de Cores:** Fundo Off-White `#F8F6F4`, Texto Dark `#2B2B2B`, Linha Divisória Taupe `#D9D3CE`.
 - **Pilares:**
