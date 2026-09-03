@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales Costa Advogados — Advocacia estratégica e personalizada</title>
+  <meta name="description" content="Sales Costa Advogados: advocacia empresarial, tributária, trabalhista, cível, societária e compliance, com atendimento direto pelos sócios entre São Paulo e Florianópolis.">
+  <meta name="theme-color" content="#404347">
+
+  <!-- Fonte única: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       US-01 · COMPONENTE 1 — HEADER STICKY & NAV DRAWER
+       ============================================================ -->
+  <header class="header">
+    <nav class="navbar" aria-label="Navegação Principal">
+      <div class="navbar__container">
+        <a href="#hero" class="navbar__logo" aria-label="Sales Costa Advogados - Início">
+          <img class="navbar__logo-img" src="assets/logo_salescosta.png" alt="" width="520" height="44">
+        </a>
+
+        <!-- Menu Desktop -->
+        <ul class="navbar__menu" role="menubar">
+          <li role="none"><a href="#comunicado" class="navbar__link" role="menuitem">Comunicado</a></li>
+          <li role="none"><a href="#sobre" class="navbar__link" role="menuitem">Sobre</a></li>
+          <li role="none"><a href="#areas" class="navbar__link" role="menuitem">Áreas</a></li>
+          <li role="none"><a href="#diferenciais" class="navbar__link" role="menuitem">Diferenciais</a></li>
+          <li role="none"><a href="#equipe" class="navbar__link" role="menuitem">Equipe</a></li>
+          <li role="none"><a href="#contato" class="navbar__link navbar__link--cta" role="menuitem">Fale conosco</a></li>
+        </ul>
+
+        <!-- Botão Hambúrguer Mobile -->
+        <button type="button" class="navbar__hamburger" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="nav-drawer">
+          <span class="navbar__hamburger-bar"></span>
+          <span class="navbar__hamburger-bar"></span>
+          <span class="navbar__hamburger-bar"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Drawer Lateral Mobile -->
+    <aside id="nav-drawer" class="nav-drawer" aria-hidden="true">
+      <div class="nav-drawer__header">
+        <img class="nav-drawer__logo-img" src="assets/logo_salescosta.png" alt="Sales Costa Advogados" width="520" height="44">
+        <button type="button" class="nav-drawer__close" aria-label="Fechar menu de navegação">&times;</button>
+      </div>
+      <ul class="nav-drawer__menu">
+        <li><a href="#comunicado" class="nav-drawer__link">Comunicado</a></li>
+        <li><a href="#sobre" class="nav-drawer__link">Sobre</a></li>
+        <li><a href="#areas" class="nav-drawer__link">Áreas</a></li>
+        <li><a href="#diferenciais" class="nav-drawer__link">Diferenciais</a></li>
+        <li><a href="#equipe" class="nav-drawer__link">Equipe</a></li>
+        <li><a href="#contato" class="nav-drawer__link nav-drawer__link--cta">Fale conosco</a></li>
+      </ul>
+    </aside>
+  </header>
+
+  <!-- ============================================================
+       US-01 · COMPONENTE 1 — HERO BANNER
+       ============================================================ -->
+  <section id="hero" class="hero" aria-labelledby="hero-title">
+    <!-- Fundo rotativo (decorativo): tela 1 = gradiente da marca (com a marca
+         d'água "S"), tela 2 = foto São Paulo, tela 3 = foto Florianópolis.
+         Crossfade suave, giro automático a cada 4s — pausa no hover/foco e
+         congela na tela 1 com prefers-reduced-motion (ver js/main.js). -->
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__slide hero__slide--brand is-active">
+        <img class="hero__watermark" src="assets/logo_s_background.png" alt="">
+      </div>
+      <div class="hero__slide hero__slide--photo hero__slide--sp"></div>
+      <div class="hero__slide hero__slide--photo hero__slide--floripa"></div>
+    </div>
+    <div class="hero__container">
+      <div class="hero__content">
+        <span class="hero__eyebrow">SALES COSTA ADVOGADOS</span>
+        <h1 id="hero-title" class="hero__title">Junto nas decisões que constroem o futuro.</h1>
+        <p class="hero__subtitle">
+          Advocacia estratégica e personalizada, com foco em excelência técnica e resultados corporativos de alto impacto.
+        </p>
+        <div class="hero__actions">
+          <a href="#sobre" class="btn btn--outline">
+            Conheça o escritório
+            <svg class="btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contato" class="btn btn--primary">
+            Fale conosco
+            <svg class="btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Indicador de Scroll -->
+      <a href="#comunicado" class="hero__scroll-indicator" aria-label="Rolar para a próxima seção">
+        <span class="hero__scroll-dot"></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       US-02 · COMPONENTE 2 — COMUNICADO AO MERCADO
+       ============================================================ -->
+  <section id="comunicado" class="comunicado" aria-labelledby="comunicado-title">
+    <div class="comunicado__container">
+      <span class="comunicado__eyebrow">
+        <img class="comunicado__eyebrow-mark" src="assets/marcador_verde.png" alt="" width="15" height="15">
+        COMUNICADO AO MERCADO
+      </span>
+
+      <h2 id="comunicado-title" class="comunicado__title">
+        Dilson Higasi Sales e Rodrigo Moreira da Costa se unem e dão origem ao <span class="comunicado__brand">Sales Costa Advogados</span>
+      </h2>
+
+      <div class="comunicado__content">
+        <p class="comunicado__paragraph">
+          O mercado jurídico ganha uma nova banca desenvolvida para atuar nas áreas mais críticas das decisões empresariais e familiares. A Higasi Sales Advogados e Rodrigo Moreira da Costa unem suas trajetórias e expertises para celebrar o início do <span class="comunicado__brand">Sales Costa Advogados</span>.
+        </p>
+
+        <p class="comunicado__paragraph">
+          A nova banca consolida mais de uma década de atuação estratégica dos fundadores no acompanhamento de litígios de alta complexidade, consultoria tributária preventiva, reestruturações societárias e planejamento patrimonial.
+        </p>
+
+        <blockquote class="comunicado__quote">
+          <p class="comunicado__quote-text">
+            "A ideia surgiu de uma constatação simples: nossos clientes exigiam um modelo de advocacia que combinasse rigor técnico artesanal com agilidade e visão de negócios. Unir nossas forças foi o passo natural para oferecer esse padrão de entrega."
+          </p>
+          <cite class="comunicado__quote-author">— Dilson Higasi Sales, Sócio-Fundador</cite>
+        </blockquote>
+
+        <blockquote class="comunicado__quote">
+          <p class="comunicado__quote-text">
+            "A união reflete uma evolução necessária no atendimento jurídico corporativo. Consolidados entre São Paulo e Florianópolis, aproximamos nossa estrutura física dos principais centros de decisão dos nossos clientes."
+          </p>
+          <cite class="comunicado__quote-author">— Rodrigo Moreira da Costa, Sócio-Fundador</cite>
+        </blockquote>
+
+        <p class="comunicado__paragraph">
+          O <span class="comunicado__brand">Sales Costa Advogados</span> inicia suas atividades de forma totalmente integrada entre as sedes de São Paulo e Florianópolis, atuando de forma transversal nas frentes tributária, societária, cível, imobiliária e trabalhista.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       US-03 · COMPONENTE 3 — SOBRE O ESCRITÓRIO
+       ============================================================ -->
+  <section id="sobre" class="sobre" aria-labelledby="sobre-heading">
+    <!-- Marca d'água decorativa — assets/logo_s_background.png (1634x2102) -->
+    <img class="sobre__watermark" src="assets/logo_s_background.png" alt="" aria-hidden="true">
+
+    <div class="sobre__container">
+
+      <!-- Coluna esquerda: headline posicionador (40%) -->
+      <div class="sobre__col-left">
+        <span class="sobre__eyebrow animate-fade-up">
+          <img class="sobre__eyebrow-mark" src="assets/marcador_ciano.png" alt="" width="15" height="15">
+          SOBRE
+        </span>
+        <h2 id="sobre-heading" class="sobre__headline animate-fade-up" data-delay="100">
+          Uma trajetória construída sobre confiança e critério técnico.
+        </h2>
+      </div>
+
+      <!-- Coluna direita: intro + pilares (60%) -->
+      <div class="sobre__col-right">
+
+        <div class="sobre__intro animate-fade-up" data-delay="100">
+          <p class="sobre__intro-text">
+            Há mais de 15 anos, o escritório Sales Costa Advogados atua na defesa de interesses empresariais e individuais com uma abordagem que combina profundidade técnica e sensibilidade estratégica.
+          </p>
+          <p class="sobre__intro-text">
+            Nossa trajetória foi forjada em casos complexos, em negociações delicadas e na construção de relações de confiança duradouras com clientes que nos confiam suas decisões mais críticas.
+          </p>
+          <p class="sobre__intro-text">
+            Entendemos o Direito não como um fim em si mesmo, mas como um instrumento preciso a serviço dos seus objetivos — pessoais, patrimoniais e empresariais.
+          </p>
+        </div>
+
+        <div class="sobre__pillars" role="list" aria-label="Pilares estratégicos do escritório">
+
+          <article class="pillar animate-fade-up" role="listitem" data-delay="200">
+            <h3 class="pillar__name">Comprometimento</h3>
+            <p class="pillar__description">Disponibilidade real com cada cliente e cada causa.</p>
+          </article>
+
+          <article class="pillar animate-fade-up" role="listitem" data-delay="300">
+            <h3 class="pillar__name">Confidencialidade</h3>
+            <p class="pillar__description">Sigilo absoluto sobre informações estratégicas.</p>
+          </article>
+
+          <article class="pillar animate-fade-up" role="listitem" data-delay="400">
+            <h3 class="pillar__name">Excelência</h3>
+            <p class="pillar__description">Rigor técnico em cada peça, parecer e negociação.</p>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       US-04 · COMPONENTE 4 — ÁREAS DE ATUAÇÃO
+       ============================================================ -->
+  <section id="areas" class="areas" aria-labelledby="areas-title">
+    <div class="areas__container">
+      <header class="areas__header">
+        <span class="areas__eyebrow">
+          <img class="areas__eyebrow-mark" src="assets/marcador_areia.png" alt="" width="15" height="15">
+          ÁREAS DE ATUAÇÃO
+        </span>
+        <h2 id="areas-title" class="areas__title">Especialização que cobre <span class="areas__title-accent">cada frente</span> do seu negócio.</h2>
+      </header>
+
+      <div class="areas__grid">
+
+        <article class="area-card">
+          <img class="area-card__corner" src="assets/marcador_areia.png" alt="" aria-hidden="true" width="15" height="15">
+          <div class="area-card__icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3 class="area-card__title">Direito Empresarial</h3>
+          <p class="area-card__desc">Estruturação societária, contratos comerciais e assessoria contínua para negócios em crescimento.</p>
+        </article>
+
+        <article class="area-card">
+          <img class="area-card__corner" src="assets/marcador_areia.png" alt="" aria-hidden="true" width="15" height="15">
+          <div class="area-card__icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3 class="area-card__title">Direito Tributário</h3>
+          <p class="area-card__desc">Planejamento fiscal, consultoria preventiva e defesa em processos administrativos e judiciais.</p>
+        </article>
+
+        <article class="area-card">
+          <img class="area-card__corner" src="assets/marcador_areia.png" alt="" aria-hidden="true" width="15" height="15">
+          <div class="area-card__icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="area-card__title">Direito Trabalhista</h3>
+          <p class="area-card__desc">Gestão de risco trabalhista, compliance de RH e representação em ações individuais e coletivas.</p>
+        </article>
+
+        <article class="area-card">
+          <img class="area-card__corner" src="assets/marcador_areia.png" alt="" aria-hidden="true" width="15" height="15">
+          <div class="area-card__icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <h3 class="area-card__title">Direito Civil</h3>
+          <p class="area-card__desc">Contratos, responsabilidade civil e patrimônio, com foco em prevenção e solução célere de conflitos.</p>
+        </article>
+
+        <article class="area-card">
+          <img class="area-card__corner" src="assets/marcador_areia.png" alt="" aria-hidden="true" width="15" height="15">
+          <div class="area-card__icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3 class="area-card__title">Direito Societário</h3>
+          <p class="area-card__desc">Fusões, aquisições, governança e reestruturação de grupos empresariais e familiares.</p>
+        </article>
+
+        <article class="area-card">
+          <img class="area-card__corner" src="assets/marcador_areia.png" alt="" aria-hidden="true" width="15" height="15">
+          <div class="area-card__icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="area-card__title">Compliance &amp; Governança</h3>
+          <p class="area-card__desc">Programas de integridade, auditoria de conformidade e assessoria em governança corporativa.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       US-05 · COMPONENTE 5 — POR QUE SALES COSTA (DIFERENCIAIS)
+       ============================================================ -->
+  <section id="diferenciais" class="diferenciais" aria-labelledby="diferenciais-heading">
+    <div class="diferenciais__container">
+
+      <header class="diferenciais__header">
+        <p class="diferenciais__eyebrow" aria-hidden="true">
+          <img class="diferenciais__eyebrow-mark" src="assets/marcador_verde.png" alt="" width="15" height="15">
+          Por que Sales Costa
+        </p>
+        <h2 id="diferenciais-heading" class="diferenciais__heading">
+          O <span class="diferenciais__heading-accent">diferencial</span> está em como acompanhamos <span class="diferenciais__heading-accent">cada caso</span>.
+        </h2>
+      </header>
+
+      <div class="diferenciais__grid" role="list" aria-label="Diferenciais de atendimento do escritório">
+
+        <article class="diferencial-card" role="listitem" data-animate="fade-up" data-delay="0">
+          <img class="diferencial-card__corner" src="assets/marcador_verde.png" alt="" aria-hidden="true" width="15" height="15">
+          <div class="diferencial-card__num" aria-hidden="true">1</div>
+          <h3 class="diferencial-card__title">Atendimento personalizado</h3>
+          <p class="diferencial-card__desc">
+            Acompanhamento direto pelos sócios responsáveis, sem delegação generalista.
+          </p>
+        </article>
+
+        <article class="diferencial-card" role="listitem" data-animate="fade-up" data-delay="100">
+          <img class="diferencial-card__corner" src="assets/marcador_verde.png" alt="" aria-hidden="true" width="15" height="15">
+          <div class="diferencial-card__num" aria-hidden="true">2</div>
+          <h3 class="diferencial-card__title">Equipe especializada</h3>
+          <p class="diferencial-card__desc">
+            Formação dedicada por área, garantindo profundidade técnica em cada demanda.
+          </p>
+        </article>
+
+        <article class="diferencial-card" role="listitem" data-animate="fade-up" data-delay="200">
+          <img class="diferencial-card__corner" src="assets/marcador_verde.png" alt="" aria-hidden="true" width="15" height="15">
+          <div class="diferencial-card__num" aria-hidden="true">3</div>
+          <h3 class="diferencial-card__title">Resultados comprovados</h3>
+          <p class="diferencial-card__desc">
+            Histórico consistente de êxito em negociações, defesas e operações societárias complexas.
+          </p>
+        </article>
+
+        <article class="diferencial-card" role="listitem" data-animate="fade-up" data-delay="300">
+          <img class="diferencial-card__corner" src="assets/marcador_verde.png" alt="" aria-hidden="true" width="15" height="15">
+          <div class="diferencial-card__num" aria-hidden="true">4</div>
+          <h3 class="diferencial-card__title">Ética &amp; transparência</h3>
+          <p class="diferencial-card__desc">
+            Comunicação clara sobre riscos, prazos e honorários desde a primeira consulta.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       US-06 · COMPONENTE 6 — EM NÚMEROS (MÉTRICAS DE AUTORIDADE)
+       ============================================================ -->
+  <section id="numeros" class="numeros" aria-label="Métricas de autoridade do escritório Sales Costa Advogados">
+    <div class="numeros__container">
+
+      <article class="numeros__item" aria-label="15 anos de experiência">
+        <div class="numeros__value-wrap">
+          <span class="numeros__count" data-target="15" aria-live="off">0</span>
+          <span class="numeros__suffix" aria-hidden="true">+</span>
+        </div>
+        <p class="numeros__label">Anos de Experiência</p>
+      </article>
+
+      <article class="numeros__item" aria-label="mais de 500 clientes atendidos">
+        <div class="numeros__value-wrap">
+          <span class="numeros__count" data-target="500" aria-live="off">0</span>
+          <span class="numeros__suffix" aria-hidden="true">+</span>
+        </div>
+        <p class="numeros__label">Clientes Atendidos</p>
+      </article>
+
+      <article class="numeros__item" aria-label="mais de 300 casos concluídos">
+        <div class="numeros__value-wrap">
+          <span class="numeros__count" data-target="300" aria-live="off">0</span>
+          <span class="numeros__suffix" aria-hidden="true">+</span>
+        </div>
+        <p class="numeros__label">Casos Concluídos</p>
+      </article>
+
+      <article class="numeros__item numeros__item--no-divider" aria-label="5 áreas de especialização">
+        <div class="numeros__value-wrap">
+          <span class="numeros__count" data-target="5" aria-live="off">0</span>
+        </div>
+        <p class="numeros__label">Áreas de Especialização</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       US-07 · COMPONENTE 7 — DEPOIMENTOS (PROVA SOCIAL)
+       ============================================================ -->
+  <section
+    id="depoimentos"
+    class="testimonials-section"
+    aria-label="Depoimentos de clientes"
+  >
+    <!-- Marca d'água decorativa — assets/logo_s_background.png (1634x2102) -->
+    <img class="testimonials-watermark" src="assets/logo_s_background.png" alt="" aria-hidden="true">
+
+    <div class="testimonials-inner container">
+
+      <!-- Eyebrow (único título da seção — heading removido a pedido) -->
+      <p class="section-eyebrow" aria-hidden="true">DEPOIMENTOS</p>
+
+      <!-- Carousel wrapper — touch target for swipe -->
+      <div
+        class="testimonials-carousel"
+        role="region"
+        aria-label="Carrossel de depoimentos"
+        aria-live="polite"
+      >
+        <!-- Track — slides move via translateX -->
+        <div class="testimonials-track" aria-atomic="false">
+
+          <!-- ── Slide 0 (static fallback; JS re-renders from TESTIMONIALS_DATA) ── -->
+          <article
+            class="testimonial-slide"
+            role="group"
+            aria-roledescription="slide"
+            aria-label="Depoimento 1 de 1"
+            data-index="0"
+            id="testimonial-slide-0"
+            aria-hidden="false"
+          >
+            <span class="quote-deco" aria-hidden="true">&ldquo;</span>
+
+            <blockquote class="testimonial-quote" cite="">
+              <p>
+                A equipe conduziu uma reestruturação societária complexa com
+                clareza e agilidade que não encontrávamos em outros escritórios.
+              </p>
+            </blockquote>
+
+            <cite class="testimonial-author">
+              <strong class="testimonial-name">Marina Albuquerque</strong>
+              <span class="testimonial-role">
+                Diretora Financeira, Grupo Vantis
+              </span>
+            </cite>
+          </article>
+          <!-- ── /Slide 0 ── -->
+
+        </div><!-- /.testimonials-track -->
+      </div><!-- /.testimonials-carousel -->
+
+      <!-- Navigation dots -->
+      <div
+        class="testimonials-dots"
+        role="tablist"
+        aria-label="Navegação de depoimentos"
+      >
+        <button
+          class="testimonials-dot active"
+          role="tab"
+          aria-selected="true"
+          aria-controls="testimonial-slide-0"
+          aria-label="Ir para depoimento 1"
+          data-index="0"
+          tabindex="0"
+        ></button>
+        <!-- JS inserts additional dots when TESTIMONIALS_DATA has > 1 item -->
+      </div><!-- /.testimonials-dots -->
+
+    </div><!-- /.testimonials-inner -->
+  </section>
+
+  <!-- ============================================================
+       US-08 · COMPONENTE 8 — NOSSA EQUIPE (SÓCIOS RESPONSÁVEIS)
+       ============================================================ -->
+  <section id="equipe" class="equipe" aria-labelledby="equipe-title">
+    <div class="equipe__container">
+      <header class="equipe__header">
+        <span class="equipe__eyebrow">
+          <img class="equipe__eyebrow-mark" src="assets/marcador_ciano.png" alt="" width="15" height="15">
+          NOSSA EQUIPE
+        </span>
+        <h2 id="equipe-title" class="equipe__title">Os sócios responsáveis por cada caso.</h2>
+      </header>
+
+      <div class="equipe__grid">
+
+        <!-- Sócio 1 -->
+        <article class="socio-card">
+          <div class="socio-card__avatar">
+            <img class="socio-card__photo" src="assets/advogado1.png" alt="Retrato de Antônio Sales" width="500" height="500" loading="lazy">
+            <a class="socio-card__linkedin" href="#" aria-label="Ver LinkedIn de Antônio Sales">Ver LinkedIn</a>
+          </div>
+          <div class="socio-card__info">
+            <h3 class="socio-card__name">Antônio Sales</h3>
+            <p class="socio-card__role">Sócio-fundador</p>
+            <p class="socio-card__area">Direito Empresarial</p>
+            <span class="socio-card__oab">OAB/SP 000.000</span>
+          </div>
+        </article>
+
+        <!-- Sócio 2 -->
+        <article class="socio-card">
+          <div class="socio-card__avatar">
+            <img class="socio-card__photo" src="assets/advogado2.png" alt="Retrato de Camila Costa" width="500" height="500" loading="lazy">
+            <a class="socio-card__linkedin" href="#" aria-label="Ver LinkedIn de Camila Costa">Ver LinkedIn</a>
+          </div>
+          <div class="socio-card__info">
+            <h3 class="socio-card__name">Camila Costa</h3>
+            <p class="socio-card__role">Sócia-fundadora</p>
+            <p class="socio-card__area">Direito Tributário</p>
+            <span class="socio-card__oab">OAB/SP 000.000</span>
+          </div>
+        </article>
+
+        <!-- Sócio 3 -->
+        <article class="socio-card">
+          <div class="socio-card__avatar">
+            <img class="socio-card__photo" src="assets/advogado3.png" alt="Retrato de Felipe Ramos" width="500" height="500" loading="lazy">
+            <a class="socio-card__linkedin" href="#" aria-label="Ver LinkedIn de Felipe Ramos">Ver LinkedIn</a>
+          </div>
+          <div class="socio-card__info">
+            <h3 class="socio-card__name">Felipe Ramos</h3>
+            <p class="socio-card__role">Sócio</p>
+            <p class="socio-card__area">Direito Trabalhista</p>
+            <span class="socio-card__oab">OAB/SP 000.000</span>
+          </div>
+        </article>
+
+        <!-- Sócio 4 -->
+        <article class="socio-card">
+          <div class="socio-card__avatar">
+            <img class="socio-card__photo" src="assets/advogado4.png" alt="Retrato de Luísa Martins" width="500" height="500" loading="lazy">
+            <a class="socio-card__linkedin" href="#" aria-label="Ver LinkedIn de Luísa Martins">Ver LinkedIn</a>
+          </div>
+          <div class="socio-card__info">
+            <h3 class="socio-card__name">Luísa Martins</h3>
+            <p class="socio-card__role">Sócia</p>
+            <p class="socio-card__area">Societário &amp; Compliance</p>
+            <span class="socio-card__oab">OAB/SP 000.000</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       US-09 · COMPONENTE 9 — FALE CONOSCO (FORMULÁRIO DE CONTATO)
+       ------------------------------------------------------------
+       Estrutura preparada para integração de backend:
+         • <form data-endpoint=""> — preencher com a URL do serviço
+           (Formspree / EmailJS / função serverless). Vazio = modo
+           simulação (valida no cliente e mostra .contato__success).
+         • js/main.js → const CONTACT_ENDPOINT: quando houver endpoint,
+           faz POST de FormData; caso contrário, apenas simula o envio.
+       ============================================================ -->
+  <section id="contato" class="contato" aria-labelledby="contato-title">
+    <div class="contato__container">
+
+      <!-- Coluna esquerda: informações institucionais -->
+      <div class="contato__info">
+        <span class="contato__eyebrow">
+          <img class="contato__eyebrow-mark" src="assets/marcador_verde.png" alt="" width="15" height="15">
+          FALE CONOSCO
+        </span>
+        <h2 id="contato-title" class="contato__title">Entre em contato com nossos advogados.</h2>
+        <p class="contato__subtitle">
+          Respondemos em até um dia útil. Para casos urgentes, prefira o telefone.
+        </p>
+
+        <div class="contato__details">
+          <div class="contato__detail-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Av. Paulista, 1000 — 12º andar, São Paulo/SP</span>
+          </div>
+
+          <div class="contato__detail-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:contato@salescosta.com.br" class="contato__link">contato@salescosta.com.br</a>
+          </div>
+
+          <div class="contato__detail-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+551130000000" class="contato__link">+55 (11) 3000-0000</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna direita: formulário -->
+      <div class="contato__form-wrapper">
+        <!-- data-endpoint vazio = modo simulação; preencher para ativar o POST real -->
+        <form id="contact-form" class="contato__form" method="post" action="" data-endpoint="" novalidate>
+          <div class="form-group">
+            <label for="nome" class="form-label">Nome Completo *</label>
+            <input type="text" id="nome" name="nome" class="form-input" required autocomplete="name" placeholder="Seu nome completo">
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">E-mail Corporativo *</label>
+            <input type="email" id="email" name="email" class="form-input" required autocomplete="email" placeholder="seuemail@empresa.com.br">
+          </div>
+
+          <div class="form-group">
+            <label for="telefone" class="form-label">Telefone</label>
+            <input type="tel" id="telefone" name="telefone" class="form-input" autocomplete="tel" placeholder="(11) 90000-0000">
+          </div>
+
+          <div class="form-group">
+            <label for="area" class="form-label">Área de Interesse</label>
+            <select id="area" name="area" class="form-select">
+              <option value="empresarial">Direito Empresarial</option>
+              <option value="tributario">Direito Tributário</option>
+              <option value="trabalhista">Direito Trabalhista</option>
+              <option value="civil">Direito Civil</option>
+              <option value="societario">Direito Societário</option>
+              <option value="compliance">Compliance &amp; Governança</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="mensagem" class="form-label">Mensagem *</label>
+            <textarea id="mensagem" name="mensagem" class="form-textarea" rows="4" required placeholder="Como podemos ajudar o seu negócio?"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full">
+            Enviar mensagem
+            <svg class="btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+
+        <!-- Mensagem inline de sucesso -->
+        <div id="form-success" class="contato__success" role="status" tabindex="-1" aria-hidden="true">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h3>Mensagem enviada com sucesso!</h3>
+          <p>Agradecemos o contato. Nossa equipe jurídica retornará em até um dia útil.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       US-10 · COMPONENTE 10 — RODAPÉ INSTITUCIONAL & NAV GLOBAL
+       ============================================================ -->
+  <footer id="rodape" class="site-footer" role="contentinfo" aria-label="Rodapé do site">
+    <div class="footer__inner">
+
+      <!-- TOP: logo lockup + navegação -->
+      <div class="footer__top">
+
+        <a href="#hero" class="footer__logo" aria-label="Sales Costa Advogados — voltar ao topo" data-smooth-scroll>
+          <img class="footer__logo-mark" src="assets/logo_s_verde.png" alt="" width="64" height="72">
+          <img class="footer__logo-word" src="assets/logo_salescosta.png" alt="Sales Costa Advogados" width="520" height="44">
+        </a>
+
+        <nav class="footer__nav" aria-label="Navegação do rodapé">
+          <ul class="footer__nav-list" role="list">
+            <li><a href="#sobre" class="footer__nav-link" data-smooth-scroll aria-label="Ir para a seção Sobre">Sobre</a></li>
+            <li><a href="#areas" class="footer__nav-link" data-smooth-scroll aria-label="Ir para a seção Áreas de atuação">Áreas de atuação</a></li>
+            <li><a href="#equipe" class="footer__nav-link" data-smooth-scroll aria-label="Ir para a seção Equipe">Equipe</a></li>
+            <li><a href="#contato" class="footer__nav-link" data-smooth-scroll aria-label="Ir para a seção Contato">Contato</a></li>
+          </ul>
+        </nav>
+
+      </div><!-- /.footer__top -->
+
+      <hr class="footer__divider" role="separator" aria-hidden="true">
+
+      <div class="footer__bottom">
+        <p class="footer__copyright">
+          &copy; <span id="footer-year" aria-live="off"></span>
+          Sales Costa Advogados. Todos os direitos reservados.
+        </p>
+      </div><!-- /.footer__bottom -->
+
+    </div><!-- /.footer__inner -->
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/animations.js" defer></script>
+</body>
+</html>

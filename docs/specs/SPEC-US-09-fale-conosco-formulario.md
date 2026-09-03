@@ -9,10 +9,20 @@
 
 ## 1. System Architecture & Component Overview
 
-A seção **Fale Conosco** (`<section id="contato">`) é o ponto crítico de conversão de leads da landing page. Em ambiente Dark Charcoal (`#404347`), a seção combina as informações institucionais de contato e localização à esquerda com um formulário minimalista de alta conversão à direita.
+A seção **Fale Conosco** (`<section id="contato">`) é o ponto crítico de conversão de leads da landing page. Em fundo escuro **`var(--color-footer-dark)` (`#2B2D30`)** — o mesmo tom do `<footer>`, dando continuidade visual entre contato e rodapé —, a seção combina as informações institucionais de contato e localização à esquerda com um formulário minimalista de alta conversão à direita.
 
 - **Desktop (≥ 1024px):** Layout em 2 colunas assimétricas (45% Dados de Contato / 55% Formulário).
 - **Mobile/Tablet (< 1024px):** Layout empilhado em 1 coluna vertical (Dados no topo / Formulário abaixo).
+
+### Ajustes aplicados (fora da spec original)
+
+| Ajuste | Descrição |
+|---|---|
+| **Fundo `--color-footer-dark`** | `.contato { background-color: var(--color-footer-dark) }` (`#2B2D30`) — mesmo tom do rodapé. Histórico: era `var(--color-dark)` na spec original, passou por `#2B2B2B` literal e agora usa o token do footer. |
+| **Eyebrow com marcador verde, texto Lima** | `.contato__eyebrow` vira `inline-flex` com `<img class="contato__eyebrow-mark" src="assets/marcador_verde.png">` (render 10×10) à esquerda de "FALE CONOSCO". Cor do texto: **`var(--color-lima)`** (era Taupe). |
+| **Ícones de contato em Lima** | `.contato__detail-item svg { color: var(--color-lima) }` (era Taupe) — ícones de endereço, e-mail e telefone. |
+| **Estrutura preparada para backend** | `<form data-endpoint="">` + `const CONTACT_ENDPOINT_FALLBACK = ''` em `js/main.js`. Vazio ⇒ **modo simulação** (valida no cliente, mostra `.contato__success`, zero rede). Com endpoint ⇒ `POST` de `FormData` e trata `res.ok`. Botão recebe `aria-busy="true"` durante o envio. |
+| **`.btn--full` no desktop** | micro-fix `align-self: flex-start` (senão o botão estica por ser flex item em coluna com `align-items: stretch`). |
 
 ### Diretriz Crítica de UX/Mobile (iOS Safari):
 Todos os elementos de entrada (`<input>`, `<select>`, `<textarea>`) possuem obrigatoriamente `font-size: 16px` para impedir o zoom automático indesejado no iOS Safari.
@@ -38,7 +48,10 @@ graph TD
   <div class="contato__container">
     <!-- Coluna Esquerda: Informações de Contato -->
     <div class="contato__info">
-      <span class="contato__eyebrow">FALE CONOSCO</span>
+      <span class="contato__eyebrow">
+        <img class="contato__eyebrow-mark" src="assets/marcador_verde.png" alt="" width="15" height="15">
+        FALE CONOSCO
+      </span>
       <h2 id="contato-title" class="contato__title">Entre em contato com nossos advogados.</h2>
       <p class="contato__subtitle">
         Respondemos em até um dia útil. Para casos urgentes, prefira o telefone.
@@ -64,7 +77,8 @@ graph TD
 
     <!-- Coluna Direita: Formulário de Mensagem -->
     <div class="contato__form-wrapper">
-      <form id="contact-form" class="contato__form" novalidate>
+      <!-- data-endpoint vazio = modo simulação; preencher para ativar o POST real -->
+      <form id="contact-form" class="contato__form" method="post" action="" data-endpoint="" novalidate>
         <div class="form-group">
           <label for="nome" class="form-label">Nome Completo *</label>
           <input type="text" id="nome" name="nome" class="form-input" required autocomplete="name" placeholder="Seu nome completo">
@@ -104,7 +118,7 @@ graph TD
       </form>
 
       <!-- Mensagem Inline de Sucesso -->
-      <div id="form-success" class="contato__success" aria-hidden="true">
+      <div id="form-success" class="contato__success" role="status" tabindex="-1" aria-hidden="true">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         <h3>Mensagem enviada com sucesso!</h3>
         <p>Agradecemos o contato. Nossa equipe jurídica retornará em até um dia útil.</p>
@@ -122,7 +136,8 @@ graph TD
    3.1 Base Styles (Mobile First: < 768px)
    ========================================================================== */
 .contato {
-  background-color: var(--color-dark);
+  /* ajuste: mesmo tom do rodapé (#2B2D30) — continuidade visual contato → footer */
+  background-color: var(--color-footer-dark);
   color: var(--color-white);
   padding: var(--section-pad-y) var(--section-pad-x);
 }
@@ -135,14 +150,24 @@ graph TD
   gap: 48px;
 }
 
+/* ajuste: eyebrow com marcador verde à esquerda, texto em Lima */
 .contato__eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: var(--text-eyebrow);
   font-weight: 500;
-  color: var(--color-taupe);
-  letter-spacing: 4px;
+  color: var(--color-lima); /* ajuste: era var(--color-taupe) */
+  letter-spacing: var(--eyebrow-tracking); /* 3px — token global */
   margin-bottom: 16px;
   text-transform: uppercase;
+}
+
+.contato__eyebrow-mark {
+  flex: 0 0 auto;
+  display: block;
+  width: 10px;
+  height: 10px;
 }
 
 .contato__title {
@@ -177,7 +202,7 @@ graph TD
 }
 
 .contato__detail-item svg {
-  color: var(--color-taupe);
+  color: var(--color-lima); /* ajuste: era var(--color-taupe) */
   flex-shrink: 0;
 }
 
@@ -226,9 +251,20 @@ graph TD
   transition: border-color 0.3s ease;
 }
 
+/* opções legíveis sobre o fundo escuro da seção */
 .form-select option {
-  background-color: var(--color-dark);
+  background-color: var(--color-footer-dark); /* acompanha o fundo da .contato */
   color: var(--color-white);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .form-input:focus,
@@ -241,6 +277,12 @@ graph TD
 .btn--full {
   width: 100%;
   margin-top: 12px;
+}
+
+/* estado de envio (JS adiciona aria-busy durante o POST) */
+.btn--full[aria-busy="true"] {
+  opacity: 0.7;
+  pointer-events: none;
 }
 
 /* Sucesso do Formulário */
@@ -287,6 +329,7 @@ graph TD
 
   .btn--full {
     width: auto;
+    align-self: flex-start; /* micro-fix: senão estica (flex item em coluna) */
   }
 }
 ```
@@ -295,46 +338,68 @@ graph TD
 
 ## 4. JavaScript Specification
 
+Transcrição fiel da validação da spec, **estendida com o ponto de integração de backend** (endpoint plugável). `js/main.js`, listener `DOMContentLoaded` próprio.
+
 ```javascript
-// js/main.js — Validação e Envio do Formulário Fale Conosco
+// >>> PONTO DE INTEGRAÇÃO DO FORMULÁRIO <<<
+// Ative o envio real definindo a URL do serviço em UMA destas formas:
+//   1. no HTML:  <form id="contact-form" data-endpoint="https://formspree.io/f/XXXX">
+//   2. aqui:     const CONTACT_ENDPOINT_FALLBACK = 'https://...';
+// Com endpoint  -> POST de FormData + trata res.ok.
+// Sem endpoint  -> MODO SIMULAÇÃO: valida no cliente e mostra .contato__success (zero rede).
+const CONTACT_ENDPOINT_FALLBACK = '';
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contact-form');
   const successDiv = document.getElementById('form-success');
+  if (!form || !successDiv) return;
 
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+  const endpoint = (form.dataset.endpoint || CONTACT_ENDPOINT_FALLBACK || '').trim();
+  const submitBtn = form.querySelector('[type="submit"]');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      const nome = document.getElementById('nome').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const mensagem = document.getElementById('mensagem').value.trim();
+  const showSuccess = () => {
+    form.style.display = 'none';
+    successDiv.classList.add('contato__success--active');
+    successDiv.setAttribute('aria-hidden', 'false');
+    successDiv.focus?.();
+  };
 
-      if (!nome || !email || !mensagem) {
-        alert('Por favor, preencha todos os campos obrigatórios (*).');
-        return;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const mensagem = document.getElementById('mensagem').value.trim();
+
+    if (!nome || !email || !mensagem) {
+      alert('Por favor, preencha todos os campos obrigatórios (*).');
+      return;
+    }
+    if (!emailRegex.test(email)) {
+      alert('Por favor, insira um e-mail corporativo válido.');
+      return;
+    }
+
+    if (submitBtn) submitBtn.setAttribute('aria-busy', 'true');
+
+    try {
+      if (endpoint) {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+      } else {
+        await new Promise((resolve) => setTimeout(resolve, 300)); // simulação
       }
-
-      // Validação simples de e-mail
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        alert('Por favor, insira um e-mail corporativo válido.');
-        return;
-      }
-
-      // Simulação / Envio para Endpoint Serverless
-      try {
-        const formData = new FormData(form);
-        // Exemplo: await fetch('https://formspree.io/f/seu-id', { method: 'POST', body: formData });
-
-        form.style.display = 'none';
-        successDiv.classList.add('contato__success--active');
-        successDiv.setAttribute('aria-hidden', 'false');
-      } catch (err) {
-        alert('Ocorreu um erro ao enviar a mensagem. Tente novamente.');
-      }
-    });
-  }
+      showSuccess();
+    } catch (err) {
+      if (submitBtn) submitBtn.removeAttribute('aria-busy');
+      alert('Ocorreu um erro ao enviar a mensagem. Tente novamente.');
+    }
+  });
 });
 ```
 
@@ -345,6 +410,9 @@ document.addEventListener('DOMContentLoaded', () => {
 - **Entradas e Rótulos:** Todo `<input>` possui seu `<label>` correspondente vinculado via `id`.
 - **Prevenção de Zoom iOS:** `font-size: 16px !important` aplicado em todos os controles do formulário.
 - **Campos Obrigatórios:** Marcados explicitamente com o atributo `required` e indicativo `*`.
+- **Mensagem de sucesso:** `<div id="form-success" role="status" tabindex="-1">` — `role="status"` anuncia via leitor de tela; `tabindex="-1"` + `.focus()` movem o foco para a confirmação após o envio.
+- **Estado de envio:** botão recebe `aria-busy="true"` durante o `POST` (e `pointer-events: none` via CSS).
+- **Marcador do eyebrow:** `.contato__eyebrow-mark` é decorativo (`alt=""`).
 
 ---
 
@@ -367,15 +435,33 @@ document.addEventListener('DOMContentLoaded', () => {
 ## 7. Acceptance Criteria (Technical)
 
 ### CA-01: Validação de Campos Obrigatórios
-- O envio do formulário sem `Nome`, `E-mail` ou `Mensagem` aciona alerta e bloqueia a submissão.
+- O envio do formulário sem `Nome`, `E-mail` ou `Mensagem` aciona alerta e bloqueia a submissão. E-mail sem formato válido também.
 
 ### CA-02: Prevenção de Auto-Zoom no iOS
 - Todos os campos de texto possuem `font-size: 16px`, prevenindo o zoom automático no Safari em dispositivos iOS.
+
+### CA-03: Layout responsivo
+- `< 1024px` → 1 coluna, botão `width: 100%`. `≥ 1024px` → 2 colunas 45/55, botão com largura automática (não esticado). Sem rolagem horizontal em 375px / 1313px.
+
+### CA-04: Envio bem-sucedido
+- Com dados válidos e `data-endpoint=""` (simulação), o `<form>` some e a `#form-success` aparece (`.contato__success--active`, `aria-hidden="false"`). Sem requisição de rede.
+
+### CA-05: Ponto de integração de backend
+- Definir `data-endpoint` (ou `CONTACT_ENDPOINT_FALLBACK`) faz o submit disparar `fetch(endpoint, { method: 'POST', body: FormData })`; `!res.ok` → alerta de erro e botão reativado.
+
+### CA-06: Ajustes visuais
+- `.contato` computa `background-color: rgb(43, 45, 48)` (`--color-footer-dark` `#2B2D30`, igual ao `.site-footer`). `.contato__eyebrow` é `inline-flex`, `color: rgb(228, 255, 143)` (Lima), com `.contato__eyebrow-mark` (`marcador_verde.png`) 10×10 à esquerda. `.contato__detail-item svg` computa `color: rgb(228, 255, 143)` (Lima).
 
 ---
 
 ## 8. Dependencies & Integration Points
 
-- **CSS Variables:** `--color-dark`, `--color-taupe`, `--color-lima`, `--color-white`, `--font-display`.
-- **Files Affected:** `index.html`, `css/sections.css`, `js/main.js`.
+- **CSS Variables:** `--color-footer-dark` (fundo da seção + `option` do select), `--color-lima` (eyebrow + ícones de contato), `--color-taupe` (foco de inputs, hover de links, borda do sucesso), `--color-white`, `--color-text-light`, `--font-display`, `--eyebrow-tracking`.
+- **Tipografia:** fonte única **Montserrat** (`--font-body` e `--font-display`), definida em `css/variables.css`. Inputs mantêm `font-size: 16px` (anti-zoom iOS) independentemente da fonte.
+- **Assets:** `assets/marcador_verde.png` — marcador do eyebrow.
+- **Navbar:** o item "Fale conosco" (`<a href="#contato" class="navbar__link--cta">`) já existe no menu — âncora consumida.
+- **Ordem na página:** inserir **após `<section id="equipe">`** (… → depoimentos → equipe → contato).
+- **Files Affected:** `index.html`, `css/components.css` (inputs, `.btn--full`, `.contato__success`), `css/sections.css` (`.contato*` layout/colunas/eyebrow), `js/main.js` (validação + envio).
+- **Ponto de integração de backend:** `<form data-endpoint="">` + `CONTACT_ENDPOINT_FALLBACK` em `js/main.js`. Enquanto vazio, o formulário roda em **modo simulação**. Serviço a definir (Formspree / EmailJS / função serverless) — risco R01 em aberto.
+- **Placeholders:** `Av. Paulista, 1000`, `contato@salescosta.com.br`, `+55 (11) 3000-0000` — confirmar/substituir antes de publicar.
 

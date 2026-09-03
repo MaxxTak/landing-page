@@ -1,0 +1,44 @@
+/* ============================================================
+   variables.css — Fase 0 (Baseline) · Design Tokens
+   Consolidado das seções "Dependencies & Integration Points"
+   das SPEC-US-01 a SPEC-US-10.
+   ============================================================ */
+
+:root {
+  /* ---- Paleta Cromática Oficial ---- */
+  --color-dark: #404347;         /* Dark Charcoal — navbar, hero, comunicado, diferenciais, contato */
+  --color-dark-alt: #484B4F;     /* Variação (gradiente hero, fundo de cards dark) */
+  --color-taupe: #AA9B8F;        /* Personalização — acentos, bordas, CTAs */
+  --color-lima: #E4FF8F;         /* Inovação — eyebrows dark, foco, acentos */
+  --color-off-white: #F8F6F4;    /* Off-White Quente — Sobre, Em Números, Depoimentos */
+  --color-white: #FFFFFF;        /* Áreas de Atuação, Nossa Equipe */
+  --color-text-dark: #2B2B2B;    /* Texto de leitura em fundos claros */
+  --color-text-light: #D1D5DB;   /* Texto sobre fundos escuros */
+  --color-border: #D9D3CE;       /* Linhas divisórias sutis */
+  --color-footer-dark: #2B2D30;  /* Rodapé institucional */
+  --color-cyan: #3DD6D0;         /* Eyebrow da seção Sobre */
+
+  /* ---- Marca d'água (todas as seções) ---- */
+  --watermark-opacity: 0.3;
+
+  /* ---- Degradê do Hero (US-01) ---- */
+  --hero-grad-top: #4D4F52;
+  --hero-grad-bottom: #3B3636;
+
+  /* ---- Tipografia — fonte única Montserrat (pesos 300/400/500/600/700/800) ---- */
+  --font-body: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* ---- Escala tipográfica fluida ---- */
+  --text-hero: clamp(2rem, 5vw, 4rem);       /* H1 do hero (SPEC-US-01) */
+  --text-h2: clamp(1.5rem, 3vw, 2.5rem);     /* H2 das seções (SPEC-US-03) */
+  --text-body: 1rem;
+  --text-eyebrow: 0.75rem;
+  --eyebrow-tracking: 3px;   /* letter-spacing de todos os eyebrows */
+
+  /* ---- Layout ---- */
+  --container-max: 1200px;
+  --section-pad-x: clamp(1.25rem, 5vw, 5rem);
+  --section-pad-y: clamp(3rem, 8vw, 6rem);
+  --nav-height: 80px;
+}

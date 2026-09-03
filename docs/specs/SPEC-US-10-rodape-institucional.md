@@ -71,12 +71,13 @@ graph TD
     <!-- TOP ROW: Logo + Nav -->
     <div class="footer__top">
 
-      <!-- Wordmark / Logo -->
+      <!-- Logo lockup: monograma verde + wordmark -->
       <a href="#hero"
          class="footer__logo"
          aria-label="Sales Costa Advogados — voltar ao topo"
          data-smooth-scroll>
-        SALES COSTA
+        <img class="footer__logo-mark" src="assets/logo_s_verde.png" alt="" width="64" height="72">
+        <img class="footer__logo-word" src="assets/logo_salescosta.png" alt="Sales Costa Advogados" width="520" height="44">
       </a>
 
       <!-- Navigation -->
@@ -192,22 +193,29 @@ graph TD
   text-align: center;
 }
 
-/* Wordmark */
+/* Logo lockup (assets/logo_s_verde.png 64x72 + assets/logo_salescosta.png 520x44) */
 .footer__logo {
-  font-family: var(--font-body);         /* DM Sans */
-  font-weight: 600;
-  font-size: clamp(1.1rem, 3vw, 1.35rem);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-white);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   text-decoration: none;
-  display: inline-block;
 
   /* Touch target */
   min-height: 44px;
-  line-height: 44px;
 
   transition: opacity 0.2s ease;
+}
+
+.footer__logo-mark {
+  display: block;
+  height: 28px;
+  width: auto;
+}
+
+.footer__logo-word {
+  display: block;
+  height: 18px;
+  width: auto;
 }
 
 /* Nav list */
@@ -368,150 +376,77 @@ graph TD
 Dois comportamentos JS distintos para o footer:
 
 1. **Injeção dinâmica do ano** — `DOMContentLoaded` → `new Date().getFullYear()` → `#footer-year`.
-2. **Smooth scroll com offset** — todos os `[data-smooth-scroll]` do footer delegam ao handler centralizado de `js/main.js`, que aplica 80 px de offset para compensar o navbar sticky.
+2. **Smooth scroll com offset** — os links do footer (`#sobre`, `#areas`, `#equipe`, `#contato`, `#hero`) já são cobertos pelo handler genérico `a[href^="#"]` de `js/main.js` (US-01), que aplica 80 px de offset.
 
-O JS de animação (`js/animations.js`) registra o footer no `IntersectionObserver` global para o fade-in de entrada.
+O JS de animação (`js/animations.js`) registra o footer em um `IntersectionObserver` próprio para o fade-in de entrada.
+
+> **Desvio de implementação (conflito resolvido):** a spec original previa um handler **delegado** `[data-smooth-scroll]` novo (`initSmoothScroll()` + `smoothScrollTo()` + `history.pushState`). **Não foi adicionado** — o handler `a[href^="#"]` de US-01, criado no `DOMContentLoaded`, já captura os `<a>` do footer (mesmo caso da US-04: evitar `scrollTo` duplo). Sem `history.pushState`, por consistência com o restante do site. Os atributos `data-smooth-scroll` no HTML ficam como hook inócuo/futuro. Apenas `initFooterYear()` foi adicionado a `js/main.js`.
 
 ---
 
 ### 4.2 JS Code Snippets
 
-#### `js/main.js` — Smooth Scroll Handler (centralizado, reutilizado pelo footer)
+#### `js/main.js` — Injeção do ano (única adição de US-10 neste arquivo)
+
+O smooth scroll dos links do footer **reaproveita** o handler `a[href^="#"]` de US-01 (offset 80 px, `preventDefault`, `closeDrawer()`), que já os captura no `DOMContentLoaded`. Nenhum handler novo é adicionado.
 
 ```js
-/**
- * SMOOTH SCROLL WITH NAVBAR OFFSET
- * Handles all [data-smooth-scroll] anchors site-wide,
- * including footer links (US-10) and navbar links (US-01).
- *
- * Offset: 80px — matches sticky navbar height.
- */
-
-const SCROLL_OFFSET = 80; // px — sticky navbar height
-
-/**
- * Smoothly scrolls to a target element, compensating for
- * the sticky navbar height.
- *
- * @param {string} targetId - The element ID to scroll to (without #).
- */
-function smoothScrollTo(targetId) {
-  const target = document.getElementById(targetId);
-  if (!target) return;
-
-  const targetTop = target.getBoundingClientRect().top + window.scrollY;
-  const scrollTo  = targetTop - SCROLL_OFFSET;
-
-  window.scrollTo({
-    top:      Math.max(0, scrollTo),
-    behavior: 'smooth',
-  });
+// dentro do DOMContentLoaded existente de js/main.js:
+const footerYear = document.getElementById('footer-year');
+if (footerYear) {
+  footerYear.textContent = new Date().getFullYear();
 }
-
-/**
- * Delegates smooth scroll for all [data-smooth-scroll] anchor tags.
- * Uses event delegation on document to handle dynamically added elements.
- */
-function initSmoothScroll() {
-  document.addEventListener('click', (e) => {
-    const anchor = e.target.closest('a[data-smooth-scroll]');
-    if (!anchor) return;
-
-    const href = anchor.getAttribute('href');
-    if (!href || !href.startsWith('#')) return;
-
-    const targetId = href.slice(1); // Remove leading '#'
-
-    // '#hero' scrolls back to top
-    if (targetId === 'hero') {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    const target = document.getElementById(targetId);
-    if (!target) return;
-
-    e.preventDefault();
-    smoothScrollTo(targetId);
-
-    // Update URL hash without triggering native scroll
-    history.pushState(null, '', `#${targetId}`);
-  });
-}
-
-// ── Year Injection (US-10 RN-02) ──────────────────────────────────────────
-
-/**
- * Injects the current year into #footer-year.
- * Must run after DOM is parsed.
- */
-function initFooterYear() {
-  const yearEl = document.getElementById('footer-year');
-  if (!yearEl) return;
-  yearEl.textContent = new Date().getFullYear();
-}
-
-// ── Init ──────────────────────────────────────────────────────────────────
-
-document.addEventListener('DOMContentLoaded', () => {
-  initSmoothScroll();
-  initFooterYear();
-  // ... other init calls (navbar, form, etc.)
-});
 ```
 
 #### `js/animations.js` — Footer Fade-in via IntersectionObserver
 
-```js
-/**
- * FOOTER FADE-IN ANIMATION (US-10)
- * Registered alongside other section observers.
- * CSS handles the actual animation via .is-visible toggle.
- */
+Transcrição fiel + guard de ausência de `IntersectionObserver` (mesmo padrão de `initScrollAnimations`; auto-invoca via `document.readyState`, como os demais blocos do arquivo).
 
+```js
 function initFooterAnimation() {
-  const footer = document.querySelector('.site-footer');
+  var footer = document.querySelector('.site-footer');
   if (!footer) return;
 
-  // Skip animation if user prefers reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  // Guards: sem IntersectionObserver ou com reduced-motion → exibe direto
+  // (o rodapé é o último elemento da página; nunca pode ficar em opacity: 0).
+  if (
+    !('IntersectionObserver' in window) ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  ) {
     footer.classList.add('is-visible');
     return;
   }
 
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
+  var observer = new IntersectionObserver(
+    function (entries, obs) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          obs.unobserve(entry.target); // Fire once
+          obs.unobserve(entry.target); // dispara uma única vez
         }
       });
     },
-    {
-      threshold: 0.1, // 10% of footer visible triggers animation
-    }
+    { threshold: 0.1 }
   );
 
   observer.observe(footer);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initFooterAnimation);
+} else {
   initFooterAnimation();
-  // ... other animation inits
-});
+}
 ```
 
 ### 4.3 Event Listeners & Target Elements
 
 | Event | Target | Handler | File |
 |---|---|---|---|
-| `DOMContentLoaded` | `document` | `initFooterYear()` | `js/main.js` |
-| `DOMContentLoaded` | `document` | `initSmoothScroll()` | `js/main.js` |
-| `DOMContentLoaded` | `document` | `initFooterAnimation()` | `js/animations.js` |
-| `click` (delegated) | `document` → `a[data-smooth-scroll]` | `smoothScrollTo()` | `js/main.js` |
-| `IntersectionObserver` | `.site-footer` | Add `.is-visible` class | `js/animations.js` |
+| `DOMContentLoaded` | `document` | injeção de `#footer-year` (inline no listener existente) | `js/main.js` |
+| `document.readyState` guard | `document` | `initFooterAnimation()` | `js/animations.js` |
+| `click` | cada `a[href^="#"]` (inclui links do footer) | handler genérico de US-01 (offset 80 px) | `js/main.js` |
+| `IntersectionObserver` | `.site-footer` | adiciona `.is-visible` | `js/animations.js` |
 
 ### 4.4 Edge Cases
 
@@ -552,7 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 | Element | Foreground | Background | Ratio | Status |
 |---|---|---|---|---|
-| Logo wordmark | `#FFFFFF` | `#2B2D30` | **17.5:1** | ✅ AAA |
+| Logo lockup (imagens) | — | `#2B2D30` | n/a (imagem) | Decorativo — `alt=""` no monograma, `alt="Sales Costa Advogados"` no wordmark |
 | Nav links (rest) | `#AA9B8F` | `#2B2D30` | **5.1:1** | ✅ AA |
 | Nav links (hover) | `#FFFFFF` | `#2B2D30` | **17.5:1** | ✅ AAA |
 | Copyright text | `rgba(209,213,219,0.6)` ≈ `#8E9299` | `#2B2D30` | **4.6:1** | ✅ AA |
@@ -586,7 +521,8 @@ JS guard in `initFooterAnimation()` also sets `.is-visible` immediately without 
  */
 const FOOTER_CONTENT = {
   logo: {
-    text:     'SALES COSTA',
+    mark:     'assets/logo_s_verde.png',   // monograma verde, height 28px
+    word:     'assets/logo_salescosta.png', // wordmark, height 18px
     href:     '#hero',
     ariaLabel:'Sales Costa Advogados — voltar ao topo',
   },
@@ -632,7 +568,7 @@ const FOOTER_CONTENT = {
 | Step | Verification |
 |---|---|
 | 1. Render `index.html` em viewport 375 px (mobile). | `.footer__logo` is visible, centered, displays "SALES COSTA" in white. |
-| 2. Inspect computed styles of `.footer__logo`. | `font-family` contains "DM Sans"; `font-weight: 600`; `color: #FFFFFF`; `text-transform: uppercase`. |
+| 2. Inspect `.footer__logo`. | Contém dois `<img>`: `.footer__logo-mark` (`assets/logo_s_verde.png`, `height: 28px`) e `.footer__logo-word` (`assets/logo_salescosta.png`, `height: 18px`); `.footer__logo` é `inline-flex` com `min-height: 44px`. |
 | 3. Count `<a class="footer__nav-link">` elements. | Exactly **4** links present with labels: "Sobre", "Áreas de atuação", "Equipe", "Contato". |
 | 4. Inspect computed styles of `.footer__nav-link`. | `color` resolves to `#AA9B8F` (--color-taupe). |
 | 5. Hover over any nav link (or add `:hover` in DevTools). | `color` transitions to `#FFFFFF`. |
@@ -645,18 +581,19 @@ const FOOTER_CONTENT = {
 |---|---|
 | 1. Load page; scroll to bottom until footer is visible. | Footer fades in (`.is-visible` class added). |
 | 2. Click "Equipe" link in footer. | `e.preventDefault()` fires; native anchor jump does not occur. |
-| 3. Observe scroll animation. | Page scrolls smoothly (`behavior: 'smooth'`) to the `#equipe` section. |
-| 4. Measure final scroll position. | `window.scrollY` ≈ `#equipe.offsetTop - 80`. |
-| 5. Inspect URL bar. | Hash updated to `#equipe` via `history.pushState`. |
-| 6. Repeat with keyboard (Tab to "Equipe", press Enter). | Same scroll behavior triggered. |
-| 7. Test with `prefers-reduced-motion: reduce`. | Scroll still reaches `#equipe`; CSS `transition: none` applied to footer. |
+| 3. Observe scroll animation. | Page scrolls smoothly (`behavior: 'smooth'`) to a posição do `#equipe`. |
+| 4. Measure final scroll position. | `#equipe.getBoundingClientRect().top` ≈ **80** (offset do navbar). |
+| 5. Repeat with keyboard (Tab to "Equipe", press Enter). | Same scroll behavior triggered. |
+| 6. Test with `prefers-reduced-motion: reduce`. | Scroll still reaches `#equipe`; footer aparece estático (`transition: none`, `.is-visible` imediato). |
+
+> A atualização do hash na URL (`history.pushState`) **não** faz parte da implementação — o handler genérico de US-01 não o faz.
 
 ### RN-01 — Todos os links disparam smooth scroll
 
 | Step | Verification |
 |---|---|
 | Click each of the 4 nav links. | Page scrolls smoothly to `#sobre`, `#areas`, `#equipe`, `#contato` respectively, all with ~80px offset. |
-| Click logo wordmark. | Page scrolls to `top: 0` smoothly. |
+| Click logo lockup (`href="#hero"`). | Page scrolls suavemente até o topo (`#hero` − 80 px, clampado a 0 pelo browser). |
 
 ### RN-02 — Copyright com ano dinâmico
 
@@ -679,7 +616,7 @@ const FOOTER_CONTENT = {
 | `--color-taupe` | `#AA9B8F` | Nav link default color |
 | `--color-text-light` | `#D1D5DB` | Copyright base color (at 60% opacity) |
 | `--color-lima` | `#E4FF8F` | Focus ring color |
-| `--font-body` | `'DM Sans', system-ui, sans-serif` | All footer text |
+| `--font-body` | `'Montserrat', system-ui, sans-serif` | All footer text (fonte única do site) |
 | `--section-pad-x` | `clamp(1.25rem, 5vw, 5rem)` | Horizontal padding |
 | `--container-max` | `1200px` | `.footer__inner` max-width |
 | `--text-body` | `1rem` | Nav link font-size |
@@ -688,26 +625,29 @@ const FOOTER_CONTENT = {
 
 | File | Action | Notes |
 |---|---|---|
-| `index.html` | Add `<footer>` block | Before closing `</body>` |
-| `css/sections.css` | Append footer CSS | After last section block |
-| `js/main.js` | Add `initFooterYear()` + `initSmoothScroll()` | Called in `DOMContentLoaded` |
-| `js/animations.js` | Add `initFooterAnimation()` | Called in `DOMContentLoaded` |
+| `index.html` | `<footer id="rodape">` inserido **após `#contato`**, antes dos `<script>` | lockup de 2 `<img>` + nav de 4 links + `<hr>` + copyright |
+| `css/sections.css` | bloco `/* US-10 */` acrescentado ao final (`.site-footer`, lockup, nav, divider, copyright, states, reduced-motion) | — |
+| `js/main.js` | injeção de `#footer-year` no `DOMContentLoaded` existente | **sem** `initSmoothScroll()` — ver desvio em §4.1 |
+| `js/animations.js` | `initFooterAnimation()` + bootstrap `document.readyState` (com guard de no-IO) | — |
+| `assets/logo_s_verde.png` (64×72) · `assets/logo_salescosta.png` (520×44) | Reuso | Lockup: monograma `height: 28px` + wordmark `height: 18px`, `gap: 12px`. **Nota:** o mockup `sales-costa-layout1.png` mostra o rodapé só com links + copyright; o lockup de logo é adição solicitada pelo cliente — tamanhos propostos (sem referência no layout). |
 
 ### Anchor IDs Required (must exist in `index.html`)
 
 | ID | Section | Owner Spec |
 |---|---|---|
 | `#hero` | Hero section | US-01 |
-| `#sobre` | Sobre section | US-02 |
+| `#sobre` | Sobre o Escritório | US-03 |
 | `#areas` | Áreas de atuação | US-04 |
-| `#equipe` | Equipe | US-07 |
-| `#contato` | Contato / Form | US-08 |
+| `#equipe` | Nossa Equipe | US-08 |
+| `#contato` | Fale Conosco / Form | US-09 |
+
+> Todos confirmados presentes em `index.html` na implementação.
 
 ### External Resources
 
 | Resource | Type | Load Strategy |
 |---|---|---|
-| `DM Sans` | Google Font | Already loaded in `<head>` via `<link rel="preconnect">` (US-01 dependency) |
+| `Montserrat` | Google Font | Already loaded in `<head>` via `<link rel="preconnect">` (US-01 dependency) |
 
 > No new external resources are introduced by this component.
 

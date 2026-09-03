@@ -11,6 +11,8 @@
 
 A seção **Em Números** é uma faixa horizontal de métricas de autoridade posicionada entre a seção de serviços e a de depoimentos. Seu propósito é gerar prova social e credibilidade por meio de números expressivos exibidos com uma animação de contagem que dispara uma única vez quando a seção entra no viewport.
 
+> **Ajuste de layout (Fase 17):** conforme referência `sales-costa-layout1.png`, esta seção usa **fundo Lima (`--color-lima` / `#E4FF8F`)**, números e labels em tom **quase-preto (`--color-text-dark` / `#2B2B2B`)** e **sem divisores verticais** entre os itens. As três subseções abaixo já refletem esse ajuste; o texto tachado original (`off-white` + divisores + labels Taupe) fica registrado como histórico.
+
 - **Arquivo HTML:** `index.html` — `<section id="numeros">`
 - **Estilos:** `css/sections.css` (layout da seção) + `css/components.css` (card de métrica reutilizável)
 - **JS:** `js/animations.js` — `initCounters()` via `IntersectionObserver`
@@ -132,7 +134,8 @@ graph TD
    ============================================================ */
 
 .numeros {
-  background-color: var(--color-off-white);   /* #F8F6F4 */
+  /* Fase 17: fundo Lima conforme sales-costa-layout1.png (era var(--color-off-white)) */
+  background-color: var(--color-lima);   /* #E4FF8F */
   padding-block: var(--section-pad-y);
   padding-inline: var(--section-pad-x);
 }
@@ -187,7 +190,7 @@ graph TD
 
 /* Número principal */
 .numeros__count {
-  font-family: var(--font-body);           /* DM Sans */
+  font-family: var(--font-body);           /* Montserrat */
   font-weight: 700;
   font-size: clamp(2.5rem, 8vw, 4rem);    /* fluido conforme PRD */
   color: var(--color-text-dark);           /* #2B2B2B */
@@ -205,7 +208,7 @@ graph TD
   font-family: var(--font-body);
   font-weight: 700;
   font-size: clamp(1.75rem, 5vw, 2.75rem);  /* ~70% do tamanho do número */
-  color: var(--color-taupe);                 /* #AA9B8F */
+  color: var(--color-text-dark);             /* Fase 17: quase-preto sobre lima (era --color-taupe) */
   line-height: 1;
 }
 
@@ -213,8 +216,8 @@ graph TD
 .numeros__label {
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 0.6875rem;           /* ~11px */
-  color: var(--color-taupe);      /* #AA9B8F */
+  font-size: 0.6875rem;               /* ~11px */
+  color: var(--color-text-dark);      /* Fase 17: quase-preto sobre lima (era --color-taupe) */
   text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 1.4;
@@ -240,19 +243,12 @@ graph TD
   .numeros__container {
     /* 4 colunas em linha */
     grid-template-columns: repeat(4, 1fr);
-    gap: 0; /* separação via border-right */
+    gap: 0;
   }
 
   .numeros__item {
-    /* Divisor vertical entre colunas */
-    border-right: 1px solid var(--color-border);  /* #D9D3CE */
+    /* Fase 17: sem divisor vertical (layout1 mostra faixa lima limpa, sem linhas) */
     padding-inline: clamp(1rem, 3vw, 2.5rem);
-  }
-
-  /* Remove divisor do último item */
-  .numeros__item--no-divider,
-  .numeros__item:last-child {
-    border-right: none;
   }
 }
 ```
@@ -344,9 +340,10 @@ function animateCounter(el, target, duration = 2000) {
 
 /**
  * Inicializa o IntersectionObserver para a seção #numeros.
- * Deve ser chamada no DOMContentLoaded em main.js.
+ * `js/animations.js` NÃO é módulo neste projeto — a função é autônoma
+ * e se auto-invoca via guard `document.readyState` (ver §4.5).
  */
-export function initCounters() {
+function initCounters() {
   const section = document.getElementById('numeros');
   if (!section) return; // Seção não encontrada — encerra silenciosamente
 
@@ -401,7 +398,7 @@ export function initCounters() {
 |---|---|---|---|
 | `IntersectionObserver` | `<section id="numeros">` | `js/animations.js` | Ao ≥ 40% de visibilidade, uma vez |
 | `requestAnimationFrame` | `<span class="numeros__count">` ×4 | `js/animations.js` | Loop até `progress >= 1` |
-| `DOMContentLoaded` | `document` | `js/main.js` | Chama `initCounters()` |
+| `document.readyState` guard | `document` | `js/animations.js` | Auto-invoca `initCounters()` (script `defer`) |
 
 ### 4.4 Edge Cases Handled
 
@@ -414,17 +411,22 @@ export function initCounters() {
 | Valor final com arredondamento imperfeito | `el.textContent = target` após `progress >= 1` — garante exatidão |
 | Leitor de tela durante a animação | `aria-live="off"` — não anuncia frames intermediários |
 
-### 4.5 Integração em `js/main.js`
+### 4.5 Bootstrap (auto-invocação, sem módulo)
+
+`js/animations.js` é carregado com `<script defer>` (não `type="module"`). No fim de
+`initCounters()`, adicionar o mesmo padrão já usado por `initDiferenciaisAnimation()`
+(US-05):
 
 ```js
-// js/main.js (trecho a adicionar)
-import { initCounters } from './animations.js';
-
-document.addEventListener('DOMContentLoaded', () => {
-  // ... outras inits ...
+// js/animations.js — bootstrap
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initCounters);
+} else {
   initCounters();
-});
+}
 ```
+
+`animateCounter(el, target, duration)` continua como função auxiliar no mesmo arquivo.
 
 ---
 
@@ -447,10 +449,10 @@ Nenhum elemento interativo nesta seção. O foco do teclado passa pela seção d
 
 | Elemento | Foreground | Background | Ratio estimado | Status |
 |---|---|---|---|---|
-| `.numeros__count` | `#2B2B2B` | `#F8F6F4` | ≈ 16.5:1 | ✅ Passa AA e AAA |
-| `.numeros__label` / `.numeros__suffix` | `#AA9B8F` | `#F8F6F4` | ≈ 2.8:1 | ⚠️ Decorativo — informação completa via `aria-label` |
+| `.numeros__count` | `#2B2B2B` | `#E4FF8F` | ≈ 15.9:1 | ✅ Passa AA e AAA |
+| `.numeros__label` / `.numeros__suffix` | `#2B2B2B` | `#E4FF8F` | ≈ 15.9:1 | ✅ Passa AA e AAA |
 
-> **Nota:** O `#AA9B8F` (Taupe) sobre `#F8F6F4` não atinge 4.5:1. A mitigação é o `aria-label` descritivo no `<article>` pai, que comunica o valor completo com contraste suficiente.
+> **Nota (Fase 17):** com o fundo Lima (`#E4FF8F`) e texto quase-preto (`#2B2B2B`), todos os elementos passam WCAG AA/AAA. O problema anterior de contraste do Taupe sobre off-white deixa de existir nesta seção.
 
 ### `prefers-reduced-motion`
 
@@ -533,8 +535,8 @@ const NUMEROS_DATA = [
 | CA-02.1 | Em viewport < 768px, `.numeros__container` tem `grid-template-columns: repeat(2, 1fr)` | DevTools → Elements → Computed Styles |
 | CA-02.2 | Os 4 itens se distribuem em 2 colunas × 2 linhas | DevTools Grid inspector |
 | CA-02.3 | Nenhum `border-right` nos cards em mobile | Computed Styles → `border-right: none` |
-| CA-02.4 | Em viewport ≥ 768px, 4 cards em linha com divisor vertical entre itens 1–3 | `grid-template-columns: repeat(4, 1fr)`; `border-right: 1px solid #D9D3CE` |
-| CA-02.5 | `.numeros__item--no-divider` (4º card) sem `border-right` em qualquer breakpoint | Computed Styles → `border-right: none` |
+| CA-02.4 | Em viewport ≥ 768px, 4 cards em linha **sem divisores verticais** (Fase 17) | `grid-template-columns: repeat(4, 1fr)`; nenhum `border-right` |
+| CA-02.5 | Fundo da seção é Lima `#E4FF8F`; números/labels/sufixo em `#2B2B2B` | Computed Styles → `background-color` e `color` |
 
 ---
 
@@ -544,42 +546,42 @@ const NUMEROS_DATA = [
 
 | Variável | Valor | Uso |
 |---|---|---|
-| `--color-off-white` | `#F8F6F4` | Background da seção |
-| `--color-text-dark` | `#2B2B2B` | Cor do número principal |
-| `--color-taupe` | `#AA9B8F` | Sufixo "+" e labels |
-| `--color-border` | `#D9D3CE` | Divisor vertical entre colunas |
-| `--font-body` | `'DM Sans', system-ui, sans-serif` | Toda a tipografia da seção |
+| `--color-lima` | `#E4FF8F` | Background da seção (Fase 17 — era `--color-off-white`) |
+| `--color-text-dark` | `#2B2B2B` | Número principal, sufixo "+" e labels (Fase 17) |
+| `--font-body` | `'Montserrat', system-ui, sans-serif` | Toda a tipografia da seção (fonte única do site) |
 | `--section-pad-y` | `clamp(3rem, 8vw, 6rem)` | Padding vertical |
 | `--section-pad-x` | `clamp(1.25rem, 5vw, 5rem)` | Padding horizontal |
 | `--container-max` | `1200px` | Largura máxima do container |
 
 ### Módulos JS
 
-| Módulo | Função exportada | Papel |
+| Módulo | Função | Papel |
 |---|---|---|
-| `js/animations.js` | `initCounters()` | Declara o IntersectionObserver + `animateCounter()` |
-| `js/main.js` | — | Importa e chama `initCounters()` no `DOMContentLoaded` |
+| `js/animations.js` | `initCounters()` + `animateCounter()` | Funções autônomas (não módulo). `initCounters()` auto-invoca via guard `document.readyState`. Observer independente dos demais (`.comunicado__container`, `.animate-fade-up`, `.diferencial-card`). |
+
+### Ordem na página
+
+Inserir `<section id="numeros">` **após `<section id="diferenciais">`** (hero → comunicado → sobre → areas → diferenciais → numeros).
 
 ### Anchor IDs
 
 | ID | Usado por |
 |---|---|
-| `#numeros` | Link de navegação na `<nav>` principal (se aplicável) |
+| `#numeros` | Sem link de navegação na navbar (não está entre os 6 itens do menu). |
 
 ### Recursos Externos
 
 | Recurso | Fonte | Status |
 |---|---|---|
-| `DM Sans` (weights 500, 700) | Google Fonts no `<head>` | ✅ Compartilhado com toda a página |
+| `Montserrat` (weights 500, 700) | Google Fonts no `<head>` | ✅ Compartilhado com toda a página |
 | `IntersectionObserver` API | Browser nativo | ✅ Suporte ≥ 97% global (2026) |
 | `requestAnimationFrame` API | Browser nativo | ✅ Suporte universal |
 
 ### Checklist de Integração
 
-- [ ] `<section id="numeros">` inserido em `index.html` entre `#servicos` e `#depoimentos`
-- [ ] Estilos adicionados em `css/sections.css` sob `/* === #numeros === */`
-- [ ] `initCounters()` exportada de `js/animations.js` e importada em `js/main.js`
-- [ ] `DM Sans` com `font-weight: 500` e `700` presentes no `<link>` do Google Fonts
+- [ ] `<section id="numeros">` inserido em `index.html` **após `#diferenciais`**
+- [ ] Estilos adicionados em `css/sections.css` (bloco US-06)
+- [ ] `initCounters()` + `animateCounter()` em `js/animations.js`, com bootstrap por `document.readyState`
+- [ ] `Montserrat` com `font-weight: 500` e `700` presentes no `<link>` do Google Fonts
 - [ ] Testado com `prefers-reduced-motion: reduce` emulado no DevTools
 - [ ] Testado em viewport 375px (iPhone SE) e 768px (iPad portrait)
-- [ ] Validado com Axe DevTools ou Lighthouse Accessibility ≥ 90

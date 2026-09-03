@@ -14,12 +14,18 @@ A seção **Áreas de Atuação** (`<section id="areas">`) apresenta o portfóli
 - **Tablet (768px – 1023px):** 2 colunas × 3 linhas.
 - **Mobile (< 768px):** 1 coluna × 6 linhas empilhadas.
 
+**Detalhes visuais:**
+- Eyebrow **"ÁREAS DE ATUAÇÃO"** (Taupe) precedido do marcador `assets/marcador_areia.png` à esquerda.
+- H2 com `font-weight: 600`; o trecho **"cada frente"** recebe `color: var(--color-taupe)` via `<span class="areas__title-accent">`.
+- Cada card exibe o marcador `assets/marcador_areia.png` no **canto superior direito** (`opacity: 0.5`).
+- **Sem link "Saiba mais"** — os cards são puramente informativos.
+
 ### Mermaid Diagram: Component Structure
 
 ```mermaid
 graph TD
-    A[Section #areas] --> B[Eyebrow 'ÁREAS DE ATUAÇÃO']
-    A --> C[H2 Headline 'Especialização que cobre...']
+    A[Section #areas] --> B[Eyebrow + marcador areia]
+    A --> C["H2 (weight 600, 'cada frente' em Taupe)"]
     A --> D[Grid Container]
     D --> E1[Card 1: Direito Empresarial]
     D --> E2[Card 2: Direito Tributário]
@@ -27,7 +33,7 @@ graph TD
     D --> E4[Card 4: Direito Civil]
     D --> E5[Card 5: Direito Societário]
     D --> E6[Card 6: Compliance & Governança]
-    E1 & E2 & E3 & E4 & E5 & E6 --> F[Click 'Saiba mais' -> Scroll to #contato]
+    E1 & E2 & E3 & E4 & E5 & E6 --> F["Marcador areia no canto sup. direito (opacity 0.5)"]
 ```
 
 ---
@@ -38,81 +44,77 @@ graph TD
 <section id="areas" class="areas" aria-labelledby="areas-title">
   <div class="areas__container">
     <header class="areas__header">
-      <span class="areas__eyebrow">ÁREAS DE ATUAÇÃO</span>
-      <h2 id="areas-title" class="areas__title">Especialização que cobre cada frente do seu negócio.</h2>
+      <span class="areas__eyebrow">
+        <img class="areas__eyebrow-mark" src="assets/marcador_areia.png" alt="" width="15" height="15">
+        ÁREAS DE ATUAÇÃO
+      </span>
+      <h2 id="areas-title" class="areas__title">
+        Especialização que cobre <span class="areas__title-accent">cada frente</span> do seu negócio.
+      </h2>
     </header>
 
     <div class="areas__grid">
+      <!-- Cada card: marcador (assets/marcador_areia.png) no canto superior direito +
+           ícone + título + descrição. SEM link "Saiba mais" — cards informativos. -->
+
       <!-- Card 1 -->
       <article class="area-card">
+        <img class="area-card__corner" src="assets/marcador_areia.png" alt="" aria-hidden="true" width="15" height="15">
         <div class="area-card__icon" aria-hidden="true">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
         </div>
         <h3 class="area-card__title">Direito Empresarial</h3>
         <p class="area-card__desc">Estruturação societária, contratos comerciais e assessoria contínua para negócios em crescimento.</p>
-        <a href="#contato" class="area-card__link" aria-label="Saiba mais sobre Direito Empresarial">
-          Saiba mais <span aria-hidden="true">&rarr;</span>
-        </a>
       </article>
 
       <!-- Card 2 -->
       <article class="area-card">
+        <img class="area-card__corner" src="assets/marcador_areia.png" alt="" aria-hidden="true" width="15" height="15">
         <div class="area-card__icon" aria-hidden="true">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
         <h3 class="area-card__title">Direito Tributário</h3>
         <p class="area-card__desc">Planejamento fiscal, consultoria preventiva e defesa em processos administrativos e judiciais.</p>
-        <a href="#contato" class="area-card__link" aria-label="Saiba mais sobre Direito Tributário">
-          Saiba mais <span aria-hidden="true">&rarr;</span>
-        </a>
       </article>
 
       <!-- Card 3 -->
       <article class="area-card">
+        <img class="area-card__corner" src="assets/marcador_areia.png" alt="" aria-hidden="true" width="15" height="15">
         <div class="area-card__icon" aria-hidden="true">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <h3 class="area-card__title">Direito Trabalhista</h3>
         <p class="area-card__desc">Gestão de risco trabalhista, compliance de RH e representação em ações individuais e coletivas.</p>
-        <a href="#contato" class="area-card__link" aria-label="Saiba mais sobre Direito Trabalhista">
-          Saiba mais <span aria-hidden="true">&rarr;</span>
-        </a>
       </article>
 
       <!-- Card 4 -->
       <article class="area-card">
+        <img class="area-card__corner" src="assets/marcador_areia.png" alt="" aria-hidden="true" width="15" height="15">
         <div class="area-card__icon" aria-hidden="true">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         </div>
         <h3 class="area-card__title">Direito Civil</h3>
         <p class="area-card__desc">Contratos, responsabilidade civil e patrimônio, com foco em prevenção e solução célere de conflitos.</p>
-        <a href="#contato" class="area-card__link" aria-label="Saiba mais sobre Direito Civil">
-          Saiba mais <span aria-hidden="true">&rarr;</span>
-        </a>
       </article>
 
       <!-- Card 5 -->
       <article class="area-card">
+        <img class="area-card__corner" src="assets/marcador_areia.png" alt="" aria-hidden="true" width="15" height="15">
         <div class="area-card__icon" aria-hidden="true">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
         <h3 class="area-card__title">Direito Societário</h3>
         <p class="area-card__desc">Fusões, aquisições, governança e reestruturação de grupos empresariais e familiares.</p>
-        <a href="#contato" class="area-card__link" aria-label="Saiba mais sobre Direito Societário">
-          Saiba mais <span aria-hidden="true">&rarr;</span>
-        </a>
       </article>
 
       <!-- Card 6 -->
       <article class="area-card">
+        <img class="area-card__corner" src="assets/marcador_areia.png" alt="" aria-hidden="true" width="15" height="15">
         <div class="area-card__icon" aria-hidden="true">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <h3 class="area-card__title">Compliance & Governança</h3>
         <p class="area-card__desc">Programas de integridade, auditoria de conformidade e assessoria em governança corporativa.</p>
-        <a href="#contato" class="area-card__link" aria-label="Saiba mais sobre Compliance e Governança">
-          Saiba mais <span aria-hidden="true">&rarr;</span>
-        </a>
       </article>
     </div>
   </div>
@@ -142,22 +144,35 @@ graph TD
 }
 
 .areas__eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: var(--text-eyebrow);
   font-weight: 500;
   color: var(--color-taupe);
-  letter-spacing: 4px;
+  letter-spacing: var(--eyebrow-tracking); /* 3px — token global */
   margin-bottom: 16px;
   text-transform: uppercase;
+}
+
+.areas__eyebrow-mark {
+  flex: 0 0 auto;
+  display: block;
+  width: 10px;
+  height: 10px;
 }
 
 .areas__title {
   font-family: var(--font-display);
   font-size: var(--text-h2);
   line-height: 1.25;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--color-text-dark);
   max-width: 700px;
+}
+
+.areas__title-accent {
+  color: var(--color-taupe);
 }
 
 .areas__grid {
@@ -167,6 +182,7 @@ graph TD
 }
 
 .area-card {
+  position: relative;
   background-color: var(--color-off-white);
   padding: 32px 28px;
   border-radius: 4px;
@@ -180,6 +196,18 @@ graph TD
   transform: translateY(-4px);
   border-bottom-color: var(--color-taupe);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* Marcador decorativo no canto superior direito — assets/marcador_areia.png (15x15) */
+.area-card__corner {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 15px;
+  height: 15px;
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
 }
 
 .area-card__icon {
@@ -201,27 +229,14 @@ graph TD
   font-size: 0.9375rem;
   line-height: 1.6;
   color: #555555;
-  margin-bottom: 24px;
   flex-grow: 1;
   font-weight: 300;
 }
 
-.area-card__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--color-taupe);
-  font-weight: 500;
-  font-size: 0.9375rem;
-  text-decoration: none;
-  min-height: 44px;
-  padding: 8px 0;
-  transition: color 0.3s ease, gap 0.3s ease;
-}
-
-.area-card__link:hover {
-  color: var(--color-dark);
-  gap: 12px;
+@media (prefers-reduced-motion: reduce) {
+  .area-card {
+    transition: none;
+  }
 }
 
 /* ==========================================================================
@@ -248,32 +263,18 @@ graph TD
 
 ## 4. JavaScript Specification
 
-Smooth scroll behavior for the `Saiba mais →` link pointing to `#contato`:
-
-```javascript
-document.addEventListener('DOMContentLoaded', () => {
-  const areaLinks = document.querySelectorAll('.area-card__link');
-  areaLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector('#contato');
-      if (target) {
-        const offset = 80;
-        const position = target.getBoundingClientRect().top + window.pageYOffset - offset;
-        window.scrollTo({ top: position, behavior: 'smooth' });
-      }
-    });
-  });
-});
-```
+**Nenhum JavaScript é necessário** para esta seção — os cards são puramente
+informativos (sem link "Saiba mais"). Não há observers, handlers ou fetch.
+Apenas manter um comentário em `js/main.js` indicando que a US-04 não adiciona JS.
 
 ---
 
 ## 5. Accessibility (A11y) Requirements
 
-- **WCAG AA Conformance:** Texto escuro sobre fundo `#F8F6F4` possui contraste > 7:1.
-- **Touch Targets:** Links `Saiba mais` configurados com `min-height: 44px`.
-- **Screen Readers:** Ícones vetoriais com `aria-hidden="true"`, links com `aria-label` descritivos por especialidade.
+- **Contraste:** texto do card `#555555` sobre `#F8F6F4` ≈ 7:1 (AAA); título `#2B2B2B` ≈ 15:1.
+- **Ícones e marcador:** `<svg>` do ícone e `<img class="area-card__corner">` marcados como `aria-hidden="true"` / `alt=""` — decorativos, ignorados por leitores de tela.
+- **Sem elementos interativos** na seção — o foco de teclado passa pelo conteúdo textual sem paradas.
+- **Nota de contraste:** eyebrow "ÁREAS DE ATUAÇÃO" em Taupe `#AA9B8F` sobre branco ≈ 2.8:1 — abaixo de AA para texto (mantido conforme design; candidato a cor distinta em revisão futura).
 
 ---
 
@@ -281,13 +282,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ```json
 {
+  "eyebrow": "ÁREAS DE ATUAÇÃO",
+  "eyebrowMark": "assets/marcador_areia.png",
+  "title": "Especialização que cobre <cada frente> do seu negócio.",
+  "titleAccent": "cada frente",
   "areas": [
-    { "title": "Direito Empresarial", "desc": "Estruturação societária...", "anchor": "#contato" },
-    { "title": "Direito Tributário", "desc": "Planejamento fiscal...", "anchor": "#contato" },
-    { "title": "Direito Trabalhista", "desc": "Gestão de risco trabalhista...", "anchor": "#contato" },
-    { "title": "Direito Civil", "desc": "Contratos e responsabilidade...", "anchor": "#contato" },
-    { "title": "Direito Societário", "desc": "Fusões e aquisições...", "anchor": "#contato" },
-    { "title": "Compliance & Governança", "desc": "Programas de integridade...", "anchor": "#contato" }
+    { "title": "Direito Empresarial", "desc": "Estruturação societária, contratos comerciais e assessoria contínua para negócios em crescimento." },
+    { "title": "Direito Tributário", "desc": "Planejamento fiscal, consultoria preventiva e defesa em processos administrativos e judiciais." },
+    { "title": "Direito Trabalhista", "desc": "Gestão de risco trabalhista, compliance de RH e representação em ações individuais e coletivas." },
+    { "title": "Direito Civil", "desc": "Contratos, responsabilidade civil e patrimônio, com foco em prevenção e solução célere de conflitos." },
+    { "title": "Direito Societário", "desc": "Fusões, aquisições, governança e reestruturação de grupos empresariais e familiares." },
+    { "title": "Compliance & Governança", "desc": "Programas de integridade, auditoria de conformidade e assessoria em governança corporativa." }
   ]
 }
 ```
@@ -297,15 +302,23 @@ document.addEventListener('DOMContentLoaded', () => {
 ## 7. Acceptance Criteria (Technical)
 
 ### CA-01: Renderização dos 6 Cards
-- Todos os 6 cards com título, descrição, ícone e link interativo renderizados.
+- Todos os 6 cards renderizados com **ícone SVG + título + descrição** (sem link "Saiba mais") e com o marcador `area-card__corner` no canto superior direito (`opacity: 0.5`).
 
 ### CA-02: Reordenamento no Mobile
-- Viewport de 375px renderiza grid de 1 coluna sem estouro lateral (`overflow-x: hidden`).
+- Viewport de 375px renderiza grid de 1 coluna sem estouro lateral (`overflow-x: hidden`); 2 colunas em ≥ 768px; 3 colunas em ≥ 1024px.
+
+### CA-03: Eyebrow e título
+- `.areas__eyebrow` com `marcador_areia.png` (render ~10px) à esquerda do texto.
+- `.areas__title` com `font-weight: 600`; `.areas__title-accent` ("cada frente") com `color` = `rgb(170, 155, 143)` (`--color-taupe`).
 
 ---
 
 ## 8. Dependencies & Integration Points
 
 - **CSS Variables:** `--color-white`, `--color-off-white`, `--color-taupe`, `--color-text-dark`.
-- **Files Affected:** `index.html`, `css/sections.css`, `js/main.js`.
+- **Tipografia:** fonte única **Montserrat** (`--font-body` e `--font-display`), definida em `css/variables.css`.
+- **Assets:** `assets/marcador_areia.png` (15×15) — reutilizado no eyebrow (render 10×10) e no canto de cada card (render 15×15, `opacity: 0.5`). Copiar de `images/`.
+- **Ordem na página:** inserir `<section id="areas">` após `<section id="sobre">` (hero → comunicado → sobre → areas).
+- **Split de CSS:** layout da seção (`.areas`, `.areas__*`, `.areas__grid` + breakpoints) em `css/sections.css`; card reutilizável (`.area-card`, `.area-card__*` + hover) em `css/components.css`.
+- **Files Affected:** `index.html`, `css/sections.css`, `css/components.css`, `js/main.js` (apenas comentário — sem JS).
 

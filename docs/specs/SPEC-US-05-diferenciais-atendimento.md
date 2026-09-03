@@ -16,6 +16,13 @@ A seção `#diferenciais` é o quinto bloco da landing page e cumpre a função 
 - **Animação staggered** via `IntersectionObserver` garante que cada card entre em cena sequencialmente ao rolar a página.
 - Sem dependências externas além das fontes Google já carregadas no `<head>` do `index.html`.
 
+**Detalhes visuais:**
+- Eyebrow **"Por que Sales Costa"** (Lima) precedido do **marcador verde** (`assets/marcador_verde.png`, render ~10px) à esquerda.
+- H2 com `font-weight: 600`; os trechos **"diferencial"** e **"cada caso"** recebem `color: var(--color-lima)` via `<span class="diferenciais__heading-accent">`.
+- **Indicador de cada card = número** (`1`, `2`, `3`, `4`) em destaque — `.diferencial-card__num`, `font-family: var(--font-display)`, `font-size: clamp(2rem, 4vw, 2.5rem)`, `font-weight: 600`, `color: var(--color-taupe)`. **Substitui o ícone SVG.**
+- Cada card exibe o **marcador verde** no **canto superior direito** (`.diferencial-card__corner`, `opacity: 0.5`).
+- `.diferencial-card` recebe `position: relative` para ancorar o marcador.
+
 ```mermaid
 flowchart TD
     A["&lt;section id='diferenciais'&gt;"] --> B["&lt;div class='diferenciais__container'&gt;"]
@@ -27,7 +34,7 @@ flowchart TD
     D --> E2["&lt;article class='diferencial-card'&gt; #2"]
     D --> E3["&lt;article class='diferencial-card'&gt; #3"]
     D --> E4["&lt;article class='diferencial-card'&gt; #4"]
-    E1 --> F1["&lt;div class='diferencial-card__icon'&gt;"]
+    E1 --> F1["&lt;div class='diferencial-card__num'&gt; 1..4"]
     E1 --> F2["&lt;h3 class='diferencial-card__title'&gt;"]
     E1 --> F3["&lt;p class='diferencial-card__desc'&gt;"]
 
@@ -56,11 +63,12 @@ flowchart TD
 
     <!-- Cabeçalho da seção -->
     <header class="diferenciais__header">
-      <p class="eyebrow diferenciais__eyebrow" aria-hidden="true">
+      <p class="diferenciais__eyebrow" aria-hidden="true">
+        <img class="diferenciais__eyebrow-mark" src="assets/marcador_verde.png" alt="" width="15" height="15">
         Por que Sales Costa
       </p>
       <h2 id="diferenciais-heading" class="diferenciais__heading">
-        O diferencial está em como acompanhamos cada caso.
+        O <span class="diferenciais__heading-accent">diferencial</span> está em como acompanhamos <span class="diferenciais__heading-accent">cada caso</span>.
       </h2>
     </header>
 
@@ -78,28 +86,8 @@ flowchart TD
         data-animate="fade-up"
         data-delay="0"
       >
-        <div class="diferencial-card__icon" aria-hidden="true">
-          <!-- SVG: silhueta de pessoas / parceria -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="40"
-            height="40"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            focusable="false"
-            role="img"
-            aria-label="Ícone de atendimento personalizado"
-          >
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-            <circle cx="9" cy="7" r="4" />
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-          </svg>
-        </div>
+        <img class="diferencial-card__corner" src="assets/marcador_verde.png" alt="" aria-hidden="true" width="15" height="15">
+        <div class="diferencial-card__num" aria-hidden="true">1</div>
         <h3 class="diferencial-card__title">Atendimento personalizado</h3>
         <p class="diferencial-card__desc">
           Acompanhamento direto pelos sócios responsáveis,
@@ -114,26 +102,8 @@ flowchart TD
         data-animate="fade-up"
         data-delay="100"
       >
-        <div class="diferencial-card__icon" aria-hidden="true">
-          <!-- SVG: livro / especialização -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="40"
-            height="40"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            focusable="false"
-            role="img"
-            aria-label="Ícone de equipe especializada"
-          >
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-          </svg>
-        </div>
+        <img class="diferencial-card__corner" src="assets/marcador_verde.png" alt="" aria-hidden="true" width="15" height="15">
+        <div class="diferencial-card__num" aria-hidden="true">2</div>
         <h3 class="diferencial-card__title">Equipe especializada</h3>
         <p class="diferencial-card__desc">
           Formação dedicada por área, garantindo profundidade
@@ -148,28 +118,8 @@ flowchart TD
         data-animate="fade-up"
         data-delay="200"
       >
-        <div class="diferencial-card__icon" aria-hidden="true">
-          <!-- SVG: gráfico / resultados -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="40"
-            height="40"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            focusable="false"
-            role="img"
-            aria-label="Ícone de resultados comprovados"
-          >
-            <line x1="18" y1="20" x2="18" y2="10" />
-            <line x1="12" y1="20" x2="12" y2="4" />
-            <line x1="6"  y1="20" x2="6"  y2="14" />
-            <line x1="2"  y1="20" x2="22" y2="20" />
-          </svg>
-        </div>
+        <img class="diferencial-card__corner" src="assets/marcador_verde.png" alt="" aria-hidden="true" width="15" height="15">
+        <div class="diferencial-card__num" aria-hidden="true">3</div>
         <h3 class="diferencial-card__title">Resultados comprovados</h3>
         <p class="diferencial-card__desc">
           Histórico consistente de êxito em negociações, defesas e
@@ -184,25 +134,8 @@ flowchart TD
         data-animate="fade-up"
         data-delay="300"
       >
-        <div class="diferencial-card__icon" aria-hidden="true">
-          <!-- SVG: escudo / ética -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="40"
-            height="40"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            focusable="false"
-            role="img"
-            aria-label="Ícone de ética e transparência"
-          >
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          </svg>
-        </div>
+        <img class="diferencial-card__corner" src="assets/marcador_verde.png" alt="" aria-hidden="true" width="15" height="15">
+        <div class="diferencial-card__num" aria-hidden="true">4</div>
         <h3 class="diferencial-card__title">Ética &amp; transparência</h3>
         <p class="diferencial-card__desc">
           Comunicação clara sobre riscos, prazos e honorários
@@ -254,23 +187,38 @@ Adicionar em **`css/sections.css`** (após os estilos das seções anteriores).
 }
 
 .diferenciais__eyebrow {
-  /* Herda .eyebrow de components.css; sobrescreve cor */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: var(--color-lima);
   font-family: var(--font-body);
   font-size: var(--text-eyebrow);
   font-weight: 600;
-  letter-spacing: 4px;
+  letter-spacing: var(--eyebrow-tracking); /* 3px — token global */
   text-transform: uppercase;
   line-height: 1;
+}
+
+/* Marcador verde à esquerda do texto — assets/marcador_verde.png (15x15) */
+.diferenciais__eyebrow-mark {
+  flex: 0 0 auto;
+  display: block;
+  width: 10px;
+  height: 10px;
 }
 
 .diferenciais__heading {
   color: var(--color-white);
   font-family: var(--font-display);
   font-size: var(--text-h2);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.25;
   max-width: 40ch;
+}
+
+/* "diferencial" e "cada caso" destacados em Lima */
+.diferenciais__heading-accent {
+  color: var(--color-lima);
 }
 
 /* ── Grid de cards (mobile: 1 coluna) ───────────────────────── */
@@ -284,6 +232,7 @@ Adicionar em **`css/sections.css`** (após os estilos das seções anteriores).
 /* ── Card ────────────────────────────────────────────────────── */
 
 .diferencial-card {
+  position: relative;
   background-color: var(--color-dark-alt);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 4px;
@@ -309,21 +258,27 @@ Adicionar em **`css/sections.css`** (após os estilos das seções anteriores).
   }
 }
 
-/* ── Ícone ───────────────────────────────────────────────────── */
-
-.diferencial-card__icon {
-  color: var(--color-lima);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 44px;
-  height: 44px;          /* touch-target mínimo, embora não interativo */
-  flex-shrink: 0;
+/* ── Marcador decorativo (canto superior direito) ─────────────── */
+/* assets/marcador_verde.png (15x15), opacidade 50% */
+.diferencial-card__corner {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 15px;
+  height: 15px;
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
 }
 
-.diferencial-card__icon svg {
-  width: 40px;
-  height: 40px;
+/* ── Número indicador (em destaque — substitui o ícone) ───────── */
+
+.diferencial-card__num {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-taupe);
 }
 
 /* ── Título ──────────────────────────────────────────────────── */
@@ -533,8 +488,8 @@ if (document.readyState === 'loading') {
 | `<section>`                | `aria-labelledby="diferenciais-heading"`    | Associa o heading da seção ao landmark region                        |
 | `.diferenciais__grid`      | `role="list"` + `aria-label="…"`            | Semântica explícita de lista para leitores de tela                   |
 | `<article>` (cada card)    | `role="listitem"`                           | Filho semântico do `role="list"` do grid                             |
-| `.diferencial-card__icon`  | `aria-hidden="true"` no `<div>` wrapper     | Ícone é decorativo; texto do `<h3>` fornece contexto suficiente      |
-| SVGs                       | `focusable="false"` + `role="img"` + `aria-label` | Impede foco duplo em IE/Edge; label descritivo para screen readers |
+| `.diferencial-card__num`   | `aria-hidden="true"`                        | Número indicador decorativo (`1`–`4`); o `<h3>` fornece o contexto   |
+| `.diferencial-card__corner`| `alt=""` + `aria-hidden="true"`             | Marcador decorativo no canto                                         |
 | `.diferenciais__eyebrow`   | `aria-hidden="true"`                        | Texto decorativo repetido pelo `<h2>` no contexto                   |
 
 ### Navegação por teclado
@@ -551,7 +506,7 @@ if (document.readyState === 'loading') {
 | H2 (branco)               | `#FFFFFF`        | `#404347`        | ~9.7:1 ✅      |
 | Card title (branco)       | `#FFFFFF`        | `#484B4F`        | ~9.3:1 ✅      |
 | Card description          | `#D1D5DB`        | `#484B4F`        | ~7.1:1 ✅      |
-| Ícone SVG (lima)          | `#E4FF8F` (stroke)| `#484B4F`       | ~9.2:1 ✅      |
+| Número indicador (taupe)  | `#AA9B8F`        | `#484B4F`       | ~2.6:1 — decorativo (`aria-hidden`), não é conteúdo |
 
 ### `prefers-reduced-motion`
 
@@ -586,32 +541,32 @@ const DIFERENCIAIS_CONTENT = {
   cards: [
     {
       id: 'card-atendimento',
+      num: 1,
       delay: 0,           // ms — stagger de animação
-      iconAriaLabel: 'Ícone de atendimento personalizado',
       title: 'Atendimento personalizado',
       description:
         'Acompanhamento direto pelos sócios responsáveis, sem delegação generalista.',
     },
     {
       id: 'card-especializado',
+      num: 2,
       delay: 100,
-      iconAriaLabel: 'Ícone de equipe especializada',
       title: 'Equipe especializada',
       description:
         'Formação dedicada por área, garantindo profundidade técnica em cada demanda.',
     },
     {
       id: 'card-resultados',
+      num: 3,
       delay: 200,
-      iconAriaLabel: 'Ícone de resultados comprovados',
       title: 'Resultados comprovados',
       description:
         'Histórico consistente de êxito em negociações, defesas e operações societárias complexas.',
     },
     {
       id: 'card-etica',
+      num: 4,
       delay: 300,
-      iconAriaLabel: 'Ícone de ética e transparência',
       title: 'Ética & transparência',
       description:
         'Comunicação clara sobre riscos, prazos e honorários desde a primeira consulta.',
@@ -629,9 +584,19 @@ const DIFERENCIAIS_CONTENT = {
 | Verificação | Método |
 |---|---|
 | Exatamente 4 elementos `<article class="diferencial-card">` presentes no DOM | `document.querySelectorAll('#diferenciais .diferencial-card').length === 4` |
-| Cada card contém `<div class="diferencial-card__icon">`, `<h3>`, e `<p>` | Inspeção manual ou teste de DOM (ex.: Playwright/Puppeteer) |
-| Todos os 4 títulos do modelo de dados estão renderizados no HTML | Grep textual ou snapshot test |
-| Ícones SVG possuem `aria-label` e `focusable="false"` | Validação ARIA com axe-core |
+| Cada card contém `.diferencial-card__corner` (img), `.diferencial-card__num` (1–4), `<h3>`, e `<p>` | Inspeção manual ou teste de DOM |
+| Os números `1`, `2`, `3`, `4` renderizados em ordem | `[...document.querySelectorAll('.diferencial-card__num')].map(e=>e.textContent)` → `['1','2','3','4']` |
+| `.diferencial-card__num` em `font-weight: 600` e cor Taupe | `getComputedStyle(el).fontWeight === '600'`; `color` → `rgb(170, 155, 143)` |
+| `.diferencial-card__num` e `.diferencial-card__corner` com `aria-hidden="true"` / `alt=""` (decorativos) | Validação ARIA com axe-core |
+
+### CA-00 — Eyebrow, título e marcadores
+
+| Verificação | Método |
+|---|---|
+| `.diferenciais__eyebrow` com `marcador_verde.png` (~10px) à esquerda do texto | `img.complete && img.naturalWidth > 0`; `display: inline-flex` |
+| `.diferenciais__heading` em `font-weight: 600` | `getComputedStyle(el).fontWeight === '600'` |
+| "diferencial" e "cada caso" em Lima | `getComputedStyle(span).color` → `rgb(228, 255, 143)` (2 spans `.diferenciais__heading-accent`) |
+| `.diferencial-card__corner` no canto superior direito, `opacity: 0.5` | `top/right ≈ 20px` relativo ao card (`position: relative`); `opacity` computado `0.5` |
 
 ### CA-02 — 1 coluna em < 768px com padding 24px interno
 
@@ -677,7 +642,8 @@ const DIFERENCIAIS_CONTENT = {
 |---------------------------|----------------------------------------------|
 | `--color-dark`            | Background da seção                          |
 | `--color-dark-alt`        | Background dos cards                         |
-| `--color-lima`            | Eyebrow text, cor dos ícones SVG             |
+| `--color-lima`            | Eyebrow text + destaques "diferencial" / "cada caso" no H2 |
+| `--color-taupe`           | Número indicador `.diferencial-card__num` (1–4) |
 | `--color-white`           | H2, títulos dos cards                        |
 | `--color-text-light`      | Parágrafos descritivos dos cards             |
 | `--font-display`          | H2 da seção                                  |
@@ -689,16 +655,25 @@ const DIFERENCIAIS_CONTENT = {
 | `--section-pad-x`         | Padding horizontal da seção                  |
 | `--container-max`         | Largura máxima do container interno          |
 
-### Arquivos CSS que precisam de regra `.eyebrow`
+### Eyebrow
 
-A classe `.eyebrow` base (font-size, letter-spacing, text-transform) deve ser definida em `css/components.css`. A seção Diferenciais **sobrescreve apenas a cor** via `.diferenciais__eyebrow`. Garantir que a regra base exista antes de aplicar a sobrescrita.
+`.diferenciais__eyebrow` é **auto-suficiente** (define font-size, weight, letter-spacing, text-transform, color e o `display: inline-flex` do lockup com o marcador). Não depende de uma classe base `.eyebrow`.
+
+### Assets
+
+| Arquivo | Uso |
+|---|---|
+| `assets/marcador_verde.png` (15×15) | Marcador do eyebrow (render 10×10) **e** `.diferencial-card__corner` de cada card (render 15×15, `opacity: 0.5`). Já copiado na US-02. |
 
 ### Módulos JS
 
 | Módulo            | Dependência                         |
 |-------------------|-------------------------------------|
-| `js/animations.js`| `IntersectionObserver` (nativo ES2019+) |
-| `js/main.js`      | Chama ou importa `initDiferenciaisAnimation` no `DOMContentLoaded` |
+| `js/animations.js`| `IntersectionObserver` (nativo). Hospeda `initDiferenciaisAnimation()`, que se auto-invoca (guard `document.readyState`). Observer independente dos demais (`.comunicado__container` e `.animate-fade-up`) — alvos disjuntos. |
+
+### Ordem na página
+
+Inserir `<section id="diferenciais">` **após `<section id="areas">`** (hero → comunicado → sobre → areas → diferenciais).
 
 ### Anchor ID exposto
 
@@ -710,8 +685,6 @@ A classe `.eyebrow` base (font-size, letter-spacing, text-transform) deve ser de
 
 | Recurso                    | Provedor       | Carregamento         |
 |----------------------------|----------------|----------------------|
-| `Cormorant Garamond`       | Google Fonts   | `<link>` no `<head>` |
-| `DM Sans`                  | Google Fonts   | `<link>` no `<head>` |
-| SVG icons (inline)         | —              | Embutidos no HTML    |
+| `Montserrat`               | Google Fonts   | `<link>` no `<head>` (fonte única do site — `--font-body` e `--font-display`) |
 
-> **Nota:** Nenhuma dependência de CDN adicional é necessária. Todos os SVGs são inline, eliminando requisições de rede extras e garantindo controle total de estilo via CSS `currentColor`.
+> **Nota:** Esta seção **não usa ícones SVG** — o indicador de cada card é um número (`1`–`4`) em texto. Nenhuma dependência de CDN adicional.

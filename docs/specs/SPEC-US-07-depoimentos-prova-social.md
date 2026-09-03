@@ -9,16 +9,17 @@
 
 ## 1. System Architecture & Component Overview
 
-A seção `#depoimentos` apresenta prova social da firma através de depoimentos de clientes em formato carrossel. Atualmente contém **1 depoimento**, mas a arquitetura suporta múltiplos (array de objetos), garantindo extensibilidade sem refatoração.
+A seção `#depoimentos` apresenta prova social da firma através de depoimentos de clientes em formato carrossel. A arquitetura suporta múltiplos depoimentos (array de objetos), garantindo extensibilidade sem refatoração.
 
-A seção é posicionada após `#areas-de-atuacao` e antes do `#contato`, funcionando como gatilho de conversão emocional. O layout exibe um card centralizado (max-width 800px no desktop) com aspas decorativas, texto em itálico, identificação do autor e dots de navegação. No mobile, o swipe horizontal troca de depoimento; no desktop, os dots fazem o mesmo.
+> **Estado atual (Fase 17):** `TESTIMONIALS_DATA` contém **3 depoimentos** — 1 real (Marina Albuquerque / Grupo Vantis) + 2 placeholders (marcados no código) para demonstrar o efeito de carrossel. Substituir os placeholders por depoimentos reais quando disponíveis.
+
+A seção é posicionada **após `#numeros`** (hero → comunicado → sobre → areas → diferenciais → numeros → depoimentos), funcionando como gatilho de conversão emocional. O layout exibe um card centralizado (max-width 800px no desktop) com aspas decorativas, texto em itálico, identificação do autor e dots de navegação. No mobile, o swipe horizontal troca de depoimento; no desktop, os dots fazem o mesmo.
 
 ```mermaid
 graph TD
     SEC["&lt;section id='depoimentos'&gt;"]
     INNER["&lt;div class='testimonials-inner'&gt;"]
-    EYEBROW["&lt;p class='section-eyebrow'&gt; DEPOIMENTOS"]
-    HEADING["&lt;h2&gt; O que nossos clientes dizem"]
+    EYEBROW["&lt;p class='section-eyebrow'&gt; DEPOIMENTOS (único título — heading removido)"]
     CAROUSEL["&lt;div class='testimonials-carousel'&gt;"]
     TRACK["&lt;div class='testimonials-track'&gt;"]
     SLIDE_0["&lt;article class='testimonial-slide'&gt; (slide 0)"]
@@ -32,7 +33,6 @@ graph TD
 
     SEC --> INNER
     INNER --> EYEBROW
-    INNER --> HEADING
     INNER --> CAROUSEL
     CAROUSEL --> TRACK
     TRACK --> SLIDE_0
@@ -63,17 +63,15 @@ graph TD
 <section
   id="depoimentos"
   class="testimonials-section"
-  aria-labelledby="testimonials-heading"
+  aria-label="Depoimentos de clientes"
 >
+  <!-- Marca d'água decorativa — assets/logo_s_background.png (1634x2102) -->
+  <img class="testimonials-watermark" src="assets/logo_s_background.png" alt="" aria-hidden="true">
+
   <div class="testimonials-inner container">
 
-    <!-- Eyebrow -->
+    <!-- Eyebrow (único título da seção — heading "O que nossos clientes dizem" removido a pedido) -->
     <p class="section-eyebrow" aria-hidden="true">DEPOIMENTOS</p>
-
-    <!-- Heading -->
-    <h2 id="testimonials-heading" class="testimonials-heading">
-      O que nossos clientes dizem
-    </h2>
 
     <!-- Carousel wrapper — touch target for swipe -->
     <div
@@ -160,13 +158,31 @@ All rules go into **`css/sections.css`** under the `/* === DEPOIMENTOS === */` b
    ================================================ */
 
 .testimonials-section {
+  position: relative;
   background-color: var(--color-off-white);
   padding-block: var(--section-pad-y);
   padding-inline: var(--section-pad-x);
-  overflow: hidden; /* contain horizontal bleed from track transforms */
+  overflow: hidden; /* contain horizontal bleed from track transforms + watermark */
+}
+
+/* Decorative watermark (assets/logo_s_background.png, 1634x2102) — fundo claro */
+.testimonials-watermark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(80%, 900px);
+  height: auto;
+  opacity: var(--watermark-opacity); /* 0.3 — token global das marcas d'água */
+  filter: brightness(0);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
 }
 
 .testimonials-inner {
+  position: relative;
+  z-index: 1;
   max-width: var(--container-max);
   margin-inline: auto;
   display: flex;
@@ -186,16 +202,8 @@ All rules go into **`css/sections.css`** under the `/* === DEPOIMENTOS === */` b
   text-align: center;
 }
 
-/* Section heading */
-.testimonials-heading {
-  font-family: var(--font-display);
-  font-size: var(--text-h2);
-  font-weight: 400;
-  color: var(--color-text-dark);
-  text-align: center;
-  line-height: 1.2;
-  margin: 0;
-}
+/* Section heading REMOVIDO a pedido — a seção usa apenas o eyebrow "DEPOIMENTOS".
+   A regra .testimonials-heading foi excluída de css/sections.css. */
 
 /* ── Carousel ── */
 .testimonials-carousel {
@@ -517,8 +525,24 @@ const TESTIMONIALS_DATA = [
     role: "Diretora Financeira",
     company: "Grupo Vantis",
   },
-  // Future testimonials:
-  // { quote: "...", name: "...", role: "...", company: "..." },
+  // --- PLACEHOLDER — substituir por depoimento real ---
+  {
+    quote:
+      "O acompanhamento próximo dos sócios fez diferença real na condução do " +
+      "nosso contencioso tributário. Sentimos segurança em cada etapa.",
+    name: "Ricardo Menezes",
+    role: "Diretor Jurídico",
+    company: "Nortlar Indústria",
+  },
+  // --- PLACEHOLDER — substituir por depoimento real ---
+  {
+    quote:
+      "Recebemos orientação estratégica clara sobre governança e sucessão " +
+      "familiar, com uma linguagem acessível e sem rodeios.",
+    name: "Helena Prado",
+    role: "Sócia-administradora",
+    company: "Prado & Filhos Participações",
+  },
 ];
 
 /**
@@ -754,7 +778,7 @@ class TestimonialsCarousel {
 
   _setupIntersectionObserver() {
     const targets = this.section.querySelectorAll(
-      ".section-eyebrow, .testimonials-heading, .testimonials-carousel, .testimonials-dots"
+      ".section-eyebrow, .testimonials-carousel, .testimonials-dots"
     );
     targets.forEach((el) => el.classList.add("anim-fade-up"));
 
@@ -837,7 +861,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 | Element | Role / Attribute | Value |
 |---|---|---|
-| `<section>` | `aria-labelledby` | `"testimonials-heading"` |
+| `<section>` | `aria-label` | `"Depoimentos de clientes"` (heading removido — não há mais `aria-labelledby`) |
 | `.testimonials-carousel` | `role="region"` + `aria-label` | `"Carrossel de depoimentos"` |
 | `.testimonials-carousel` | `aria-live="polite"` | Announces slide changes without interrupting speech |
 | `.testimonial-slide` | `role="group"` + `aria-roledescription="slide"` | SR reads "slide X de Y" |
@@ -883,7 +907,8 @@ Handled at two layers:
 ## 6. Content Data Model
 
 ```js
-/** Single source of truth — update here to change visible content. */
+/** Single source of truth — update here to change visible content.
+ *  Fase 17: 1 real + 2 placeholders (ver §4.2). */
 const TESTIMONIALS_DATA = [
   {
     quote:
@@ -893,12 +918,13 @@ const TESTIMONIALS_DATA = [
     role:    "Diretora Financeira",
     company: "Grupo Vantis",
   },
+  { quote: "O acompanhamento próximo dos sócios fez diferença real na condução do nosso contencioso tributário. Sentimos segurança em cada etapa.", name: "Ricardo Menezes", role: "Diretor Jurídico", company: "Nortlar Indústria" }, // PLACEHOLDER
+  { quote: "Recebemos orientação estratégica clara sobre governança e sucessão familiar, com uma linguagem acessível e sem rodeios.", name: "Helena Prado", role: "Sócia-administradora", company: "Prado & Filhos Participações" }, // PLACEHOLDER
 ];
 
 /** Static labels (in HTML, not data-driven). */
 const TESTIMONIALS_STATIC = {
-  eyebrow:         "DEPOIMENTOS",
-  heading:         "O que nossos clientes dizem",
+  eyebrow:         "DEPOIMENTOS",   // único título da seção (heading removido a pedido)
   ariaRegion:      "Carrossel de depoimentos",
   ariaDots:        "Navegação de depoimentos",
 };
@@ -907,8 +933,8 @@ const TESTIMONIALS_STATIC = {
 **Attribution render format (RN-01):**
 
 ```
-[name]             → font-weight: 500, DM Sans, #2B2B2B
-[role], [company]  → font-weight: 400, DM Sans, #AA9B8F
+[name]             → font-weight: 500, Montserrat, #2B2B2B
+[role], [company]  → font-weight: 400, Montserrat, #AA9B8F
 ```
 
 ---
@@ -923,7 +949,7 @@ const TESTIMONIALS_STATIC = {
 | **CA-02** | Swipe left → next slide | Dispatch synthetic `touchstart` (x=300) + `touchend` (x=200) on `.testimonials-carousel`; `window.testimonialsCarousel.currentIndex` increments by 1 |
 | **CA-03** | Swipe right → previous slide | Dispatch `touchstart` (x=200) + `touchend` (x=300); `currentIndex` decrements by 1 (wraps to `total-1` at 0) |
 | **CA-04** | Dot navigation changes slide | With 2 items in data, click `[data-index="1"]` dot; `track.style.transform` = `translateX(-50%)` |
-| **CA-05** | Single-slide hides dots | With 1 item in data, `.testimonials-dots` has class `is-single`; computed `visibility` = `hidden` |
+| **CA-05** | Single-slide hides dots | Com 1 item, `.testimonials-dots` recebe `is-single` (`visibility: hidden`). Com os 3 itens atuais (Fase 17), os 3 dots ficam visíveis e `is-single` **não** é aplicado. |
 | **CA-06** | Touch listeners are passive | Chrome DevTools → Performance → No "Violation: Added non-passive event listener" for `.testimonials-carousel` |
 | **CA-07** | Slide transition 0.4s ease | `.testimonials-track` computed `transition-property` = `transform`; `transition-duration` = `0.4s` |
 | **CA-08** | Keyboard navigation | Focus a dot, press ArrowRight → `currentIndex` increments, next dot has `aria-selected="true"` and `tabIndex=0` |
@@ -946,8 +972,8 @@ const TESTIMONIALS_STATIC = {
 | `--color-taupe: #AA9B8F` | Quote deco, eyebrow, active dot, role text, separator line |
 | `--color-text-dark: #2B2B2B` | Quote body, author name |
 | `--color-border: #D9D3CE` | Inactive dot fill |
-| `--font-display: 'Cormorant Garamond'` | Decorative quote glyph + blockquote text |
-| `--font-body: 'DM Sans'` | Author name, role, eyebrow label |
+| `--font-display: 'Montserrat'` | Decorative quote glyph + blockquote text (fonte única) |
+| `--font-body: 'Montserrat'` | Author name, role, eyebrow label |
 | `--text-h2` | Section heading fluid size |
 | `--text-eyebrow: 0.75rem` | Eyebrow label size |
 | `--section-pad-y` | Vertical section padding |
@@ -965,22 +991,23 @@ const TESTIMONIALS_STATIC = {
 
 | ID | Consumer |
 |---|---|
-| `#depoimentos` | Navbar `<a href="#depoimentos">` |
+| `#depoimentos` | Sem link de navegação na navbar (não está entre os 6 itens do menu — igual a `#numeros`). |
 | `testimonial-slide-{i}` | `aria-controls` on each `.testimonials-dot` |
-| `testimonials-heading` | `aria-labelledby` on `<section>` |
+
+> **Nota:** o `<h2 id="testimonials-heading">` foi removido a pedido; a `<section>` passou a usar `aria-label="Depoimentos de clientes"` em vez de `aria-labelledby`.
 
 ### External Resources
 
 | Resource | Provider | Already Loaded? |
 |---|---|---|
-| `Cormorant Garamond` | Google Fonts | ✅ Site-wide `<link>` in `<head>` |
-| `DM Sans` | Google Fonts | ✅ Site-wide `<link>` in `<head>` |
+| `Montserrat` | Google Fonts | ✅ Site-wide `<link>` in `<head>` (única fonte — `--font-body` e `--font-display`) |
 
 ### Files Modified / Created
 
 | File | Action | Scope |
 |---|---|---|
-| `index.html` | **Edit** | Insert `<section id="depoimentos">` after `#areas-de-atuacao` (§2) |
-| `css/sections.css` | **Edit** | Append `/* === DEPOIMENTOS === */` block (§3) |
+| `index.html` | **Edit** | Insert `<section id="depoimentos">` (com `<img class="testimonials-watermark">`) **after `#numeros`** (§2) |
+| `css/sections.css` | **Edit** | Append `/* === DEPOIMENTOS === */` block (§3), incl. `.testimonials-watermark` |
 | `js/main.js` | **Edit** | Add `TESTIMONIALS_DATA` + `TestimonialsCarousel` class + instantiation (§4.2) |
 | `js/animations.js` | **Edit** | Verify `anim-fade-up`/`is-visible` pattern is compatible with `_setupIntersectionObserver()` |
+| `assets/logo_s_background.png` | **Reuse** | Já copiado na US-01. Marca d'água `.testimonials-watermark` — `width: min(80%, 900px)`, centralizada, `opacity: var(--watermark-opacity)` (0.3) + `filter: brightness(0)` |

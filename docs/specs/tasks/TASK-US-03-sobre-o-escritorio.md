@@ -2,7 +2,7 @@
 
 > **SPEC de Referência:** [`SPEC-US-03-sobre-o-escritorio.md`](../SPEC-US-03-sobre-o-escritorio.md)  
 > **Componente:** Componente 3 (Sobre o Escritório)  
-> **Target Files:** `index.html`, `css/sections.css`, `js/animations.js`
+> **Target Files:** `index.html`, `css/variables.css`, `css/sections.css`, `js/animations.js` · assets: `assets/logo_s_background.png` (já copiado na US-01), `assets/marcador_ciano.png` (copiar de `images/`)
 
 ---
 
@@ -35,7 +35,12 @@
 
 ## ✅ Checklist de Verificação do Desenvolvedor / Agente
 
-- [ ] **[CA-01]** Os 3 pilares (*Comprometimento*, *Confidencialidade*, *Excelência*) são exibidos com título em negrito e descrição em itálico.
-- [ ] **[CA-02]** Em telas < 768px, o layout colapsa suavemente para 1 coluna empilhada sem quebra de margens.
-- [ ] **[RN-01]** Divisores finos em tom Taupe/Bege (`#D9D3CE`) separam visualmente os pilares.
-- [ ] **[RN-02]** Espaçamento mínimo de `16px` entre cartões de pilares no mobile.
+- [ ] **[CA-01]** Os 3 pilares (*Comprometimento*, *Confidencialidade*, *Excelência*) são exibidos com nome em `font-weight: 500` e descrição em `font-style: italic`.
+- [ ] **[CA-02]** Em telas < 768px, o layout colapsa para 1 coluna empilhada sem quebra de margens nem rolagem horizontal.
+- [ ] **[RN-01]** Divisores finos `border-top: 1px solid #D9D3CE` separam visualmente os pilares.
+- [ ] **[RN-02]** `gap: 1rem` (≥ 16px) entre pilares no mobile.
+- [ ] **[Estilo]** Eyebrow "SOBRE" acima do H2, cor ciano `#3DD6D0` (`--color-cyan`), com `assets/marcador_ciano.png` (render ~10px) à esquerda.
+- [ ] **[Estilo]** `.sobre__headline` com `font-weight: 600`.
+- [ ] **[Estilo]** Fundo Off-White `#F8F6F4`; `.sobre__watermark` (`logo_s_background.png`) com `opacity: var(--watermark-opacity)` (**0.3**) + `filter: brightness(0)`, clipada por `overflow: hidden`.
+- [ ] **[Desktop]** ≥1024px: 2 colunas 40/60 com a coluna esquerda `position: sticky` (`top: calc(80px + 2rem)`).
+- [ ] **[Anim]** `.animate-fade-up` recebe `.is-visible` ao entrar no viewport com stagger por `data-delay`; sob `prefers-reduced-motion` aparecem visíveis sem animação.

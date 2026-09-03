@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sales Costa Advogados — Advocacia estratégica e personalizada</title>
+<meta name="description" content="Escritório de advocacia full-service com atuação estratégica em Direito Empresarial, Tributário, Trabalhista, Civil, Societário e Compliance. Comprometimento, confidencialidade e excelência.">
+<meta property="og:title" content="Sales Costa Advogados">
+<meta property="og:description" content="Advocacia estratégica e personalizada com foco em excelência e resultados corporativos de alto impacto.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2353565A'/%3E%3Crect x='44' y='4' width='16' height='16' fill='%23E4FF8F'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' fill='%23F8F6F4' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ============ 1. DESIGN TOKENS ============ */
+:root{
+  --color-primary:      #AA9B8F;
+  --color-primary-dark: #94847A;
+  --color-dark:         #53565A;
+  --color-accent:       #E4FF8F;
+
+  --color-white:        #FFFFFF;
+  --color-off-white:    #F8F6F4;
+  --color-text-dark:    #2B2B2B;
+  --color-text-mid:     #6B6460;
+  --color-border:       #D9D3CE;
+  --color-overlay:      rgba(83, 86, 90, 0.86);
+
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans:  "DM Sans", Arial, sans-serif;
+
+  --space-xs:  8px;
+  --space-sm:  16px;
+  --space-md:  24px;
+  --space-lg:  48px;
+  --space-xl:  80px;
+  --space-2xl: 128px;
+
+  --ease: cubic-bezier(.4,0,.2,1);
+  --nav-h: 84px;
+}
+
+/* ============ 2. RESET ============ */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-sans);font-weight:400;color:var(--color-text-dark);
+     background:var(--color-white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+ul{list-style:none;margin:0;padding:0}
+h1,h2,h3,h4,p{margin:0}
+section{position:relative}
+.container{max-width:1180px;margin:0 auto;padding:0 var(--space-md)}
+@media (max-width:600px){ .container{padding:0 20px} }
+
+:focus-visible{outline:2px solid var(--color-accent);outline-offset:3px}
+
+.eyebrow{font:500 12px/1 var(--font-sans);text-transform:uppercase;letter-spacing:.22em;color:var(--color-primary)}
+.eyebrow.on-dark{color:var(--color-accent)}
+h2.section-title{font:400 2.25rem/1.2 var(--font-serif);color:var(--color-text-dark);max-width:20ch}
+h2.section-title.on-dark{color:var(--color-white)}
+.section-head{margin-bottom:var(--space-lg)}
+.section-head .eyebrow{margin-bottom:var(--space-sm);display:block}
+
+/* reveal-on-scroll (single orchestrated pattern) */
+[data-animate]{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+[data-animate].is-visible{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  [data-animate]{opacity:1!important;transform:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* ============ 3. BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;font:500 12px/1 var(--font-sans);
+     text-transform:uppercase;letter-spacing:.14em;border-radius:2px;transition:all .3s var(--ease);
+     border:1px solid transparent;white-space:nowrap}
+.btn-primary{background:var(--color-primary);color:var(--color-white)}
+.btn-primary:hover{background:var(--color-primary-dark)}
+.btn-outline{border-color:rgba(255,255,255,.55);color:var(--color-white)}
+.btn-outline:hover{border-color:var(--color-white);background:rgba(255,255,255,.08)}
+.btn-outline.on-light{border-color:var(--color-text-dark);color:var(--color-text-dark)}
+.btn-outline.on-light:hover{background:var(--color-text-dark);color:var(--color-white)}
+
+/* ============ 4. NAVBAR ============ */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);
+        display:flex;align-items:center;background:transparent;
+        transition:background .35s var(--ease),box-shadow .35s var(--ease),height .35s var(--ease)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;width:100%}
+.navbar.scrolled{background:var(--color-dark);box-shadow:0 4px 20px rgba(0,0,0,.15);height:72px}
+
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:34px;height:34px;flex:0 0 34px;background:var(--color-dark);position:relative}
+.brand-mark::after{content:"";position:absolute;top:-4px;right:-4px;width:10px;height:10px;background:var(--color-accent)}
+.brand-mark span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+                  font:400 20px/1 var(--font-serif);color:var(--color-off-white)}
+.brand-word{font:400 17px/1 var(--font-serif);letter-spacing:.03em;color:var(--color-white)}
+.brand-word b{font-weight:600}
+
+.nav-links{display:flex;align-items:center;gap:var(--space-lg)}
+.nav-links a{font:500 13px/1 var(--font-sans);letter-spacing:.03em;color:rgba(255,255,255,.88);
+             padding:6px 0;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--color-accent);
+                     transition:width .25s var(--ease)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{margin-left:var(--space-sm)}
+
+.burger{display:none;width:38px;height:38px;border:1px solid rgba(255,255,255,.4);background:none;
+        border-radius:2px;position:relative;z-index:110}
+.burger span,.burger span::before,.burger span::after{content:"";position:absolute;left:9px;width:20px;height:1.5px;
+        background:#fff;transition:transform .25s var(--ease),opacity .25s var(--ease)}
+.burger span{top:18px}
+.burger span::before{top:-6px}
+.burger span::after{top:6px}
+.burger.open span{background:transparent}
+.burger.open span::before{transform:translateY(6px) rotate(45deg)}
+.burger.open span::after{transform:translateY(-6px) rotate(-45deg)}
+
+@media (max-width:1023px){
+  .nav-links{position:fixed;top:0;right:0;height:100vh;width:min(320px,86vw);
+             background:var(--color-dark);flex-direction:column;align-items:flex-start;
+             padding:100px 32px 40px;gap:var(--space-md);transform:translateX(100%);
+             transition:transform .35s var(--ease);box-shadow:-10px 0 40px rgba(0,0,0,.25)}
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{font-size:15px}
+  .nav-cta{margin-left:0;margin-top:var(--space-sm)}
+  .burger{display:block}
+}
+
+/* ============ 5. HERO ============ */
+.hero{min-height:100vh;display:flex;align-items:center;background:var(--color-dark);
+      position:relative;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;
+      background:radial-gradient(120% 90% at 50% 0%, rgba(170,155,143,.16), transparent 60%),
+                 linear-gradient(180deg,#57595d 0%,#53565A 50%,#46484b 100%);
+      z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;background:rgba(43,44,47,.25);z-index:-1}
+.hero-inner{max-width:720px;margin:0 auto;text-align:center;
+      padding:calc(var(--nav-h) + 40px) var(--space-md) var(--space-xl)}
+.hero .eyebrow{color:var(--color-accent);letter-spacing:.3em;margin-bottom:var(--space-md)}
+.hero h1{font:300 clamp(2.4rem,5.6vw,4rem)/1.18 var(--font-serif);color:var(--color-white);margin-bottom:var(--space-md)}
+.hero p.lead{font:300 1.125rem/1.7 var(--font-sans);color:rgba(248,246,244,.85);max-width:46ch;margin:0 auto var(--space-lg)}
+.hero-ctas{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.scroll-indicator{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+      width:26px;height:42px;border:1px solid rgba(255,255,255,.4);border-radius:14px}
+.scroll-indicator::after{content:"";position:absolute;top:8px;left:50%;width:4px;height:4px;
+      background:var(--color-accent);border-radius:50%;transform:translateX(-50%);
+      animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{opacity:1;top:8px}60%{opacity:0;top:22px}}
+@media (prefers-reduced-motion: reduce){ .scroll-indicator::after{animation:none} }
+@media (max-width:600px){ .hero-ctas{flex-direction:column;align-items:stretch} .hero-ctas .btn{justify-content:center} }
+
+@media (max-width:900px){
+  .hero-inner{max-width:100%;padding:calc(var(--nav-h) + 40px) 20px var(--space-xl)}
+}
+
+/* ============ 5.5 COMUNICADO AO MERCADO ============ */
+.press{background:var(--color-dark);padding:var(--space-2xl) 0;position:relative;overflow:hidden}
+.press .container{position:relative;max-width:900px}
+.press .wordmark-watermark{font:300 20rem/1 var(--font-serif);color:var(--color-white);opacity:.045;
+      position:absolute;top:-70px;right:-40px;user-select:none;z-index:0;pointer-events:none}
+.press-head{position:relative;z-index:1;margin-bottom:var(--space-lg)}
+.press-head .eyebrow{margin-bottom:var(--space-md);display:block}
+.press-head h2{font:400 2rem/1.32 var(--font-serif);color:var(--color-white);max-width:24ch;margin-bottom:var(--space-md)}
+.press-divider{width:80px;height:2px;background:var(--color-accent);border:none;margin:0}
+.press-body{position:relative;z-index:1;display:flex;flex-direction:column;gap:var(--space-md)}
+.press-body p{font:400 16px/1.75 var(--font-sans);color:rgba(248,246,244,.78);max-width:70ch}
+.press-body p b{color:var(--color-white);font-weight:500}
+.press-info{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-lg);
+      margin-top:var(--space-xl);padding-top:var(--space-md);border-top:1px solid var(--color-accent)}
+.press-info dt{font:500 11px/1 var(--font-sans);text-transform:uppercase;letter-spacing:.1em;
+      color:var(--color-accent);margin-bottom:var(--space-sm)}
+.press-info dd{font:400 14px/1.6 var(--font-sans);color:rgba(248,246,244,.82);margin:0 0 var(--space-sm)}
+.press-info a{color:rgba(248,246,244,.82)}
+.press-info a:hover{color:var(--color-accent)}
+@media (max-width:768px){
+  .press-info{grid-template-columns:1fr;gap:var(--space-md)}
+  .press .wordmark-watermark{font-size:11rem;top:-30px;right:-30px}
+}
+
+/* ============ 6. SOBRE ============ */
+.about{background:var(--color-off-white);padding:var(--space-2xl) 0}
+.about .container{display:grid;grid-template-columns:.72fr 1fr;gap:var(--space-2xl)}
+.about-visual{position:relative}
+.about-visual .wordmark-watermark{font:300 13rem/1 var(--font-serif);color:var(--color-primary);
+     opacity:.09;position:absolute;top:-40px;left:-14px;user-select:none}
+.about-visual h2{position:relative;font:400 2.5rem/1.22 var(--font-serif);color:var(--color-text-dark)}
+.about-copy p{font:400 16px/1.75 var(--font-sans);color:var(--color-text-mid);margin-bottom:var(--space-md);
+              padding-left:var(--space-md);border-left:2px solid var(--color-primary);max-width:56ch}
+.pillars{display:flex;gap:var(--space-lg);margin-top:var(--space-lg);flex-wrap:wrap}
+.pillar b{display:block;font:400 1.375rem/1 var(--font-serif);font-style:italic;color:var(--color-primary);margin-bottom:6px}
+.pillar span{font:400 13px/1.4 var(--font-sans);color:var(--color-text-mid)}
+
+@media (max-width:1023px){
+  .about .container{grid-template-columns:1fr;gap:var(--space-lg)}
+  .about-visual .wordmark-watermark{font-size:8rem;top:-20px}
+}
+
+/* ============ 7. ÁREAS DE ATUAÇÃO ============ */
+.practice{background:var(--color-white);padding:var(--space-2xl) 0}
+.practice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--color-border);
+                border:1px solid var(--color-border)}
+.practice-card{background:var(--color-white);padding:var(--space-lg) var(--space-md);
+                transition:background .3s var(--ease)}
+.practice-card:hover{background:var(--color-off-white)}
+.practice-card .icon{width:34px;height:34px;color:var(--color-primary);margin-bottom:var(--space-md)}
+.practice-card h3{font:500 16px/1.3 var(--font-sans);margin-bottom:10px}
+.practice-card p{font:400 14px/1.65 var(--font-sans);color:var(--color-text-mid);margin-bottom:var(--space-md)}
+.practice-card .more{font:500 12px/1 var(--font-sans);letter-spacing:.05em;color:var(--color-primary);
+      border-bottom:1px solid transparent;padding-bottom:3px;transition:border-color .25s}
+.practice-card:hover .more{border-color:var(--color-primary)}
+
+@media (max-width:1023px){ .practice-grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:640px){ .practice-grid{grid-template-columns:1fr} }
+
+/* ============ 8. DIFERENCIAIS ============ */
+.diff{background:var(--color-dark);padding:var(--space-2xl) 0}
+.diff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-lg)}
+.diff-item{border-top:1px solid rgba(255,255,255,.18);padding-top:var(--space-md)}
+.diff-item h3{font:400 1.375rem/1.3 var(--font-serif);color:var(--color-white);margin-bottom:10px}
+.diff-item p{font:400 14px/1.65 var(--font-sans);color:rgba(248,246,244,.68)}
+@media (max-width:1023px){ .diff-grid{grid-template-columns:1fr 1fr} }
+@media (max-width:600px){ .diff-grid{grid-template-columns:1fr} }
+
+/* ============ 9. NÚMEROS ============ */
+.stats{background:var(--color-primary);padding:var(--space-xl) 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{text-align:center;padding:0 var(--space-sm);border-left:1px solid rgba(255,255,255,.3)}
+.stat:first-child{border-left:none}
+.stat .num{font:300 3.25rem/1 var(--font-serif);color:var(--color-white)}
+.stat .label{font:500 12px/1.4 var(--font-sans);text-transform:uppercase;letter-spacing:.08em;
+             color:rgba(255,255,255,.85);margin-top:10px}
+@media (max-width:640px){
+  .stats-grid{grid-template-columns:1fr 1fr;row-gap:var(--space-lg)}
+  .stat:nth-child(3){border-left:none}
+  .stat:nth-child(odd){border-left:none}
+}
+
+/* ============ 10. DEPOIMENTOS ============ */
+.testimonials{background:var(--color-off-white);padding:var(--space-2xl) 0}
+.t-wrap{max-width:760px;margin:0 auto;text-align:center;position:relative}
+.t-quote-mark{font:400 6rem/1 var(--font-serif);color:var(--color-primary);opacity:.5;display:block;margin-bottom:-20px}
+.t-track{position:relative;min-height:180px}
+.t-slide{position:absolute;inset:0;opacity:0;transition:opacity .5s var(--ease);pointer-events:none}
+.t-slide.active{opacity:1;pointer-events:auto}
+.t-slide p{font:400 1.375rem/1.6 var(--font-serif);font-style:italic;color:var(--color-text-dark);margin-bottom:var(--space-md)}
+.t-slide .who b{font:500 13px/1 var(--font-sans);letter-spacing:.02em;color:var(--color-text-dark);display:block}
+.t-slide .who span{font:400 12px/1.4 var(--font-sans);color:var(--color-text-mid)}
+.t-controls{display:flex;align-items:center;justify-content:center;gap:var(--space-md);margin-top:var(--space-lg)}
+.t-arrow{width:38px;height:38px;border:1px solid var(--color-border);border-radius:50%;background:none;
+         display:flex;align-items:center;justify-content:center;transition:border-color .25s,background .25s}
+.t-arrow:hover{border-color:var(--color-primary);background:var(--color-white)}
+.t-dots{display:flex;gap:8px}
+.t-dot{width:7px;height:7px;border-radius:50%;background:var(--color-border);border:none;padding:0}
+.t-dot.active{background:var(--color-primary)}
+
+/* ============ 11. EQUIPE ============ */
+.team{background:var(--color-white);padding:var(--space-2xl) 0}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-md)}
+.team-card{position:relative}
+.team-photo{aspect-ratio:1/1;background:var(--color-off-white);position:relative;overflow:hidden}
+.team-photo .initials{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      font:300 3.5rem/1 var(--font-serif);color:var(--color-primary)}
+.team-photo .overlay{position:absolute;inset:0;background:rgba(83,86,90,.85);opacity:0;
+      display:flex;align-items:flex-end;padding:var(--space-sm);transition:opacity .3s var(--ease)}
+.team-card:hover .overlay{opacity:1}
+.team-photo .overlay a{font:500 12px/1 var(--font-sans);letter-spacing:.04em;color:var(--color-white);
+      border-bottom:1px solid var(--color-accent);padding-bottom:3px}
+.team-info{padding-top:var(--space-sm)}
+.team-info h3{font:500 15px/1.3 var(--font-sans);margin-bottom:2px}
+.team-info .role{font:400 13px/1.5 var(--font-sans);color:var(--color-primary);margin-bottom:2px}
+.team-info .oab{font:400 12px/1.4 var(--font-sans);color:var(--color-text-mid)}
+@media (max-width:1023px){ .team-grid{grid-template-columns:1fr 1fr} }
+@media (max-width:600px){ .team-grid{grid-template-columns:1fr;max-width:340px;margin:0 auto} }
+
+/* ============ 12. CONTATO ============ */
+.contact{background:var(--color-dark);padding:var(--space-2xl) 0}
+.contact .container{display:grid;grid-template-columns:.85fr 1fr;gap:var(--space-2xl)}
+.contact-info h2{font:400 2.25rem/1.2 var(--font-serif);color:var(--color-white);margin-bottom:var(--space-sm)}
+.contact-info>p{font:400 15px/1.65 var(--font-sans);color:rgba(248,246,244,.7);margin-bottom:var(--space-lg);max-width:40ch}
+.contact-list{display:flex;flex-direction:column;gap:var(--space-md);margin-bottom:var(--space-lg)}
+.contact-list dt{font:500 11px/1 var(--font-sans);text-transform:uppercase;letter-spacing:.1em;
+      color:var(--color-accent);margin-bottom:6px}
+.contact-list dd{font:400 15px/1.5 var(--font-sans);color:var(--color-white);margin:0}
+.social-row{display:flex;gap:14px}
+.social-row a{width:38px;height:38px;border:1px solid rgba(255,255,255,.3);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;color:#fff;transition:border-color .25s,background .25s}
+.social-row a:hover{border-color:var(--color-accent);background:rgba(228,255,143,.1)}
+.social-row svg{width:16px;height:16px}
+
+.form-field{position:relative;margin-bottom:var(--space-md)}
+.form-field label{display:block;font:500 11px/1 var(--font-sans);text-transform:uppercase;
+      letter-spacing:.08em;color:rgba(248,246,244,.65);margin-bottom:10px}
+.form-field input,.form-field select,.form-field textarea{width:100%;background:none;border:none;
+      border-bottom:1px solid rgba(255,255,255,.35);color:var(--color-white);font:400 15px/1.5 var(--font-sans);
+      padding:8px 2px;transition:border-color .25s}
+.form-field select option{color:#111}
+.form-field textarea{resize:vertical;min-height:70px}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--color-accent);outline:none}
+.form-field input:invalid:not(:placeholder-shown){border-color:#e08b8b}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md)}
+.form-msg{font:400 13px/1.5 var(--font-sans);margin-top:var(--space-sm);min-height:18px}
+.form-msg.success{color:var(--color-accent)}
+.form-msg.error{color:#e08b8b}
+
+@media (max-width:1023px){
+  .contact .container{grid-template-columns:1fr;gap:var(--space-xl)}
+}
+@media (max-width:560px){ .form-row{grid-template-columns:1fr} }
+
+/* ============ 13. FOOTER ============ */
+.site-footer{background:#2B2B2B;padding:var(--space-lg) 0 var(--space-md)}
+.footer-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-md);
+      padding-bottom:var(--space-md);border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-links{display:flex;gap:var(--space-lg);flex-wrap:wrap}
+.footer-links a{font:400 13px/1 var(--font-sans);color:rgba(248,246,244,.65)}
+.footer-links a:hover{color:var(--color-accent)}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--space-sm);padding-top:var(--space-md)}
+.footer-bottom p{font:400 12px/1.5 var(--font-sans);color:rgba(248,246,244,.45)}
+
+/* ============================================================
+   VARIANTE MINIMALISTA — referência lefosse.com
+   Fonte primária Montserrat. Mais espaço em branco, hairlines
+   no lugar de blocos sólidos, tipografia leve, sem itálico.
+   Estrutura, seções e paleta de cores originais mantidas.
+   ============================================================ */
+:root{
+  --font-serif: "Montserrat", Arial, sans-serif;
+  --font-sans:  "Montserrat", Arial, sans-serif;
+  --space-2xl: 160px;
+}
+
+/* -- Eyebrows: tracking mais contido -- */
+.eyebrow{ font-weight:600; letter-spacing:.12em; font-size:11px }
+
+/* -- Headlines: peso leve, tracking negativo -- */
+h2.section-title,
+.about-visual h2,
+.contact-info h2,
+.press-head h2{ font-weight:300; letter-spacing:-.01em }
+.hero h1{ font-weight:200; letter-spacing:-.015em }
+.hero p.lead{ font-weight:300 }
+.brand-word{ font-weight:600; letter-spacing:0; font-size:15px }
+
+/* -- Logo: traço fino, sem bloco sólido -- */
+.brand-mark{ background:transparent; border:1px solid var(--color-dark) }
+.navbar.scrolled .brand-mark{ border-color:rgba(255,255,255,.5) }
+.brand-mark::after{ width:7px; height:7px; top:-4px; right:-4px }
+.brand-mark span{ font-weight:300; font-size:15px; color:var(--color-dark) }
+.navbar.scrolled .brand-mark span{ color:var(--color-white) }
+
+/* -- Botões: sem preenchimento pesado, sem caixa-alta, com seta sutil -- */
+.btn{ text-transform:none; letter-spacing:0; font-size:14px; font-weight:500;
+      padding:12px 2px; border-radius:0; gap:8px }
+.btn-primary{ background:none; color:var(--color-text-dark); border:none;
+      border-bottom:1px solid var(--color-text-dark) }
+.btn-primary:hover{ background:none; border-color:var(--color-primary); color:var(--color-primary) }
+.hero .btn-primary{ color:var(--color-white); border-color:rgba(255,255,255,.6) }
+.hero .btn-primary:hover{ color:var(--color-accent); border-color:var(--color-accent) }
+.btn-outline{ border:none; border-bottom:1px solid rgba(255,255,255,.5) }
+.btn-outline:hover{ background:none; border-color:var(--color-white) }
+.btn-outline.on-light{ border:none; border-bottom:1px solid var(--color-text-dark) }
+.btn-outline.on-light:hover{ background:none; color:var(--color-primary); border-color:var(--color-primary) }
+.btn::after{ content:"→"; transition:transform .25s var(--ease) }
+.btn:hover::after{ transform:translateX(4px) }
+
+/* -- Comunicado: watermark discreta em grotesk -- */
+.press .wordmark-watermark{ font-weight:200; opacity:.035 }
+.press-head h2{ font-weight:300 }
+.press-divider{ background:var(--color-border); height:1px }
+.press-body p{ font-weight:300 }
+
+/* -- Sobre: watermark em grotesk, divisória fina, sem itálico -- */
+.about-visual .wordmark-watermark{ font-weight:200; opacity:.05 }
+.about-copy p{ border-left-width:1px; font-weight:300; color:var(--color-text-mid) }
+.pillar b{ font-style:normal; font-weight:600; font-size:1rem; letter-spacing:.01em }
+.pillars{ border-top:1px solid var(--color-border); padding-top:var(--space-lg); margin-top:var(--space-xl) }
+
+/* -- Áreas de atuação: lista com hairlines, sem grid de cards -- */
+.practice-grid{ display:block; background:none; border:none }
+.practice-card{ padding:var(--space-lg) 0; border-top:1px solid var(--color-border) }
+.practice-grid article:last-child{ border-bottom:1px solid var(--color-border) }
+.practice-card::after{ content:""; display:block; clear:both }
+.practice-card:hover{ background:none }
+.practice-card .icon{ float:left; width:26px; height:26px; margin:2px 28px 0 0 }
+.practice-card h3{ font-weight:500; font-size:1.05rem; margin-bottom:8px }
+.practice-card p{ margin-bottom:10px; color:var(--color-text-mid); font-weight:300; max-width:60ch }
+.practice-card .more{ letter-spacing:0; text-transform:none; font-weight:500 }
+@media (max-width:700px){ .practice-card .icon{ float:none; margin:0 0 var(--space-sm) } }
+
+/* -- Diferenciais: tipografia mais leve -- */
+.diff-item h3{ font-weight:400; letter-spacing:-.005em }
+.diff-item p{ font-weight:300 }
+
+/* -- Em números: hairline em vez de bloco sólido de cor -- */
+.stats{ background:var(--color-off-white) }
+.stat{ border-left:1px solid var(--color-border) }
+.stat .num{ font-weight:200; color:var(--color-text-dark) }
+.stat .label{ color:var(--color-text-mid); font-weight:500; letter-spacing:.06em }
+
+/* -- Depoimentos: sem itálico serifado, aspas discretas -- */
+.t-quote-mark{ font-weight:300; opacity:.3 }
+.t-slide p{ font-style:normal; font-weight:300; letter-spacing:0 }
+.t-slide .who b{ font-weight:600 }
+
+/* -- Equipe: quadrados retos, iniciais mais leves -- */
+.team-photo{ border-radius:0 }
+.team-photo .initials{ font-weight:200; color:var(--color-primary) }
+.team-info h3{ font-weight:500 }
+
+/* -- Contato -- */
+.contact-info h2{ font-weight:300 }
+.contact-list dt{ font-weight:600; letter-spacing:.08em }
+.form-field label{ font-weight:500; letter-spacing:.06em }
+
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<header class="navbar" id="navbar">
+  <div class="container">
+    <a href="#hero" class="brand" aria-label="Sales Costa Advogados — início">
+      <span class="brand-mark"><span>S</span></span>
+      <span class="brand-word">SALES <b>COSTA</b></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#comunicado">Comunicado</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#areas">Áreas</a>
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#contato" class="btn btn-outline nav-cta">Fale conosco</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">Sales Costa Advogados</span>
+      <h1>Junto nas decisões que constroem o futuro.</h1>
+      <p class="lead">Advocacia estratégica e personalizada, com foco em excelência técnica e resultados corporativos de alto impacto.</p>
+      <div class="hero-ctas">
+        <a href="#sobre" class="btn btn-outline">Conheça o escritório</a>
+        <a href="#contato" class="btn btn-primary">Fale conosco</a>
+      </div>
+    </div>
+    <a href="#sobre" class="scroll-indicator" aria-label="Rolar para a próxima seção"></a>
+  </section>
+
+  <!-- ============ COMUNICADO AO MERCADO ============ -->
+  <section class="press" id="comunicado">
+    <span class="wordmark-watermark" aria-hidden="true">S</span>
+    <div class="container">
+      <div class="press-head" data-animate>
+        <span class="eyebrow on-dark">Comunicado ao mercado</span>
+        <h2>Dilson Higasi Sales e Rodrigo Moreira da Costa se unem e dão origem ao Sales Costa Advogados</h2>
+        <hr class="press-divider">
+      </div>
+      <div class="press-body" data-animate>
+        <p>O mercado jurídico ganha uma nova banca desenvolvida para atuar nas áreas mais críticas das decisões empresariais e familiares. A Higasi Sales Advogados e Rodrigo Moreira da Costa unem suas trajetórias e expertises para celebrar o início do <b>Sales Costa Advogados</b>.</p>
+        <p>A nova banca consolida mais de uma década de atuação estratégica dos fundadores. Os sócios atuam de perto na viabilidade dos negócios, conectando inteligência tributária, gestão patrimonial e capacidade técnica nas áreas cível, imobiliária e societária, sempre com foco na eficiência das operações do cliente.</p>
+        <p>"A ideia surgiu de uma constatação simples. Nossos clientes enfrentavam as mesmas decisões tributárias, societárias, patrimoniais, mas raramente encontravam isso sob o mesmo teto, com o mesmo nível de profundidade técnica em cada frente", afirma <b>Dilson Higasi Sales</b>.</p>
+        <p>Para <b>Rodrigo Moreira da Costa</b>, a união reflete uma evolução necessária na forma como o mercado consome assessoria jurídica. "O advogado não pode mais atuar em blocos isolados. As decisões de uma empresa ou família atravessam o societário, o tributário e o imobiliário ao mesmo tempo, e é essa visão conjunta que passamos a oferecer a partir de hoje."</p>
+        <p>O <b>Sales Costa Advogados</b> inicia suas atividades de forma integrada entre as sedes de São Paulo e Florianópolis, cobrindo o ciclo completo de negócios e patrimônios, da constituição ao crescimento e à sucessão.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOBRE ============ -->
+  <section class="about" id="sobre">
+    <div class="container">
+      <div class="about-visual" data-animate>
+        <span class="wordmark-watermark" aria-hidden="true">S</span>
+        <h2>Uma trajetória construída sobre confiança e critério técnico.</h2>
+      </div>
+      <div class="about-copy" data-animate>
+        <p>Há mais de quinze anos, o Sales Costa Advogados acompanha empresas e famílias em decisões que definem seu futuro — da estruturação societária a disputas complexas — sempre com a mesma exigência técnica do primeiro caso.</p>
+        <p>Trabalhamos como uma extensão do time do cliente: entendemos o negócio antes de propor a estratégia, e medimos nosso trabalho pelo resultado alcançado, não pelas horas registradas.</p>
+        <p>Essa forma de atuar se sustenta em três pilares que orientam cada decisão do escritório, do primeiro contato à conclusão do caso.</p>
+        <div class="pillars">
+          <div class="pillar"><b>Comprometimento</b><span>Disponibilidade real com cada cliente e cada causa.</span></div>
+          <div class="pillar"><b>Confidencialidade</b><span>Sigilo absoluto sobre informações estratégicas.</span></div>
+          <div class="pillar"><b>Excelência</b><span>Rigor técnico em cada peça, parecer e negociação.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ÁREAS DE ATUAÇÃO ============ -->
+  <section class="practice" id="areas">
+    <div class="container">
+      <div class="section-head" data-animate>
+        <span class="eyebrow">Áreas de atuação</span>
+        <h2 class="section-title">Especialização que cobre cada frente do seu negócio.</h2>
+      </div>
+      <div class="practice-grid" data-animate>
+
+        <article class="practice-card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 21h18M6 21V9l6-5 6 5v12M9 21v-6h6v6"/></svg>
+          <h3>Direito Empresarial</h3>
+          <p>Estruturação societária, contratos comerciais e assessoria contínua para negócios em crescimento.</p>
+          <a href="#contato" class="more">Saiba mais →</a>
+        </article>
+
+        <article class="practice-card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2v20M4 12h16M6 6l-3 6 3 6M18 6l3 6-3 6"/></svg>
+          <h3>Direito Tributário</h3>
+          <p>Planejamento fiscal, consultoria preventiva e defesa em processos administrativos e judiciais.</p>
+          <a href="#contato" class="more">Saiba mais →</a>
+        </article>
+
+        <article class="practice-card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2"/></svg>
+          <h3>Direito Trabalhista</h3>
+          <p>Gestão de risco trabalhista, compliance de RH e representação em ações individuais e coletivas.</p>
+          <a href="#contato" class="more">Saiba mais →</a>
+        </article>
+
+        <article class="practice-card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h4"/></svg>
+          <h3>Direito Civil</h3>
+          <p>Contratos, responsabilidade civil e patrimônio, com foco em prevenção e solução célere de conflitos.</p>
+          <a href="#contato" class="more">Saiba mais →</a>
+        </article>
+
+        <article class="practice-card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2l9 4.5v6c0 5-3.6 8.6-9 9.5-5.4-.9-9-4.5-9-9.5v-6L12 2z"/></svg>
+          <h3>Direito Societário</h3>
+          <p>Fusões, aquisições, governança e reestruturação de grupos empresariais e familiares.</p>
+          <a href="#contato" class="more">Saiba mais →</a>
+        </article>
+
+        <article class="practice-card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+          <h3>Compliance &amp; Governança</h3>
+          <p>Programas de integridade, auditoria de conformidade e assessoria em governança corporativa.</p>
+          <a href="#contato" class="more">Saiba mais →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIFERENCIAIS ============ -->
+  <section class="diff" id="diferenciais">
+    <div class="container">
+      <div class="section-head" data-animate>
+        <span class="eyebrow on-dark">Por que Sales Costa</span>
+        <h2 class="section-title on-dark">O diferencial está em como acompanhamos cada caso.</h2>
+      </div>
+      <div class="diff-grid" data-animate>
+        <div class="diff-item">
+          <h3>Atendimento personalizado</h3>
+          <p>Cada cliente é acompanhado diretamente pelos sócios responsáveis pelo caso, do início ao fim.</p>
+        </div>
+        <div class="diff-item">
+          <h3>Equipe especializada</h3>
+          <p>Advogados com formação e atuação dedicada a cada área, sem generalismo na entrega técnica.</p>
+        </div>
+        <div class="diff-item">
+          <h3>Resultados comprovados</h3>
+          <p>Histórico consistente de êxito em negociações, contencioso e operações estratégicas.</p>
+        </div>
+        <div class="diff-item">
+          <h3>Ética &amp; transparência</h3>
+          <p>Comunicação clara sobre riscos, prazos e honorários, sem surpresas ao longo do processo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EM NÚMEROS ============ -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid" data-animate>
+        <div class="stat"><span class="num counter-number" data-target="15">0</span><div class="label">+ Anos de experiência</div></div>
+        <div class="stat"><span class="num counter-number" data-target="500">0</span><div class="label">+ Clientes atendidos</div></div>
+        <div class="stat"><span class="num counter-number" data-target="300">0</span><div class="label">+ Casos concluídos</div></div>
+        <div class="stat"><span class="num counter-number" data-target="5">0</span><div class="label">Áreas de especialização</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DEPOIMENTOS ============ -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="t-wrap" data-animate>
+        <span class="t-quote-mark" aria-hidden="true">“</span>
+        <div class="t-track" id="tTrack">
+          <div class="t-slide active">
+            <p>A equipe conduziu uma reestruturação societária complexa com clareza e agilidade que não encontrávamos em outros escritórios.</p>
+            <div class="who"><b>Marina Albuquerque</b><span>Diretora Financeira, Grupo Vantis</span></div>
+          </div>
+          <div class="t-slide">
+            <p>Confiamos ao Sales Costa nosso maior contencioso tributário. O acompanhamento foi próximo e o resultado, excepcional.</p>
+            <div class="who"><b>Rodrigo Fontella</b><span>CEO, Fontella Indústria</span></div>
+          </div>
+          <div class="t-slide">
+            <p>Mais do que pareceres técnicos, recebemos orientação estratégica de verdade em cada decisão de negócio.</p>
+            <div class="who"><b>Beatriz Nogueira</b><span>Sócia-fundadora, Nogueira & Cia</span></div>
+          </div>
+        </div>
+        <div class="t-controls">
+          <button class="t-arrow" id="tPrev" aria-label="Depoimento anterior">‹</button>
+          <div class="t-dots" id="tDots"></div>
+          <button class="t-arrow" id="tNext" aria-label="Próximo depoimento">›</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EQUIPE ============ -->
+  <section class="team" id="equipe">
+    <div class="container">
+      <div class="section-head" data-animate>
+        <span class="eyebrow">Nossa equipe</span>
+        <h2 class="section-title">Os sócios responsáveis por cada caso.</h2>
+      </div>
+      <div class="team-grid" data-animate>
+
+        <div class="team-card">
+          <div class="team-photo">
+            <span class="initials">AS</span>
+            <div class="overlay"><a href="#" target="_blank" rel="noopener">Ver LinkedIn</a></div>
+          </div>
+          <div class="team-info">
+            <h3>Antônio Sales</h3>
+            <p class="role">Sócio-fundador · Direito Empresarial</p>
+            <p class="oab">OAB/SP 000.000</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo">
+            <span class="initials">CC</span>
+            <div class="overlay"><a href="#" target="_blank" rel="noopener">Ver LinkedIn</a></div>
+          </div>
+          <div class="team-info">
+            <h3>Camila Costa</h3>
+            <p class="role">Sócia-fundadora · Direito Tributário</p>
+            <p class="oab">OAB/SP 000.000</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo">
+            <span class="initials">FR</span>
+            <div class="overlay"><a href="#" target="_blank" rel="noopener">Ver LinkedIn</a></div>
+          </div>
+          <div class="team-info">
+            <h3>Felipe Ramos</h3>
+            <p class="role">Sócio · Direito Trabalhista</p>
+            <p class="oab">OAB/SP 000.000</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo">
+            <span class="initials">LM</span>
+            <div class="overlay"><a href="#" target="_blank" rel="noopener">Ver LinkedIn</a></div>
+          </div>
+          <div class="team-info">
+            <h3>Luísa Martins</h3>
+            <p class="role">Sócia · Societário &amp; Compliance</p>
+            <p class="oab">OAB/SP 000.000</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTATO ============ -->
+  <section class="contact" id="contato">
+    <div class="container">
+      <div class="contact-info" data-animate>
+        <span class="eyebrow on-dark">Fale conosco</span>
+        <h2>Entre em contato com nossos advogados.</h2>
+        <p>Respondemos em até um dia útil. Para casos urgentes, prefira o telefone.</p>
+        <dl class="contact-list">
+          <div><dt>Endereço</dt><dd>Av. Paulista, 1000 — 12º andar, São Paulo/SP</dd></div>
+          <div><dt>E-mail</dt><dd>contato@salescosta.com.br</dd></div>
+          <div><dt>Telefone</dt><dd>+55 (11) 3000-0000</dd></div>
+        </dl>
+        <div class="social-row">
+          <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.6 4.78 6v6.3h-4v-5.6c0-1.34-.02-3.07-1.9-3.07-1.9 0-2.2 1.46-2.2 2.97V21h-4z"/></svg></a>
+          <a href="#" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.43.4a4.9 4.9 0 0 1 1.77 1.15 4.9 4.9 0 0 1 1.15 1.77c.16.46.35 1.26.4 2.43.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.4 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.46.16-1.26.35-2.43.4-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.43-.4a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.16-.46-.35-1.26-.4-2.43C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.24-1.97.4-2.43a4.9 4.9 0 0 1 1.15-1.77A4.9 4.9 0 0 1 5.6 1.8c.46-.16 1.26-.35 2.43-.4C9.3 1.34 9.68 1.33 12.9 1.33M12 6.9a5.1 5.1 0 1 0 0 10.2 5.1 5.1 0 0 0 0-10.2zm0 8.4a3.3 3.3 0 1 1 0-6.6 3.3 3.3 0 0 1 0 6.6zm5.3-8.6a1.19 1.19 0 1 1 0-2.38 1.19 1.19 0 0 1 0 2.38z"/></svg></a>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm" data-animate novalidate>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="fName">Nome completo</label>
+            <input id="fName" name="name" type="text" required autocomplete="name">
+          </div>
+          <div class="form-field">
+            <label for="fEmail">E-mail corporativo</label>
+            <input id="fEmail" name="email" type="email" required autocomplete="email">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="fPhone">Telefone</label>
+            <input id="fPhone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="form-field">
+            <label for="fArea">Área de interesse</label>
+            <select id="fArea" name="area">
+              <option value="">Selecione</option>
+              <option>Direito Empresarial</option>
+              <option>Direito Tributário</option>
+              <option>Direito Trabalhista</option>
+              <option>Direito Civil</option>
+              <option>Direito Societário</option>
+              <option>Compliance &amp; Governança</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="fMsg">Mensagem</label>
+          <textarea id="fMsg" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+        <p class="form-msg" id="formMsg" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <a href="#hero" class="brand">
+        <span class="brand-mark"><span>S</span></span>
+        <span class="brand-word">SALES <b>COSTA</b></span>
+      </a>
+      <div class="footer-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#areas">Áreas de atuação</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Sales Costa Advogados. Todos os direitos reservados. OAB/SP 00.000.</p>
+      <div class="footer-links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ---- Sticky navbar ----
+const navbar = document.getElementById('navbar');
+const SCROLL_THRESHOLD = 80;
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > SCROLL_THRESHOLD);
+}, { passive: true });
+
+// ---- Mobile drawer ----
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+}));
+
+// ---- Smooth scroll with navbar offset ----
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href');
+    if (targetId === '#' || targetId.length < 2) return;
+    const target = document.querySelector(targetId);
+    if (!target) return;
+    e.preventDefault();
+    const offset = target.getBoundingClientRect().top + window.pageYOffset - 80;
+    window.scrollTo({ top: offset, behavior: 'smooth' });
+  });
+});
+
+// ---- Reveal on scroll ----
+const revealObserver = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      obs.unobserve(entry.target);
+    }
+  });
+}, { root: null, rootMargin: '0px 0px -60px 0px', threshold: 0.15 });
+document.querySelectorAll('[data-animate]').forEach(el => revealObserver.observe(el));
+
+// ---- Animated counters ----
+let countersStarted = false;
+function animateCounters(){
+  if (countersStarted) return;
+  countersStarted = true;
+  document.querySelectorAll('.counter-number').forEach(counter => {
+    const target = +counter.getAttribute('data-target');
+    const duration = 1600;
+    const start = performance.now();
+    function tick(now){
+      const progress = Math.min((now - start) / duration, 1);
+      counter.textContent = Math.ceil(progress * target);
+      if (progress < 1) requestAnimationFrame(tick);
+      else counter.textContent = target;
+    }
+    requestAnimationFrame(tick);
+  });
+}
+const statsSection = document.querySelector('.stats');
+if (statsSection){
+  new IntersectionObserver((entries, obs) => {
+    if (entries[0].isIntersecting){ animateCounters(); obs.disconnect(); }
+  }, { threshold: 0.4 }).observe(statsSection);
+}
+
+// ---- Testimonial carousel ----
+const slides = Array.from(document.querySelectorAll('.t-slide'));
+const dotsWrap = document.getElementById('tDots');
+let tIndex = 0, tTimer;
+
+slides.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.className = 't-dot' + (i === 0 ? ' active' : '');
+  d.setAttribute('aria-label', 'Ir para depoimento ' + (i + 1));
+  d.addEventListener('click', () => goTo(i));
+  dotsWrap.appendChild(d);
+});
+const dots = Array.from(dotsWrap.children);
+
+function goTo(i){
+  slides[tIndex].classList.remove('active');
+  dots[tIndex].classList.remove('active');
+  tIndex = (i + slides.length) % slides.length;
+  slides[tIndex].classList.add('active');
+  dots[tIndex].classList.add('active');
+}
+document.getElementById('tNext').addEventListener('click', () => { goTo(tIndex + 1); resetAutoplay(); });
+document.getElementById('tPrev').addEventListener('click', () => { goTo(tIndex - 1); resetAutoplay(); });
+
+function startAutoplay(){ tTimer = setInterval(() => goTo(tIndex + 1), 5000); }
+function resetAutoplay(){ clearInterval(tTimer); startAutoplay(); }
+const tWrap = document.querySelector('.t-wrap');
+tWrap.addEventListener('mouseenter', () => clearInterval(tTimer));
+tWrap.addEventListener('mouseleave', startAutoplay);
+startAutoplay();
+
+// ---- Contact form validation ----
+const form = document.getElementById('contactForm');
+const formMsg = document.getElementById('formMsg');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  if (!form.checkValidity()){
+    formMsg.textContent = 'Verifique os campos obrigatórios e o formato do e-mail.';
+    formMsg.className = 'form-msg error';
+    return;
+  }
+  // Integração de envio (Formspree/EmailJS/Webhook) a ser definida — ver spike, seção Riscos R01.
+  formMsg.textContent = 'Mensagem enviada com sucesso. Retornaremos em breve.';
+  formMsg.className = 'form-msg success';
+  form.reset();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1564 @@
+/* ============================================================
+   sections.css
+   US-01 — Hero Banner
+   Fonte: SPEC-US-01-hero-banner.md §3 (transcrição fiel)
+   ============================================================ */
+
+/* ==========================================================================
+   Hero Section Base (Mobile First: < 768px)
+   ========================================================================== */
+.hero {
+  min-height: 100vh;
+  /* fallback escuro antes de o fundo rotativo carregar (= base da tela 1) */
+  background-color: var(--hero-grad-bottom);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 100px;
+  padding-bottom: 60px;
+  overflow: hidden;
+}
+
+/* ── Fundo rotativo do hero: 3 telas em crossfade (JS alterna .is-active) ── */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out; /* crossfade "bem suave" */
+}
+
+.hero__slide.is-active {
+  opacity: 1;
+}
+
+/* Tela 1 — gradiente da marca (idêntico ao hero anterior) */
+.hero__slide--brand {
+  background: linear-gradient(180deg, var(--hero-grad-top) 0%, var(--hero-grad-bottom) 100%);
+}
+
+/* Telas 2 e 3 — fotos (assets/banner_saopaulo.png · assets/banner_floripa.png) */
+.hero__slide--photo {
+  background-size: cover;
+  background-position: center;
+}
+
+/* Overlay em degradê: leve no topo, escurece em direção à base */
+.hero__slide--photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.40) 45%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+
+.hero__slide--sp {
+  background-image: url('../assets/banner_saopaulo.png');
+}
+
+.hero__slide--floripa {
+  background-image: url('../assets/banner_floripa.png');
+}
+
+/* Marca d'água decorativa — logo_s_background.png (1634x2102),
+   ancorada à direita, sangrando topo/base, conforme layout. Vive dentro
+   da tela 1 (.hero__slide--brand), então acompanha o fade dela.
+   `max-width: none` anula o `img { max-width: 100% }` do reset — senão
+   a largura é limitada à do .hero e o "S" deforma (altura fixa + largura
+   comprimida). Com a proporção preservada, o excesso horizontal vaza e
+   é recortado pelo `overflow: hidden` do .hero. */
+.hero__watermark {
+  position: absolute;
+  right: -6%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 118%;
+  width: auto;
+  max-width: none;
+  opacity: var(--watermark-opacity);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.hero__container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--section-pad-x);
+  width: 100%;
+}
+
+/* Conteúdo do hero centralizado horizontalmente + acima da marca d'água */
+.hero__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero__eyebrow {
+  display: inline-block;
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  color: var(--color-lima);
+  letter-spacing: var(--eyebrow-tracking);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  line-height: 1.15;
+  font-weight: 800;
+  margin: 0 auto 24px;
+  max-width: 900px;
+}
+
+.hero__subtitle {
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--color-text-light);
+  max-width: 640px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+}
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 24px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.hero__scroll-dot {
+  width: 4px;
+  height: 8px;
+  background-color: var(--color-taupe);
+  border-radius: 2px;
+  animation: scrollPulse 2s infinite;
+}
+
+@keyframes scrollPulse {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(12px); opacity: 0.3; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ==========================================================================
+   Tablet Breakpoint (>= 768px)
+   ========================================================================== */
+@media (min-width: 768px) {
+  .hero__actions {
+    flex-direction: row;
+    justify-content: center;
+    width: auto;
+  }
+}
+
+/* ==========================================================================
+   States & Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-dot {
+    animation: none;
+  }
+
+  /* fundo rotativo do hero: sem crossfade (o JS também congela na tela 1) */
+  .hero__slide {
+    transition: none;
+  }
+}
+
+
+/* ============================================================
+   US-02 — Comunicado ao Mercado
+   Fonte: SPEC-US-02-comunicado-ao-mercado.md §3 (transcrição fiel)
+   ============================================================ */
+
+/* --- Base Styles (Mobile First: < 768px) --- */
+.comunicado {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  padding: var(--section-pad-y) var(--section-pad-x);
+  position: relative;
+  overflow: hidden;
+}
+
+.comunicado__container {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  /* fade-in de entrada (JS adiciona .is-visible) */
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.comunicado__container.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.comunicado__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  color: var(--color-lima);
+  letter-spacing: var(--eyebrow-tracking);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+/* Marcador verde à esquerda do texto — assets/marcador_verde.png (15x15) */
+.comunicado__eyebrow-mark {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  display: block;
+}
+
+.comunicado__title {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  line-height: 1.25;
+  font-weight: 600;
+  margin-bottom: 32px;
+  color: var(--color-white);
+}
+
+/* "Sales Costa Advogados" destacado em Lima no texto da seção */
+.comunicado__brand {
+  color: var(--color-lima);
+}
+
+.comunicado__content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.comunicado__paragraph {
+  font-size: var(--text-body);
+  line-height: 1.7;
+  color: var(--color-text-light);
+  font-weight: 300;
+}
+
+.comunicado__quote {
+  border-left: 3px solid var(--color-taupe);
+  padding-left: 20px;
+  margin: 12px 0;
+  background: rgba(255, 255, 255, 0.02);
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 16px;
+  border-radius: 0 4px 4px 0;
+}
+
+.comunicado__quote-text {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--color-white);
+  margin-bottom: 8px;
+}
+
+.comunicado__quote-author {
+  display: block;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--color-taupe);
+}
+
+/* --- Desktop Breakpoint (>= 1024px) --- */
+@media (min-width: 1024px) {
+  .comunicado__quote {
+    padding-left: 28px;
+    margin: 20px 0;
+  }
+
+  .comunicado__quote-text {
+    font-size: 1.25rem;
+  }
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .comunicado__container {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* ============================================================
+   US-03 — Sobre o Escritório
+   Fonte: SPEC-US-03-sobre-o-escritorio.md §3 (transcrição fiel)
+   ============================================================ */
+
+/* --- Base Styles (Mobile-First, < 768px) --- */
+.sobre {
+  position: relative;
+  background-color: var(--color-off-white);
+  padding-block: var(--section-pad-y);
+  padding-inline: var(--section-pad-x);
+  overflow: hidden; /* contain animations + watermark bleed */
+}
+
+/* Marca d'água (assets/logo_s_background.png, 1634x2102) — fundo claro:
+   filter brightness(0) transforma o "S" claro em cinza-escuro sutil. */
+.sobre__watermark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90%, 1100px);
+  height: auto;
+  opacity: var(--watermark-opacity);
+  filter: brightness(0);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.sobre__container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+.sobre__col-left {
+  width: 100%;
+}
+
+/* Eyebrow "SOBRE" com marcador ciano à esquerda */
+.sobre__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  color: var(--color-cyan);
+  letter-spacing: var(--eyebrow-tracking);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.sobre__eyebrow-mark {
+  flex: 0 0 auto;
+  display: block;
+  width: 10px;
+  height: 10px;
+}
+
+.sobre__headline {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-text-dark);
+  hanging-punctuation: first;
+}
+
+.sobre__col-right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sobre__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sobre__intro-text {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.7;
+  color: var(--color-dark-alt);
+}
+
+.sobre__pillars {
+  display: flex;
+  flex-direction: column; /* empilhado no mobile (RN-02) */
+  gap: 1rem;              /* gap mínimo de 16px — RN-02 */
+  list-style: none;
+}
+
+.pillar {
+  border-top: 1px solid var(--color-border); /* #D9D3CE */
+  padding-top: 1rem;
+}
+
+.pillar__name {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500; /* RN-01 — nome em destaque */
+  color: var(--color-text-dark);
+  margin-bottom: 0.375rem;
+  letter-spacing: 0.01em;
+}
+
+.pillar__description {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-style: italic; /* RN-01 — descrição em itálico */
+  line-height: 1.6;
+  color: var(--color-dark-alt);
+}
+
+/* --- Tablet Breakpoint (>= 768px) --- */
+@media (min-width: 768px) {
+  .sobre__pillars {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .pillar {
+    flex: 1;
+  }
+}
+
+/* --- Desktop Breakpoint (>= 1024px) --- */
+@media (min-width: 1024px) {
+  .sobre__container {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .sobre__col-left {
+    flex: 0 0 40%;
+    max-width: 40%;
+    position: sticky;
+    top: calc(80px + 2rem);
+  }
+
+  .sobre__col-right {
+    flex: 0 0 60%;
+    max-width: 60%;
+    gap: 2.5rem;
+  }
+
+  .sobre__pillars {
+    gap: 2rem;
+  }
+}
+
+/* --- States & Interactions --- */
+.sobre a:focus-visible {
+  outline: 2px solid var(--color-taupe);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (hover: hover) {
+  .pillar {
+    transition: border-top-color 0.25s ease;
+  }
+
+  .pillar:hover {
+    border-top-color: var(--color-taupe);
+  }
+}
+
+
+/* ============================================================
+   US-04 — Áreas de Atuação (layout da seção + grid)
+   Fonte: SPEC-US-04-areas-de-atuacao.md §3 (transcrição fiel)
+   ============================================================ */
+.areas {
+  background-color: var(--color-white);
+  color: var(--color-text-dark);
+  padding: var(--section-pad-y) var(--section-pad-x);
+}
+
+.areas__container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.areas__header {
+  margin-bottom: 48px;
+}
+
+.areas__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  color: var(--color-taupe);
+  letter-spacing: var(--eyebrow-tracking);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.areas__eyebrow-mark {
+  flex: 0 0 auto;
+  display: block;
+  width: 10px;
+  height: 10px;
+}
+
+.areas__title {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  line-height: 1.25;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  max-width: 700px;
+}
+
+/* "cada frente" destacado em Taupe */
+.areas__title-accent {
+  color: var(--color-taupe);
+}
+
+.areas__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .areas__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .areas__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+
+/* ============================================================
+   Animação genérica de entrada — .animate-fade-up
+   (usada pela US-03 em diante; observada por js/animations.js)
+   ============================================================ */
+.animate-fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-fade-up[data-delay="100"] { transition-delay: 100ms; }
+.animate-fade-up[data-delay="200"] { transition-delay: 200ms; }
+.animate-fade-up[data-delay="300"] { transition-delay: 300ms; }
+.animate-fade-up[data-delay="400"] { transition-delay: 400ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* ============================================================
+   US-05 — Por Que Sales Costa (Diferenciais)
+   Fonte: SPEC-US-05-diferenciais-atendimento.md §3 (transcrição fiel)
+   ============================================================ */
+
+/* --- Base styles (mobile-first) --- */
+.diferenciais {
+  background-color: var(--color-dark);
+  padding-block: var(--section-pad-y);
+  padding-inline: var(--section-pad-x);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.diferenciais__container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 5vw, 3.5rem);
+}
+
+.diferenciais__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.diferenciais__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-lima);
+  font-family: var(--font-body);
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--eyebrow-tracking);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.diferenciais__eyebrow-mark {
+  flex: 0 0 auto;
+  display: block;
+  width: 10px;
+  height: 10px;
+}
+
+.diferenciais__heading {
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 600;
+  line-height: 1.25;
+  max-width: 40ch;
+}
+
+/* "diferencial" e "cada caso" destacados em Lima */
+.diferenciais__heading-accent {
+  color: var(--color-lima);
+}
+
+/* --- Grid (mobile: 1 coluna) --- */
+.diferenciais__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+/* --- Card --- */
+.diferencial-card {
+  position: relative;
+  background-color: var(--color-dark-alt);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease,
+    border-color 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diferencial-card {
+    opacity: 1;
+    transform: none;
+    transition: border-color 0.3s ease;
+  }
+}
+
+/* Marcador decorativo no canto superior direito — assets/marcador_verde.png (15x15) */
+.diferencial-card__corner {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 15px;
+  height: 15px;
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Número indicador em destaque (substitui o ícone) */
+.diferencial-card__num {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-taupe);
+}
+
+.diferencial-card__title {
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.diferencial-card__desc {
+  color: var(--color-text-light);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* --- Tablet (>= 768px) --- */
+@media (min-width: 768px) {
+  .diferenciais__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .diferencial-card {
+    padding: 2rem;
+  }
+}
+
+/* --- Desktop (>= 1024px) --- */
+@media (min-width: 1024px) {
+  .diferenciais__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .diferencial-card {
+    align-self: stretch;
+    padding: 2.5rem 2rem;
+  }
+
+  .diferencial-card__desc {
+    margin-top: auto;
+  }
+}
+
+/* --- States & interactions --- */
+.diferencial-card:hover {
+  border-color: rgba(228, 255, 143, 0.35); /* --color-lima @ 35% */
+}
+
+.diferencial-card:focus-visible {
+  outline: 2px solid var(--color-lima);
+  outline-offset: 4px;
+}
+
+/* --- Animation (classe injetada pelo IntersectionObserver) --- */
+.diferencial-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ============================================================
+   US-06 — Em Números (Métricas de Autoridade)
+   Fonte: SPEC-US-06-em-numeros.md §3 (transcrição fiel)
+   ============================================================ */
+
+/* --- Base (mobile-first, < 768px) --- */
+/* Fundo Lima (#E4FF8F) conforme referência do layout sales-costa-layout1.png:
+   faixa lima, números quase-pretos, labels quase-pretas, SEM divisores verticais. */
+.numeros {
+  background-color: var(--color-lima);
+  padding-block: var(--section-pad-y);
+  padding-inline: var(--section-pad-x);
+}
+
+.numeros__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* mobile: 2x2 */
+  gap: clamp(2rem, 5vw, 2.5rem) clamp(1rem, 4vw, 2rem);
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+.numeros__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding-block: 0.75rem;
+  border-right: none; /* sem divisor no mobile */
+  /* estado inicial para animação de entrada (JS adiciona .is-visible) */
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.numeros__item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger entre os 4 itens */
+.numeros__item:nth-child(1) { transition-delay: 0ms; }
+.numeros__item:nth-child(2) { transition-delay: 80ms; }
+.numeros__item:nth-child(3) { transition-delay: 160ms; }
+.numeros__item:nth-child(4) { transition-delay: 240ms; }
+
+.numeros__value-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.1em;
+}
+
+.numeros__count {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  color: var(--color-text-dark);
+  line-height: 1;
+  display: inline-block;
+  min-width: 2ch;             /* evita layout shift durante a contagem */
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.numeros__suffix {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  color: var(--color-text-dark); /* quase-preto sobre a faixa lima (ref. layout1) */
+  line-height: 1;
+}
+
+.numeros__label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.6875rem;
+  color: var(--color-text-dark); /* quase-preto sobre a faixa lima (ref. layout1) */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .numeros__item,
+  .numeros__item.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* --- Tablet (>= 768px): 4 colunas em linha, SEM divisores (ref. layout1) --- */
+@media (min-width: 768px) {
+  .numeros__container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .numeros__item {
+    padding-inline: clamp(1rem, 3vw, 2.5rem);
+  }
+}
+
+/* --- Desktop (>= 1024px) --- */
+@media (min-width: 1024px) {
+  .numeros__item {
+    padding-block: 1.25rem;
+    padding-inline: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .numeros__label {
+    font-size: 0.75rem;
+  }
+}
+
+
+/* ============================================================
+   US-07 — Depoimentos (Prova Social)
+   Fonte: SPEC-US-07-depoimentos-prova-social.md §3 (transcrição fiel)
+   ============================================================ */
+
+/* --- Base (mobile-first, < 768px) --- */
+.testimonials-section {
+  position: relative;
+  background-color: var(--color-off-white);
+  padding-block: var(--section-pad-y);
+  padding-inline: var(--section-pad-x);
+  overflow: hidden; /* contain horizontal bleed from track transforms + watermark */
+}
+
+/* Decorative watermark (assets/logo_s_background.png, 1634x2102) — fundo claro */
+.testimonials-watermark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(80%, 900px);
+  height: auto;
+  opacity: var(--watermark-opacity); /* 0.3 — token global das marcas d'água */
+  filter: brightness(0);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.testimonials-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Eyebrow */
+.testimonials-section .section-eyebrow {
+  letter-spacing: 0.18em;
+  font-size: var(--text-eyebrow);
+  font-family: var(--font-body);
+  font-weight: 500;
+  color: var(--color-taupe);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ── Carousel ── */
+.testimonials-carousel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  min-height: 44px; /* Minimum swipe target height */
+}
+
+.testimonials-track {
+  display: flex;
+  width: 100%; /* Widened to 100% × N slides by JS */
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+/* ── Slide ── */
+.testimonial-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.testimonial-slide[aria-hidden="true"] {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.testimonial-slide[aria-hidden="false"] {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Decorative opening quote */
+.quote-deco {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 7.5rem; /* ~120px */
+  line-height: 0.6;
+  color: var(--color-taupe);
+  opacity: 0.55;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  user-select: none;
+  pointer-events: none;
+  height: 4rem;
+  overflow: visible;
+}
+
+/* Blockquote */
+.testimonial-quote {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.testimonial-quote p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  line-height: 1.65;
+  color: var(--color-text-dark);
+  max-width: 68ch;
+  margin-inline: auto;
+}
+
+/* Author block */
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  font-style: normal;
+  margin-top: 1.75rem;
+}
+
+/* Separator line above author */
+.testimonial-author::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background-color: var(--color-taupe);
+  margin-bottom: 1rem;
+}
+
+.testimonial-name {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9375rem; /* 15px */
+  color: var(--color-text-dark);
+  letter-spacing: 0.02em;
+}
+
+.testimonial-role {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.8125rem; /* 13px */
+  color: var(--color-taupe);
+  letter-spacing: 0.01em;
+}
+
+/* ── Dots ── */
+.testimonials-dots {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.testimonials-dots.is-single {
+  visibility: hidden;
+  pointer-events: none;
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* 44×44px touch target — visual dot is smaller via ::after */
+.testimonials-dot {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.testimonials-dot::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-border);
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.testimonials-dot.active::after,
+.testimonials-dot[aria-selected="true"]::after {
+  background-color: var(--color-taupe);
+  transform: scale(1.35);
+}
+
+.testimonials-dot:focus-visible {
+  outline: 2px solid var(--color-taupe);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* --- Tablet (>= 768px) --- */
+@media (min-width: 768px) {
+  .testimonials-inner {
+    gap: 2.5rem;
+  }
+
+  .quote-deco {
+    font-size: 9rem;
+    height: 4.5rem;
+  }
+
+  .testimonial-quote p {
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
+  }
+
+  .testimonials-dot::after {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* --- Desktop (>= 1024px) --- */
+@media (min-width: 1024px) {
+  .testimonials-inner {
+    gap: 3rem;
+  }
+
+  /* Centered card — max-width 800px */
+  .testimonials-carousel {
+    max-width: 800px;
+    margin-inline: auto;
+  }
+
+  .quote-deco {
+    font-size: 10rem; /* ~160px — prominent on wide screens */
+    height: 5rem;
+  }
+}
+
+/* --- States & Interactions --- */
+@media (hover: hover) {
+  .testimonials-dot:hover::after {
+    background-color: var(--color-taupe);
+    opacity: 0.7;
+  }
+}
+
+.testimonials-dot:active::after {
+  transform: scale(0.9);
+}
+
+/* --- Animations & Transitions --- */
+/* Slide opacity fade-in on entrance (JS adds .is-entering) */
+.testimonial-slide.is-entering {
+  animation: slide-fade-in 0.4s ease forwards;
+}
+
+@keyframes slide-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* IntersectionObserver entrance animation */
+.testimonials-section .anim-fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.testimonials-section .anim-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced-motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-track {
+    transition: none;
+  }
+
+  .testimonial-slide.is-entering {
+    animation: none;
+  }
+
+  .testimonials-section .anim-fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .testimonials-dot::after {
+    transition: none;
+  }
+}
+
+
+/* ============================================================
+   US-08 — Nossa Equipe (Sócios Responsáveis)
+   Fonte: SPEC-US-08-nossa-equipe-socios.md §3 (transcrição fiel)
+   + ajustes: eyebrow ciano com marcador, título weight 600
+   ============================================================ */
+
+/* --- Base (mobile-first, < 768px) --- */
+.equipe {
+  background-color: var(--color-white);
+  color: var(--color-text-dark);
+  padding: var(--section-pad-y) var(--section-pad-x);
+}
+
+.equipe__container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.equipe__header {
+  margin-bottom: 48px;
+}
+
+/* Eyebrow — cor ciano #3DD6D0 + marcador ciano à esquerda */
+.equipe__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  color: var(--color-cyan); /* #3DD6D0 */
+  letter-spacing: var(--eyebrow-tracking); /* 3px — token global */
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.equipe__eyebrow-mark {
+  flex: 0 0 auto;
+  display: block;
+  width: 10px;
+  height: 10px;
+}
+
+.equipe__title {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  line-height: 1.25;
+  font-weight: 600; /* ajuste — a spec previa 400 */
+  color: var(--color-text-dark);
+}
+
+.equipe__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+/* --- Tablet (>= 768px): grid 2x2 --- */
+@media (min-width: 768px) {
+  .equipe__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+}
+
+/* --- Desktop (>= 1024px): 4 colunas em linha --- */
+@media (min-width: 1024px) {
+  .equipe__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+}
+
+
+/* ============================================================
+   US-09 — Fale Conosco (Formulário de Contato)
+   Fonte: SPEC-US-09-fale-conosco-formulario.md §3 (transcrição fiel)
+   + ajustes: fundo --color-footer-dark, eyebrow/ícones em Lima com marcador verde
+   ============================================================ */
+
+/* --- Base (mobile-first, < 1024px): 1 coluna --- */
+.contato {
+  /* ajuste: mesmo tom escuro do rodapé (#2B2D30), a pedido — dá continuidade
+     visual entre a seção de contato e o <footer>. */
+  background-color: var(--color-footer-dark);
+  color: var(--color-white);
+  padding: var(--section-pad-y) var(--section-pad-x);
+}
+
+.contato__container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Eyebrow — marcador verde à esquerda, texto em Lima */
+.contato__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  color: var(--color-lima); /* ajuste: era --color-taupe */
+  letter-spacing: var(--eyebrow-tracking); /* 3px — token global */
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.contato__eyebrow-mark {
+  flex: 0 0 auto;
+  display: block;
+  width: 10px;
+  height: 10px;
+}
+
+.contato__title {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  line-height: 1.25;
+  font-weight: 400;
+  color: var(--color-white);
+  margin-bottom: 16px;
+}
+
+.contato__subtitle {
+  font-size: var(--text-body);
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin-bottom: 36px;
+  font-weight: 300;
+}
+
+.contato__details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contato__detail-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-text-light);
+  font-size: 0.9375rem;
+}
+
+.contato__detail-item svg {
+  color: var(--color-lima); /* ajuste: era --color-taupe */
+  flex-shrink: 0;
+}
+
+.contato__link {
+  color: var(--color-white);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contato__link:hover {
+  color: var(--color-taupe);
+}
+
+/* --- Desktop (>= 1024px): 2 colunas assimétricas 45/55 --- */
+@media (min-width: 1024px) {
+  .contato__container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .contato__info {
+    flex: 0 0 45%;
+  }
+
+  .contato__form-wrapper {
+    flex: 0 0 55%;
+  }
+}
+
+
+/* ============================================================
+   US-10 — Rodapé Institucional & Navegação Global
+   Fonte: SPEC-US-10-rodape-institucional.md §3 (transcrição fiel)
+   ============================================================ */
+
+/* --- Base (mobile-first, < 768px) --- */
+.site-footer {
+  background-color: var(--color-footer-dark);   /* #2B2D30 */
+  color: var(--color-text-light);               /* #D1D5DB */
+  width: 100%;
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+  padding-inline: var(--section-pad-x);
+
+  /* Fade-in trigger (JS adiciona .is-visible) */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.site-footer.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer__inner {
+  max-width: var(--container-max);   /* 1200px */
+  margin-inline: auto;
+}
+
+/* ── TOP ROW ── */
+.footer__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+/* Logo lockup (assets/logo_s_verde.png 64x72 + assets/logo_salescosta.png 520x44) */
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  min-height: 44px;
+  transition: opacity 0.2s ease;
+}
+
+.footer__logo-mark {
+  display: block;
+  height: 28px;
+  width: auto;
+}
+
+.footer__logo-word {
+  display: block;
+  height: 18px;
+  width: auto;
+}
+
+/* Nav list */
+.footer__nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* Nav links */
+.footer__nav-link {
+  font-family: var(--font-body);
+  font-size: var(--text-body);         /* 1rem */
+  font-weight: 400;
+  color: var(--color-taupe);           /* #AA9B8F */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;                    /* touch target >= 44px */
+  padding-inline: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+/* Divider */
+.footer__divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-block: 2rem;
+}
+
+/* ── BOTTOM ROW ── */
+.footer__bottom {
+  text-align: center;
+}
+
+.footer__copyright {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;   /* 13px */
+  font-weight: 400;
+  color: rgba(209, 213, 219, 0.6);   /* --color-text-light a 60% */
+  line-height: 1.5;
+}
+
+/* --- Tablet (>= 768px) --- */
+@media (min-width: 768px) {
+  .footer__top {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+
+  .footer__nav-list {
+    flex-direction: row;
+    gap: 0.25rem;
+  }
+
+  .footer__nav-link {
+    padding-inline: 0.75rem;
+  }
+
+  .footer__bottom {
+    text-align: left;
+  }
+}
+
+/* --- Desktop (>= 1024px) --- */
+@media (min-width: 1024px) {
+  .footer__nav-list {
+    gap: 0.5rem;
+  }
+
+  .footer__nav-link {
+    padding-inline: 1rem;
+    font-size: 0.9375rem;   /* 15px */
+  }
+}
+
+/* --- States & Interactions --- */
+.footer__logo:hover,
+.footer__logo:focus-visible {
+  opacity: 0.8;
+}
+
+.footer__nav-link:hover {
+  color: var(--color-white);
+}
+
+.footer__nav-link:focus-visible {
+  color: var(--color-white);
+  outline: 2px solid var(--color-lima);   /* #E4FF8F */
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.footer__logo:focus-visible {
+  outline: 2px solid var(--color-lima);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.footer__nav-link:active {
+  opacity: 0.7;
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .site-footer {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .footer__logo,
+  .footer__nav-link {
+    transition: none;
+  }
+}

@@ -9,10 +9,11 @@
 
 ## 1. System Architecture & Component Overview
 
-A seção `#sobre` apresenta a identidade institucional do escritório Sales Costa Advogados, comunicando sua trajetória e os três pilares estratégicos que sustentam sua prática jurídica. É a segunda seção de conteúdo da página, posicionada após o Hero (`#hero`) e antes da seção de Áreas de Atuação (`#areas`).
+A seção `#sobre` apresenta a identidade institucional do escritório Sales Costa Advogados, comunicando sua trajetória e os três pilares estratégicos que sustentam sua prática jurídica. Posicionada após o Comunicado ao Mercado (`#comunicado`) e antes da seção de Áreas de Atuação (`#areas`).
 
 **Responsabilidades do componente:**
-- Apresentar o headline posicionador do escritório (coluna esquerda).
+- Exibir o eyebrow **"SOBRE"** (cor ciano `#3DD6D0`, `--color-cyan`) com o marcador `assets/marcador_ciano.png` à esquerda, acima do headline (coluna esquerda).
+- Apresentar o headline posicionador do escritório (`font-weight: 600`, coluna esquerda).
 - Descrever a trajetória em 3 parágrafos introdutórios (coluna direita, topo).
 - Listar os 3 pilares estratégicos com nome em negrito e descrição em itálico (coluna direita, base).
 - Adaptar o layout de 2 colunas assimétricas (desktop) para 1 coluna empilhada (mobile).
@@ -67,13 +68,21 @@ graph TD
   class="sobre"
   aria-labelledby="sobre-heading"
 >
+  <!-- Marca d'água decorativa — assets/logo_s_background.png (1634x2102) -->
+  <img class="sobre__watermark" src="assets/logo_s_background.png" alt="" aria-hidden="true">
+
   <div class="sobre__container">
 
-    <!-- LEFT COLUMN: Headline posicionador (40%) -->
-    <div class="sobre__col-left" aria-hidden="false">
+    <!-- LEFT COLUMN: Eyebrow + Headline posicionador (40%) -->
+    <div class="sobre__col-left">
+      <span class="sobre__eyebrow animate-fade-up">
+        <img class="sobre__eyebrow-mark" src="assets/marcador_ciano.png" alt="" width="15" height="15">
+        SOBRE
+      </span>
       <h2
         id="sobre-heading"
         class="sobre__headline animate-fade-up"
+        data-delay="100"
       >
         Uma trajetória construída sobre confiança e critério técnico.
       </h2>
@@ -173,14 +182,33 @@ Adicionar ao arquivo `css/sections.css`.
 
 /* --- Section wrapper --- */
 .sobre {
+  position: relative;
   background-color: var(--color-off-white);
   padding-block: var(--section-pad-y);
   padding-inline: var(--section-pad-x);
-  overflow: hidden; /* contain animations */
+  overflow: hidden; /* contain animations + watermark bleed */
+}
+
+/* --- Decorative watermark (assets/logo_s_background.png, 1634x2102) --- */
+/* Em fundo claro: filtro brightness(0) transforma o "S" claro em cinza-escuro sutil. */
+.sobre__watermark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90%, 1100px);
+  height: auto;
+  opacity: var(--watermark-opacity); /* 0.3 — token global das marcas d'água */
+  filter: brightness(0);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
 }
 
 /* --- Inner container --- */
 .sobre__container {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column; /* stacked on mobile */
   gap: 2rem;
@@ -193,10 +221,30 @@ Adicionar ao arquivo `css/sections.css`.
   width: 100%;
 }
 
+/* Eyebrow "SOBRE" — cor ciano #3DD6D0 + marcador ciano à esquerda */
+.sobre__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  color: var(--color-cyan);
+  letter-spacing: var(--eyebrow-tracking); /* 3px — token global */
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.sobre__eyebrow-mark {
+  flex: 0 0 auto;
+  display: block;
+  width: 10px;
+  height: 10px;
+}
+
 .sobre__headline {
   font-family: var(--font-display);
   font-size: var(--text-h2); /* clamp(1.5rem, 3vw, 2.5rem) */
-  font-weight: 400; /* Cormorant Garamond — regular weight for elegance */
+  font-weight: 600; /* Montserrat SemiBold */
   line-height: 1.2;
   color: var(--color-text-dark);
   hanging-punctuation: first;
@@ -240,9 +288,9 @@ Adicionar ao arquivo `css/sections.css`.
 
 /* --- Pillar name --- */
 .pillar__name {
-  font-family: var(--font-body); /* DM Sans */
+  font-family: var(--font-body); /* Montserrat */
   font-size: 1rem;
-  font-weight: 500; /* DM Sans Medium — RN-01 bold name */
+  font-weight: 500; /* Montserrat Medium — RN-01 nome em destaque */
   color: var(--color-text-dark);
   margin-bottom: 0.375rem;
   letter-spacing: 0.01em;
@@ -499,12 +547,18 @@ const sobreContent = {
     ariaLabelledBy: 'sobre-heading',
   },
 
+  eyebrow: {
+    text: 'SOBRE',
+    color: '#3DD6D0',            // --color-cyan
+    mark: 'assets/marcador_ciano.png', // 15x15, render 10x10, à esquerda do texto
+  },
+
   headline: {
     id: 'sobre-heading',
     text: 'Uma trajetória construída sobre confiança e critério técnico.',
     tag: 'h2',
-    font: 'Cormorant Garamond',
-    weight: 400,
+    font: 'Montserrat',
+    weight: 600,
   },
 
   intro: {
@@ -541,6 +595,14 @@ const sobreContent = {
 ---
 
 ## 7. Acceptance Criteria (Technical)
+
+### CA-00 — Eyebrow "SOBRE" + headline
+
+| Verificação Técnica | Como verificar |
+|---|---|
+| `.sobre__eyebrow` exibe o texto "SOBRE" na cor ciano | `getComputedStyle(el).color` → `rgb(61, 214, 208)` (`#3DD6D0`) |
+| `.sobre__eyebrow-mark` (`marcador_ciano.png`) à esquerda do texto, ~10×10px | `img.complete && img.naturalWidth > 0`; `getBoundingClientRect().width ≈ 10` |
+| `.sobre__headline` em `font-weight: 600` | `getComputedStyle(el).fontWeight === '600'` |
 
 ### CA-01 — 3 pilares visíveis com descrições
 
@@ -591,10 +653,12 @@ const sobreContent = {
 | `--color-off-white` | `#F8F6F4` | Background da section |
 | `--color-border` | `#D9D3CE` | `border-top` dos pilares |
 | `--color-taupe` | `#AA9B8F` | Hover do `border-top` dos pilares |
+| `--color-cyan` | `#3DD6D0` | Eyebrow "SOBRE" |
 | `--color-text-dark` | `#2B2B2B` | Headline H2 e nomes dos pilares |
 | `--color-dark-alt` | `#484B4F` | Parágrafos e descrições dos pilares |
-| `--font-display` | `'Cormorant Garamond', Georgia, serif` | Headline H2 |
-| `--font-body` | `'DM Sans', system-ui, sans-serif` | Todos os demais textos |
+| `--watermark-opacity` | `0.3` | Opacidade da `.sobre__watermark` (token global das marcas d'água) |
+| `--font-display` | `'Montserrat', system-ui, sans-serif` | Headline H2 (fonte única do site) |
+| `--font-body` | `'Montserrat', system-ui, sans-serif` | Todos os demais textos |
 | `--text-h2` | `clamp(1.5rem, 3vw, 2.5rem)` | Tamanho do headline |
 | `--text-body` | `1rem` | Parágrafos e descrições |
 | `--section-pad-y` | `clamp(3rem, 8vw, 6rem)` | Padding vertical da section |
@@ -605,10 +669,12 @@ const sobreContent = {
 
 | Arquivo | Operação | Localização |
 |---|---|---|
-| `index.html` | Inserir o bloco `<section id="sobre">` | Após `<section id="hero">` |
-| `css/sections.css` | Adicionar regras `.sobre`, `.sobre__*`, `.pillar`, `.pillar__*` | Bloco dedicado à seção #sobre |
+| `index.html` | Inserir o bloco `<section id="sobre">` (com `<img class="sobre__watermark">`) | Após `<section id="comunicado">` (ordem: hero → comunicado → sobre) |
+| `css/sections.css` | Adicionar regras `.sobre`, `.sobre__*` (incl. `.sobre__watermark`), `.pillar`, `.pillar__*` | Bloco dedicado à seção #sobre |
 | `css/sections.css` | Adicionar regras `.animate-fade-up` e `.is-visible` | Bloco de animações globais (ou mover para `components.css`) |
 | `js/animations.js` | Implementar o `IntersectionObserver` com suporte a `data-delay` | Módulo central de animações |
+| `assets/logo_s_background.png` | Reutilizar (já copiado na US-01) | Marca d'água `.sobre__watermark` — `width: min(90%, 1100px)`, centralizada, `opacity: var(--watermark-opacity)` (0.3) + `filter: brightness(0)` |
+| `assets/marcador_ciano.png` | Copiar de `images/` (15×15) | Marcador do eyebrow "SOBRE" — render `10×10px` |
 
 ### Fontes Externas
 
@@ -617,7 +683,7 @@ const sobreContent = {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
-  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
   rel="stylesheet"
 >
 ```

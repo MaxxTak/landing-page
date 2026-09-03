@@ -13,16 +13,18 @@ A seção **Comunicado ao Mercado** (`<section id="comunicado">`) é um bloco in
 
 ### Características Arquiteturais:
 - **Fundo Dark Institucional:** Fundo `#404347` contínuo à Hero Section.
-- **Marca d'água "S" Decorativa:** Elemento vetorial/tipográfico com opacidade reduzida (5%) posicionado no plano de fundo.
-- **Eyebrow Lima:** Destaque de anúncio oficial em cor Lima `#E4FF8F`.
+- **Sem marca d'água** nesta seção (decisão de design — removida).
+- **Eyebrow Lima com marcador:** anúncio oficial em cor Lima `#E4FF8F`, precedido do marcador verde `assets/marcador_verde.png` (render ~10px) à esquerda do texto.
+- **Título (`H2`) peso 600**, com o nome **"Sales Costa Advogados"** destacado em Lima.
+- **Destaque da marca:** toda ocorrência de "Sales Costa Advogados" no texto da seção usa `<span class="comunicado__brand">` (cor Lima).
 - **Citações com Destaque:** Parágrafos 3 e 4 formatados como elementos `<blockquote class="comunicado__quote">` com borda lateral Taupe `#AA9B8F`.
+- **Fade-in de entrada:** `.comunicado__container` inicia com `opacity: 0` e recebe `.is-visible` via `IntersectionObserver` (desativado sob `prefers-reduced-motion`).
 
 ### Mermaid Diagram: Layout Structure
 
 ```mermaid
 graph TD
-    A[Section #comunicado] --> B[Watermark Monogram 'S']
-    A --> C[Container max-width 860px]
+    A[Section #comunicado] --> C[Container max-width 860px]
     C --> D[Eyebrow 'COMUNICADO AO MERCADO']
     C --> E[H2 Headline Oficial]
     C --> F[Parágrafo 1 - Contexto da Fusão]
@@ -38,19 +40,19 @@ graph TD
 
 ```html
 <section id="comunicado" class="comunicado" aria-labelledby="comunicado-title">
-  <!-- Marca d'água "S" decorativa -->
-  <div class="comunicado__watermark" aria-hidden="true">S</div>
-
   <div class="comunicado__container">
-    <span class="comunicado__eyebrow">COMUNICADO AO MERCADO</span>
-    
+    <span class="comunicado__eyebrow">
+      <img class="comunicado__eyebrow-mark" src="assets/marcador_verde.png" alt="" width="15" height="15">
+      COMUNICADO AO MERCADO
+    </span>
+
     <h2 id="comunicado-title" class="comunicado__title">
-      Dilson Higasi Sales e Rodrigo Moreira da Costa se unem e dão origem ao Sales Costa Advogados
+      Dilson Higasi Sales e Rodrigo Moreira da Costa se unem e dão origem ao <span class="comunicado__brand">Sales Costa Advogados</span>
     </h2>
 
     <div class="comunicado__content">
       <p class="comunicado__paragraph">
-        O mercado jurídico ganha uma nova banca desenvolvida para atuar nas áreas mais críticas das decisões empresariais e familiares. A Higasi Sales Advogados e Rodrigo Moreira da Costa unem suas trajetórias e expertises para celebrar o início do Sales Costa Advogados.
+        O mercado jurídico ganha uma nova banca desenvolvida para atuar nas áreas mais críticas das decisões empresariais e familiares. A Higasi Sales Advogados e Rodrigo Moreira da Costa unem suas trajetórias e expertises para celebrar o início do <span class="comunicado__brand">Sales Costa Advogados</span>.
       </p>
 
       <p class="comunicado__paragraph">
@@ -72,7 +74,7 @@ graph TD
       </blockquote>
 
       <p class="comunicado__paragraph">
-        O Sales Costa Advogados inicia suas atividades de forma totalmente integrada entre as sedes de São Paulo e Florianópolis, atuando de forma transversal nas frentes tributária, societária, cível, imobiliária e trabalhista.
+        O <span class="comunicado__brand">Sales Costa Advogados</span> inicia suas atividades de forma totalmente integrada entre as sedes de São Paulo e Florianópolis, atuando de forma transversal nas frentes tributária, societária, cível, imobiliária e trabalhista.
       </p>
     </div>
   </div>
@@ -94,45 +96,54 @@ graph TD
   overflow: hidden;
 }
 
-.comunicado__watermark {
-  position: absolute;
-  right: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--font-display);
-  font-size: 32rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.03);
-  user-select: none;
-  pointer-events: none;
-  z-index: 0;
-  line-height: 1;
-}
-
 .comunicado__container {
   max-width: 860px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  /* fade-in de entrada (JS adiciona .is-visible via IntersectionObserver) */
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.comunicado__container.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
 .comunicado__eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: var(--text-eyebrow);
   font-weight: 500;
   color: var(--color-lima);
-  letter-spacing: 4px;
+  letter-spacing: var(--eyebrow-tracking); /* 3px — token global */
   margin-bottom: 16px;
   text-transform: uppercase;
+}
+
+/* Marcador verde à esquerda do texto — assets/marcador_verde.png (15x15) */
+.comunicado__eyebrow-mark {
+  flex: 0 0 auto;
+  display: block;
+  width: 10px;
+  height: 10px;
 }
 
 .comunicado__title {
   font-family: var(--font-display);
   font-size: var(--text-h2);
   line-height: 1.25;
-  font-weight: 400;
+  font-weight: 600;
   margin-bottom: 32px;
   color: var(--color-white);
+}
+
+/* "Sales Costa Advogados" destacado em Lima ao longo do texto da seção */
+.comunicado__brand {
+  color: var(--color-lima);
 }
 
 .comunicado__content {
@@ -180,12 +191,6 @@ graph TD
    3.2 Desktop Breakpoint (≥ 1024px)
    ========================================================================== */
 @media (min-width: 1024px) {
-  .comunicado__watermark {
-    right: 5%;
-    font-size: 40rem;
-    color: rgba(255, 255, 255, 0.04);
-  }
-
   .comunicado__quote {
     padding-left: 28px;
     margin: 20px 0;
@@ -193,6 +198,17 @@ graph TD
 
   .comunicado__quote-text {
     font-size: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   3.3 Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .comunicado__container {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 ```
@@ -226,9 +242,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ## 5. Accessibility (A11y) Requirements
 
-- **Contraste de Cor (WCAG AAA):** Texto claro `#D1D5DB` sobre `#404347` = 9.8:1. Texto branco `#FFFFFF` = 9.5:1.
-- **Marca d'água:** `aria-hidden="true"` com `pointer-events: none` garante que leitores de tela ignorem a letra decorativa "S".
-- **Semântica HTML:** Elementos `<blockquote` e `<cite>` estruturam as citações formais dos sócios.
+- **Contraste de Cor:** Texto branco `#FFFFFF` sobre `#404347` ≈ 9.5:1 (AAA). Texto claro `#D1D5DB` sobre `#404347` ≈ 7.5:1 (AA/AAA para texto grande). Autoria das citações em Taupe `#AA9B8F` ≈ 4.6:1 (AA).
+- **Movimento:** o fade-in de `.comunicado__container` é desativado sob `prefers-reduced-motion: reduce` (conteúdo já visível, sem `transition`).
+- **Semântica HTML:** Elementos `<blockquote>` e `<cite>` estruturam as citações formais dos sócios.
 
 ---
 
@@ -266,12 +282,18 @@ document.addEventListener('DOMContentLoaded', () => {
 - Todos os 5 parágrafos e 2 citações dos fundadores devem ser renderizados com legibilidade completa em fundo `#404347`.
 
 ### CA-02: Comportamento Responsivo no Mobile
-- Em viewports de 320px, a marca d'água "S" permanece em segundo plano sem estourar o container (`overflow-x: hidden`).
+- Em viewports de 320px, o container de texto ocupa 100% da largura com padding lateral (`--section-pad-x`) sem gerar rolagem horizontal (`overflow-x: hidden`).
+
+### CA-03: Fade-in de entrada
+- Ao entrar no viewport (≥ 20% visível), `.comunicado__container` recebe `.is-visible` (uma única vez — `observer.unobserve`). Sob `prefers-reduced-motion: reduce`, o conteúdo já aparece visível sem animação.
 
 ---
 
 ## 8. Dependencies & Integration Points
 
-- **CSS Variables:** `--color-dark`, `--color-lima`, `--color-taupe`, `--text-h2`, `--font-display`.
-- **Files Affected:** `index.html`, `css/sections.css`, `js/animations.js`.
+- **CSS Variables:** `--color-dark`, `--color-lima`, `--color-taupe`, `--color-white`, `--color-text-light`, `--text-h2`, `--text-body`, `--text-eyebrow`, `--font-display`, `--section-pad-x`, `--section-pad-y`.
+- **Tipografia:** `--font-display` e `--font-body` resolvem ambos para **Montserrat** (fonte única do site, definida em `css/variables.css`). O `.comunicado__quote-text` mantém `font-style: italic` para diferenciação das citações.
+- **JS:** `index.html` deve carregar `js/animations.js` (`<script defer>`) — hospeda o `IntersectionObserver` do `.comunicado__container`.
+- **Asset:** `assets/marcador_verde.png` (15×15) — marcador verde do eyebrow, render `10×10px` (reutiliza a pasta `assets/` da US-01; copiar de `images/`).
+- **Files Affected:** `index.html`, `css/sections.css`, `js/animations.js`, `assets/marcador_verde.png`.
 
